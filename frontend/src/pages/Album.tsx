@@ -7,6 +7,7 @@ import { useAuth } from '../hooks/useAuth';
 import { useImages } from '../hooks/useImages';
 import { useTranslation } from '../hooks/useTranslation';
 import { ImageViewer } from '../ui/ImageViewer';
+import { shouldBypassAuthRequired } from '../lib/devAuth';
 import { normalizeAssetTypes } from '../lib/media';
 import type { MediaItem } from '../lib/media';
 import type { ImageItem, TimelineMonth } from '../types/image';
@@ -259,7 +260,7 @@ export default function Album({ auth, images, theme, onThemeToggle }: AlbumProps
   const activeUser = userParam && userParam.trim() ? userParam.trim() : null;
   const activeTagKey = tagParam ? normalizeTag(tagParam) : null;
 
-  if (!auth.loading && !auth.authenticated) {
+  if (!auth.loading && !shouldBypassAuthRequired(auth.authenticated)) {
     return <Navigate replace to="/" />;
   }
 

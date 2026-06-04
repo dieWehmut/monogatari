@@ -15,7 +15,8 @@ dist-ssr
 android/.gradle
 android/build
 android/app/build
-
+sample
+prompt
 # Gradle cache
 android/local.properties
 

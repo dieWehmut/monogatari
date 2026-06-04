@@ -9,6 +9,7 @@ import { useImages } from '../hooks/useImages';
 import { useFollows } from '../hooks/useFollows';
 import { useProfile } from '../context/ProfileContext';
 import { useTranslation } from '../hooks/useTranslation';
+import { shouldBypassAuthRequired } from '../lib/devAuth';
 
 interface HomeProps {
   auth: ReturnType<typeof useAuth>;
@@ -79,8 +80,9 @@ export default function Home({ auth, images, follows, theme, onThemeToggle }: Ho
   const androidUrl = `${repoUrl}/releases/latest`;
   const albumUser = auth.user?.login || githubOwner;
   const albumUrl = `/album?user=${encodeURIComponent(albumUser)}`;
-  const albumDisabled = !auth.authenticated;
-  const followsDisabled = !auth.authenticated;
+  const authRequiredBypassed = shouldBypassAuthRequired(auth.authenticated);
+  const albumDisabled = !authRequiredBypassed;
+  const followsDisabled = !authRequiredBypassed;
   const followingCount = follows.following.length;
   const followerCount = follows.followers.length;
   const authAuthenticated = auth.authenticated;

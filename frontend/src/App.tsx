@@ -11,6 +11,7 @@ import { ProfileProvider } from './context/ProfileContext';
 import { AuthProvider } from './context/AuthContext';
 import { LanguageProvider } from './context/LanguageContext';
 import { isPublicPath } from './utils/AuthGuard';
+import { shouldBypassAuthRequired } from './lib/devAuth';
 import type { TimelineMonth } from './types/image';
 
 const Home = lazy(() => import('./pages/Home'));
@@ -67,10 +68,29 @@ function LoginReturnHandler({ authenticated }: { authenticated: boolean }) {
 
 function RequireAuth({ children, loading, authenticated }: { children: React.ReactNode; loading: boolean; authenticated: boolean }) {
   const location = useLocation();
+  const authAllowed = shouldBypassAuthRequired(authenticated);
+
+  useEffect(() => {
+    if (isPublicPath(location.pathname) || loading || authAllowed) return;
+
+    try {
+      localStorage.setItem(LOGIN_RETURN_KEY, `${location.pathname}${location.search}${location.hash}`);
+    } catch {
+      // ignore storage errors
+    }
+  }, [authAllowed, loading, location.hash, location.pathname, location.search]);
 
   if (isPublicPath(location.pathname)) return <>{children}</>;
   if (loading) return null;
-  if (!authenticated) return <Navigate to="/login" replace />;
+  if (!authAllowed) {
+    return (
+      <Navigate
+        to="/login"
+        replace
+        state={{ from: `${location.pathname}${location.search}${location.hash}` }}
+      />
+    );
+  }
 
   return <>{children}</>;
 }

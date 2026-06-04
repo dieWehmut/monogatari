@@ -6,6 +6,7 @@ import { LanguageSwitcher } from '../components/LanguageSwitcher';
 import { useTranslation } from '../hooks/useTranslation';
 import { useToast } from '../utils/useToast';
 import { useAuth, LOGIN_RETURN_KEY } from '../hooks/useAuth';
+import { canUseDevAuthBypass, setDevAuthBypass } from '../lib/devAuth';
 
 interface LoginProps {
   auth: ReturnType<typeof useAuth>;
@@ -63,6 +64,7 @@ export default function Login({ auth, theme, onThemeToggle }: LoginProps) {
   const emailFormRef = useRef<HTMLDivElement>(null);
 
   const showGoogle = !!auth.googleLoginUrl;
+  const showDevBypass = canUseDevAuthBypass();
 
   // Redirect away from login page once authenticated (e.g. after email polling succeeds)
   useEffect(() => {
@@ -138,6 +140,21 @@ export default function Login({ auth, theme, onThemeToggle }: LoginProps) {
     } finally {
       setSending(false);
     }
+  };
+
+  const handleDevBypass = () => {
+    setDevAuthBypass(true);
+    const fromState = (location.state as { from?: string } | null)?.from;
+    let target = fromState && fromState.startsWith('/') && !fromState.startsWith('//') ? fromState : '/';
+    try {
+      const saved = localStorage.getItem(LOGIN_RETURN_KEY);
+      if (target === '/' && saved && saved.startsWith('/') && !saved.startsWith('//')) {
+        target = saved;
+      }
+    } catch {
+      // ignore storage errors
+    }
+    navigate(target, { replace: true });
   };
 
   return (
@@ -267,6 +284,23 @@ export default function Login({ auth, theme, onThemeToggle }: LoginProps) {
                 </div>
               </div>
             )}
+
+            {showDevBypass ? (
+              <>
+                <div className="flex items-center gap-1">
+                  <div className="h-px flex-1 bg-[var(--panel-border)]" />
+                  <span className="text-xs text-soft">dev</span>
+                  <div className="h-px flex-1 bg-[var(--panel-border)]" />
+                </div>
+                <button
+                  className="flex w-full items-center justify-center rounded-xl border border-amber-400/40 bg-amber-400/10 px-4 py-3 text-sm text-amber-100 backdrop-blur-xl transition hover:border-amber-300 hover:text-amber-50"
+                  onClick={handleDevBypass}
+                  type="button"
+                >
+                  Dev: enter without login
+                </button>
+              </>
+            ) : null}
           </div>
 
 

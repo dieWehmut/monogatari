@@ -8,6 +8,7 @@ import { useAuth } from '../hooks/useAuth';
 import { useFollows } from '../hooks/useFollows';
 import { useProfile } from '../context/ProfileContext';
 import { useTranslation } from '../hooks/useTranslation';
+import { shouldBypassAuthRequired } from '../lib/devAuth';
 
 interface FollowerProps {
   auth: ReturnType<typeof useAuth>;
@@ -22,6 +23,7 @@ export default function Follower({ auth, follows, theme, onThemeToggle }: Follow
   const navigate = useNavigate();
   const list = follows.followers;
   const count = list.length;
+  const authAllowed = shouldBypassAuthRequired(auth.authenticated);
 
   const handleBack = () => {
     if (window.history.length > 1) {
@@ -61,7 +63,7 @@ export default function Follower({ auth, follows, theme, onThemeToggle }: Follow
             {follows.error}
           </div>
         ) : null}
-        {!auth.authenticated ? (
+        {!authAllowed ? (
           <div className="mt-10 flex flex-col items-center gap-4 text-sm text-soft">
             <p>{t('social.loginToViewFollowers')}</p>
             <button
