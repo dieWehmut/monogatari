@@ -1,5 +1,7 @@
 const PUBLIC_PATHS = ['/login', '/register'];
-const STATIC_STORY_MODE = import.meta.env.VITE_STATIC_STORY === 'true';
+const STATIC_STORY_MODE = import.meta.env.VITE_STATIC_STORY
+  ? import.meta.env.VITE_STATIC_STORY === 'true'
+  : import.meta.env.DEV;
 
 /**
  * Returns true if the given pathname is publicly accessible (no auth required).

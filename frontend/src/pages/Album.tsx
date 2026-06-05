@@ -329,7 +329,7 @@ export default function Album({ auth, images, theme, onThemeToggle }: AlbumProps
       const formatter = new Intl.DateTimeFormat(language, {
         timeZone: 'UTC',
         year: 'numeric',
-        month: 'long',
+        month: 'numeric',
       });
 
       return buildTimelineMonths(currentTimelineEntries, images.timeOrder).map((month) => ({

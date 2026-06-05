@@ -61,7 +61,7 @@ const formatTimelineMonthLabel = (year: number, month: number) => {
     return new Intl.DateTimeFormat(language, {
       timeZone: 'UTC',
       year: 'numeric',
-      month: 'long',
+      month: 'numeric',
     }).format(date);
   } catch {
     return `${year}-${String(month).padStart(2, '0')}`;

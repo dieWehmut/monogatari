@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "capture:sync": "node scripts/generate-capture.mjs",
-    "dev": "vite",
+    "dev": "pnpm run capture:sync && vite",
+    "dev:server": "pnpm run capture:sync && node scripts/dev-server.mjs",
     "build": "pnpm run capture:sync && tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"

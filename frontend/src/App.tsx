@@ -27,7 +27,9 @@ const Login = lazy(() => import('./pages/Login'));
 const Register = lazy(() => import('./pages/Register'));
 const InviteRedirect = lazy(() => import('./pages/InviteRedirect'));
 
-const staticStoryMode = import.meta.env.VITE_STATIC_STORY === 'true';
+const staticStoryMode = import.meta.env.VITE_STATIC_STORY
+  ? import.meta.env.VITE_STATIC_STORY === 'true'
+  : import.meta.env.DEV;
 const routerBasename = import.meta.env.BASE_URL === '/'
   ? undefined
   : import.meta.env.BASE_URL.replace(/\/$/, '');
