@@ -65,7 +65,7 @@ export function GiscusComments({ term, theme }: GiscusCommentsProps) {
   if (!hasGiscusConfig) {
     return import.meta.env.DEV ? (
       <p className="rounded-lg border border-[var(--panel-border)] bg-[var(--panel-bg)] px-4 py-3 text-sm text-soft">
-        Configure VITE_GISCUS_* to enable GitHub comments.
+        Configure VITE_CAPTURE_GISCUS_* to enable GitHub comments.
       </p>
     ) : null;
   }

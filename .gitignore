@@ -134,6 +134,7 @@ lint/tmp/
 # Android Profiling
 *.hprof
 .*
+!frontend/.env.example
 !.github/
 !.github/workflows/
 !.github/workflows/*.yml
