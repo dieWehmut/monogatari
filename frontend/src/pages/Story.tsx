@@ -233,6 +233,13 @@ function buildCaptureTimelineMonths(groups: CaptureGroup[], order: TimeSortOrder
   return [...months.values()].sort((a, b) => compareCaptureKey(a.key, b.key, order));
 }
 
+function getCaptureAssetGridClass(count: number) {
+  const baseClass = '-mx-4 grid gap-0 md:mx-0 md:grid-cols-3';
+  if (count === 1) return `${baseClass} grid-cols-[minmax(0,66.666667%)]`;
+  if (count === 2) return `${baseClass} grid-cols-2`;
+  return `${baseClass} grid-cols-3`;
+}
+
 function CaptureCard({ asset, onPreview }: { asset: CaptureAsset; onPreview: (asset: CaptureAsset) => void }) {
   return (
     <article className="overflow-hidden bg-[var(--panel-bg)]">
@@ -258,7 +265,7 @@ function CaptureCard({ asset, onPreview }: { asset: CaptureAsset; onPreview: (as
 function CaptureGroupBlock({ group, onPreview }: { group: CaptureGroup; onPreview: (asset: CaptureAsset) => void }) {
   return (
     <section className="space-y-3">
-      <div className="-mx-4 grid grid-cols-3 gap-0 md:mx-0">
+      <div className={getCaptureAssetGridClass(group.assets.length)}>
         {group.assets.map((asset) => (
           <CaptureCard asset={asset} key={asset.id} onPreview={onPreview} />
         ))}
@@ -454,7 +461,7 @@ function CaptureDetail({ onThemeToggle, theme }: CaptureProps) {
       </header>
 
       <main className="mx-auto grid w-full max-w-5xl gap-6 px-4 pb-10 pt-24">
-        <section className="-mx-4 grid grid-cols-3 gap-0 md:mx-0">
+        <section className={getCaptureAssetGridClass(group.assets.length)}>
           {group.assets.map((asset) => (
             <figure
               className="aspect-square overflow-hidden bg-[var(--panel-bg)]"
