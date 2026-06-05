@@ -6,6 +6,8 @@ on:
       - main
     paths:
       - 'frontend/**'
+      - '.github/workflows/deploy-gh-pages.yml'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -13,6 +15,10 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      DIESW_ASSETS_DIR: ${{ github.workspace }}/.cache/diesw-assets
+      DIESW_ASSETS_REF: ${{ vars.DIESW_ASSETS_REF || 'main' }}
+      DIESW_ASSETS_REPOSITORY: ${{ vars.DIESW_ASSETS_REPOSITORY || 'dieWehmut/diesw-assets' }}
 
     steps:
       - uses: actions/checkout@v4
@@ -26,6 +32,12 @@ jobs:
           corepack enable
           corepack prepare pnpm@10 --activate
 
+      - name: Checkout capture assets
+        working-directory: frontend
+        env:
+          DIESW_ASSETS_TOKEN: ${{ secrets.DIESW_ASSETS_TOKEN }}
+        run: node scripts/checkout-assets-repo.mjs
+
       - name: Install deps
         working-directory: frontend
         run: pnpm install --frozen-lockfile
@@ -34,6 +46,18 @@ jobs:
         working-directory: frontend
         env:
           VITE_API_BASE: https://api.example.com
+          VITE_BASE_PATH: /monogatari/
+          VITE_STATIC_STORY: 'true'
+          VITE_CAPTURE_GISCUS_REPO: ${{ vars.VITE_CAPTURE_GISCUS_REPO || vars.VITE_GISCUS_REPO }}
+          VITE_CAPTURE_GISCUS_REPO_ID: ${{ vars.VITE_CAPTURE_GISCUS_REPO_ID || vars.VITE_GISCUS_REPO_ID }}
+          VITE_CAPTURE_GISCUS_CATEGORY: ${{ vars.VITE_CAPTURE_GISCUS_CATEGORY || vars.VITE_GISCUS_CATEGORY }}
+          VITE_CAPTURE_GISCUS_CATEGORY_ID: ${{ vars.VITE_CAPTURE_GISCUS_CATEGORY_ID || vars.VITE_GISCUS_CATEGORY_ID }}
+          VITE_CAPTURE_GISCUS_MAPPING: ${{ vars.VITE_CAPTURE_GISCUS_MAPPING || vars.VITE_GISCUS_MAPPING || 'specific' }}
+          VITE_CAPTURE_GISCUS_STRICT: ${{ vars.VITE_CAPTURE_GISCUS_STRICT || vars.VITE_GISCUS_STRICT || '0' }}
+          VITE_CAPTURE_GISCUS_REACTIONS_ENABLED: ${{ vars.VITE_CAPTURE_GISCUS_REACTIONS_ENABLED || vars.VITE_GISCUS_REACTIONS_ENABLED || '1' }}
+          VITE_CAPTURE_GISCUS_INPUT_POSITION: ${{ vars.VITE_CAPTURE_GISCUS_INPUT_POSITION || vars.VITE_GISCUS_INPUT_POSITION || 'bottom' }}
+          VITE_CAPTURE_GISCUS_THEME: ${{ vars.VITE_CAPTURE_GISCUS_THEME || vars.VITE_GISCUS_THEME }}
+          VITE_CAPTURE_GISCUS_LANG: ${{ vars.VITE_CAPTURE_GISCUS_LANG || vars.VITE_GISCUS_LANG || 'zh-CN' }}
         run: pnpm build
 
       - name: Deploy
@@ -43,6 +67,7 @@ jobs:
 
           cd gh-pages
           touch .nojekyll
+          cp index.html 404.html
 
           git init
           git checkout -b gh-pages

@@ -17,6 +17,7 @@ import type { TimelineMonth } from './types/image';
 const Home = lazy(() => import('./pages/Home'));
 const Story = lazy(() => import('./pages/Story'));
 const Album = lazy(() => import('./pages/Album'));
+const CaptureStory = lazy(() => import('./pages/Story').then((module) => ({ default: module.CaptureStory })));
 const Post = lazy(() => import('./pages/Post'));
 const Following = lazy(() => import('./pages/Following'));
 const Follower = lazy(() => import('./pages/Follower'));
@@ -25,6 +26,11 @@ const AuthEmail = lazy(() => import('./pages/AuthEmail'));
 const Login = lazy(() => import('./pages/Login'));
 const Register = lazy(() => import('./pages/Register'));
 const InviteRedirect = lazy(() => import('./pages/InviteRedirect'));
+
+const staticStoryMode = import.meta.env.VITE_STATIC_STORY === 'true';
+const routerBasename = import.meta.env.BASE_URL === '/'
+  ? undefined
+  : import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const resolveTheme = (): 'dark' | 'light' => {
   const savedTheme = window.localStorage.getItem('story-theme');
@@ -95,18 +101,12 @@ function RequireAuth({ children, loading, authenticated }: { children: React.Rea
   return <>{children}</>;
 }
 
-function App() {
-  const [theme, setTheme] = useState<'dark' | 'light'>(resolveTheme);
+function ServerBackedApp({ onThemeToggle, theme }: { onThemeToggle: () => void; theme: 'dark' | 'light' }) {
   const [timelineOpen, setTimelineOpen] = useState(false);
   const [activeMonth, setActiveMonth] = useState<TimelineMonth | null>(null);
   const auth = useAuth();
   const images = useImages();
   const follows = useFollows(auth, { onChange: images.refreshFeedUsers });
-
-  useEffect(() => {
-    document.documentElement.dataset.theme = theme;
-    window.localStorage.setItem('story-theme', theme);
-  }, [theme]);
 
   useEffect(() => {
     if (!images.timeline.length || activeMonth) {
@@ -122,23 +122,15 @@ function App() {
   };
 
   return (
-    <ToastProvider>
-      <LanguageProvider>
-        <AuthProvider isAdmin={auth.isAdmin}>
-        <ProfileProvider user={auth.user}>
-          <BrowserRouter>
+    <AuthProvider isAdmin={auth.isAdmin}>
+      <ProfileProvider user={auth.user}>
           <LoginReturnHandler authenticated={auth.authenticated} />
           <RequireAuth loading={auth.loading} authenticated={auth.authenticated}>
-            <Suspense fallback={
-              <div className="flex min-h-screen items-center justify-center bg-[var(--bg)]">
-                <LoaderCircle className="animate-spin text-cyan-300" size={32} />
-              </div>
-            }>
               <Routes>
                 <Route element={<AppLayout footerStats={footerStats} />}>
                   <Route
                     path="/"
-                    element={<Home auth={auth} images={images} follows={follows} onThemeToggle={() => setTheme((current) => (current === 'dark' ? 'light' : 'dark'))} theme={theme} />}
+                    element={<Home auth={auth} images={images} follows={follows} onThemeToggle={onThemeToggle} theme={theme} />}
                   />
                   <Route
                     path="/story"
@@ -149,7 +141,7 @@ function App() {
                         follows={follows}
                         images={images}
                         onActiveMonthChange={setActiveMonth}
-                        onThemeToggle={() => setTheme((currentTheme) => (currentTheme === 'dark' ? 'light' : 'dark'))}
+                        onThemeToggle={onThemeToggle}
                         onTimelineClose={() => setTimelineOpen(false)}
                         onTimelineToggle={() => setTimelineOpen((open) => !open)}
                         theme={theme}
@@ -166,7 +158,7 @@ function App() {
                         follows={follows}
                         images={images}
                         onActiveMonthChange={setActiveMonth}
-                        onThemeToggle={() => setTheme((currentTheme) => (currentTheme === 'dark' ? 'light' : 'dark'))}
+                        onThemeToggle={onThemeToggle}
                         onTimelineClose={() => setTimelineOpen(false)}
                         onTimelineToggle={() => setTimelineOpen((open) => !open)}
                         theme={theme}
@@ -176,7 +168,7 @@ function App() {
                   />
                   <Route
                     path="/album"
-                    element={<Album auth={auth} images={images} onThemeToggle={() => setTheme((current) => (current === 'dark' ? 'light' : 'dark'))} theme={theme} />}
+                    element={<Album auth={auth} images={images} onThemeToggle={onThemeToggle} theme={theme} />}
                   />
                   <Route
                     path="/post"
@@ -184,36 +176,69 @@ function App() {
                   />
                   <Route
                     path="/following"
-                    element={<Following auth={auth} follows={follows} onThemeToggle={() => setTheme((current) => (current === 'dark' ? 'light' : 'dark'))} theme={theme} />}
+                    element={<Following auth={auth} follows={follows} onThemeToggle={onThemeToggle} theme={theme} />}
                   />
                   <Route
                     path="/follower"
-                    element={<Follower auth={auth} follows={follows} onThemeToggle={() => setTheme((current) => (current === 'dark' ? 'light' : 'dark'))} theme={theme} />}
+                    element={<Follower auth={auth} follows={follows} onThemeToggle={onThemeToggle} theme={theme} />}
                   />
                 </Route>
                 <Route element={<StandaloneLayout />}>
                   <Route
                     path="/config"
-                    element={<Config auth={auth} theme={theme} onThemeToggle={() => setTheme((current) => (current === 'dark' ? 'light' : 'dark'))} />}
+                    element={<Config auth={auth} theme={theme} onThemeToggle={onThemeToggle} />}
                   />
                   <Route
                     path="/login"
-                    element={<Login auth={auth} onThemeToggle={() => setTheme((current) => (current === 'dark' ? 'light' : 'dark'))} theme={theme} />}
+                    element={<Login auth={auth} onThemeToggle={onThemeToggle} theme={theme} />}
                   />
                   <Route
                     path="/register"
-                    element={<Register auth={auth} onThemeToggle={() => setTheme((current) => (current === 'dark' ? 'light' : 'dark'))} theme={theme} />}
+                    element={<Register auth={auth} onThemeToggle={onThemeToggle} theme={theme} />}
                   />
                   <Route path="/invites/:code" element={<InviteRedirect />} />
                   <Route path="/auth/email" element={<AuthEmail />} />
                 </Route>
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
-            </Suspense>
           </RequireAuth>
-          </BrowserRouter>
-        </ProfileProvider>
-        </AuthProvider>
+      </ProfileProvider>
+    </AuthProvider>
+  );
+}
+
+function App() {
+  const [theme, setTheme] = useState<'dark' | 'light'>(resolveTheme);
+  const onThemeToggle = () => setTheme((current) => (current === 'dark' ? 'light' : 'dark'));
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    window.localStorage.setItem('story-theme', theme);
+  }, [theme]);
+
+  return (
+    <ToastProvider>
+      <LanguageProvider>
+        <BrowserRouter basename={routerBasename}>
+          <Suspense fallback={
+            <div className="flex min-h-screen items-center justify-center bg-[var(--bg)]">
+              <LoaderCircle className="animate-spin text-cyan-300" size={32} />
+            </div>
+          }>
+            <Routes>
+              {staticStoryMode ? (
+                <>
+                  <Route path="/" element={<Navigate to="/story" replace />} />
+                  <Route path="/story" element={<CaptureStory onThemeToggle={onThemeToggle} theme={theme} />} />
+                  <Route path="/story/:id" element={<CaptureStory onThemeToggle={onThemeToggle} theme={theme} />} />
+                  <Route path="*" element={<Navigate to="/story" replace />} />
+                </>
+              ) : (
+                <Route path="/*" element={<ServerBackedApp onThemeToggle={onThemeToggle} theme={theme} />} />
+              )}
+            </Routes>
+          </Suspense>
+        </BrowserRouter>
       </LanguageProvider>
     </ToastProvider>
   );

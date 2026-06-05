@@ -1,16 +1,23 @@
 ﻿import { useEffect, useMemo, useRef, useState } from 'react';
-import { Image as ImageIcon, LoaderCircle } from 'lucide-react';
+import { ArrowLeft, Calendar, Image as ImageIcon, LoaderCircle, MessageCircle, Tag } from 'lucide-react';
 import { CardDetail } from '../ui/CardDetail';
+import { AlbumHeader } from '../layouts/AlbumHeader';
 import { Header } from '../layouts/Header';
 import { ImageCard } from '../layouts/ImageCard';
 import { FloatingActions } from '../layouts/FloatingActions';
 import { TimeColumn } from '../layouts/TimeColumn';
 import { UploadButton } from '../layouts/UploadButton';
+import { ThemeButton } from '../layouts/ThemeButton';
 import { useAuth } from '../hooks/useAuth';
 import { useImages } from '../hooks/useImages';
 import { useFollows } from '../hooks/useFollows';
 import { useTranslation } from '../hooks/useTranslation';
-import { useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { getCaptureAssetById, getCaptureAssets } from '../data/capture';
+import { ImageViewer } from '../ui/ImageViewer';
+import { GiscusComments } from '../ui/GiscusComments';
+import { Link, Navigate, useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import type { MediaItem } from '../lib/media';
+import type { CaptureAsset, CaptureSourceRef } from '../types/capture';
 import type { TimelineMonth } from '../types/image';
 
 interface StoryProps {
@@ -24,6 +31,404 @@ interface StoryProps {
   onTimelineToggle: () => void;
   theme: 'dark' | 'light';
   timelineOpen: boolean;
+}
+
+interface CaptureProps {
+  theme: 'dark' | 'light';
+  onThemeToggle: () => void;
+}
+
+type CaptureGroup = {
+  id: string;
+  date: string;
+  timestamp: number;
+  tags: string[];
+  sources: CaptureSourceRef[];
+  assets: CaptureAsset[];
+};
+
+type CaptureMonth = {
+  key: string;
+  label: string;
+  timestamp: number;
+  groups: CaptureGroup[];
+};
+
+type CaptureYear = {
+  key: string;
+  label: string;
+  timestamp: number;
+  months: CaptureMonth[];
+};
+
+type TimeSortOrder = 'desc' | 'asc';
+
+const captureDateFormatter = new Intl.DateTimeFormat('sv-SE', {
+  timeZone: 'UTC',
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+});
+
+function getCaptureTimestamp(date?: string) {
+  if (!date) return 0;
+  const normalized = date.replace(/\//g, '-');
+  const match = normalized.match(/^\s*(\d{4}-\d{2}-\d{2})/);
+  return Date.parse(match?.[1] || normalized) || 0;
+}
+
+function getCaptureDateKey(date?: string) {
+  const timestamp = getCaptureTimestamp(date);
+  if (!timestamp) return 'Undated';
+  return captureDateFormatter.format(new Date(timestamp));
+}
+
+function getCaptureMonthLabel(key: string, language: string) {
+  if (key === 'undated') return 'Undated';
+  const [year, month] = key.split('-').map(Number);
+  if (!year || !month) return key;
+  return new Intl.DateTimeFormat(language, { month: 'numeric' }).format(new Date(Date.UTC(year, month - 1, 1)));
+}
+
+function mergeUnique(existing: string[], incoming: string[]) {
+  return Array.from(new Set([...existing, ...incoming].filter(Boolean)));
+}
+
+function mergeCaptureSources(existing: CaptureSourceRef[], incoming: CaptureSourceRef[]) {
+  const byKey = new Map(existing.map((source) => [`${source.type}:${source.id}`, source]));
+  for (const source of incoming) {
+    byKey.set(`${source.type}:${source.id}`, source);
+  }
+  return Array.from(byKey.values()).sort((a, b) => a.title.localeCompare(b.title));
+}
+
+function compareCaptureTimestamp(left: number, right: number, order: TimeSortOrder) {
+  return order === 'asc' ? left - right : right - left;
+}
+
+function compareCaptureKey(left: string, right: string, order: TimeSortOrder) {
+  return order === 'asc' ? left.localeCompare(right) : right.localeCompare(left);
+}
+
+function groupCaptureAssets(assets: CaptureAsset[], order: TimeSortOrder): CaptureGroup[] {
+  const groups = new Map<string, CaptureGroup>();
+
+  for (const asset of assets) {
+    const date = getCaptureDateKey(asset.date);
+    const group = groups.get(date) ?? {
+      id: `capture-${date.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
+      date,
+      timestamp: getCaptureTimestamp(asset.date),
+      tags: [],
+      sources: [],
+      assets: [],
+    };
+
+    group.tags = mergeUnique(group.tags, asset.tags || []);
+    group.sources = mergeCaptureSources(group.sources, asset.sourceRefs || []);
+    group.assets.push(asset);
+    groups.set(date, group);
+  }
+
+  return [...groups.values()].sort((a, b) => compareCaptureTimestamp(a.timestamp, b.timestamp, order));
+}
+
+function groupCaptureByYearAndMonth(groups: CaptureGroup[], order: TimeSortOrder, language: string): CaptureYear[] {
+  const years = new Map<string, CaptureYear>();
+
+  for (const group of groups) {
+    const yearKey = group.date === 'Undated' ? 'undated' : group.date.slice(0, 4);
+    const monthKey = group.date === 'Undated' ? 'undated' : group.date.slice(0, 7);
+    const year = years.get(yearKey) ?? {
+      key: yearKey,
+      label: yearKey === 'undated' ? 'Undated' : yearKey,
+      timestamp: group.timestamp,
+      months: [],
+    };
+
+    let month = year.months.find((item) => item.key === monthKey);
+    if (!month) {
+      month = {
+        key: monthKey,
+        label: getCaptureMonthLabel(monthKey, language),
+        timestamp: group.timestamp,
+        groups: [],
+      };
+      year.months.push(month);
+    }
+
+    year.timestamp = Math.max(year.timestamp, group.timestamp);
+    month.timestamp = Math.max(month.timestamp, group.timestamp);
+    month.groups.push(group);
+    years.set(yearKey, year);
+  }
+
+  return [...years.values()]
+    .map((year) => ({
+      ...year,
+      months: year.months
+        .map((month) => ({
+          ...month,
+          groups: month.groups.slice().sort((a, b) => compareCaptureTimestamp(a.timestamp, b.timestamp, order)),
+        }))
+        .sort((a, b) => compareCaptureTimestamp(a.timestamp, b.timestamp, order)),
+    }))
+    .sort((a, b) => compareCaptureTimestamp(a.timestamp, b.timestamp, order));
+}
+
+function buildCaptureTimelineMonths(groups: CaptureGroup[], order: TimeSortOrder): TimelineMonth[] {
+  const months = new Map<string, TimelineMonth>();
+
+  for (const group of groups) {
+    if (group.date === 'Undated') continue;
+    const key = group.date.slice(0, 7);
+    const [yearText, monthText] = key.split('-');
+    const year = Number(yearText);
+    const month = Number(monthText);
+    const existing = months.get(key);
+
+    if (existing) {
+      existing.count += group.assets.length;
+      continue;
+    }
+
+    months.set(key, {
+      key,
+      year,
+      month,
+      label: key,
+      count: group.assets.length,
+    });
+  }
+
+  return [...months.values()].sort((a, b) => compareCaptureKey(a.key, b.key, order));
+}
+
+function CaptureCard({ asset, onPreview }: { asset: CaptureAsset; onPreview: (asset: CaptureAsset) => void }) {
+  return (
+    <article className="overflow-hidden rounded-lg border border-[var(--panel-border)] bg-[var(--panel-bg)] shadow-[var(--panel-shadow)]">
+      <div className="aspect-square overflow-hidden bg-slate-950/20">
+        <button
+          className="block h-full w-full cursor-zoom-in overflow-hidden"
+          onClick={() => onPreview(asset)}
+          type="button"
+        >
+          <img
+            alt={asset.title || asset.id}
+            className="h-full w-full object-cover transition duration-300 hover:scale-105"
+            decoding="async"
+            loading="lazy"
+            src={asset.image}
+          />
+        </button>
+      </div>
+      <div className="flex min-h-11 items-center justify-between gap-2 px-2.5 py-2 text-xs text-soft">
+        <div className="flex min-w-0 flex-wrap items-center gap-1.5">
+          {asset.date ? (
+            <time className="inline-flex items-center gap-1" dateTime={asset.date}>
+              <Calendar size={13} />
+              {asset.date}
+            </time>
+          ) : null}
+          {asset.tags.map((tag) => (
+            <span
+              className="inline-flex items-center gap-1 rounded-full border border-[var(--panel-border)] px-1.5 py-0.5"
+              key={tag}
+            >
+              <Tag size={12} />
+              {tag}
+            </span>
+          ))}
+        </div>
+        <Link
+          aria-label="Open comments"
+          className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[var(--text-main)] transition hover:text-[var(--text-accent)]"
+          to={`/story/${encodeURIComponent(asset.id)}`}
+        >
+          <MessageCircle size={17} />
+        </Link>
+      </div>
+    </article>
+  );
+}
+
+function CaptureGroupBlock({ group, onPreview }: { group: CaptureGroup; onPreview: (asset: CaptureAsset) => void }) {
+  return (
+    <section className="space-y-2">
+      {group.sources.length > 0 ? (
+        <div className="flex flex-wrap gap-2">
+          {group.sources.map((source) => (
+            <Link
+              className="text-sm font-medium text-[var(--text-main)] underline-offset-4 transition hover:text-[var(--text-accent)] hover:underline"
+              key={`${source.type}:${source.id}`}
+              to={source.url}
+            >
+              {source.title}
+            </Link>
+          ))}
+        </div>
+      ) : null}
+      <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
+        {group.assets.map((asset) => (
+          <CaptureCard asset={asset} key={asset.id} onPreview={onPreview} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function CaptureIndex({ onThemeToggle, theme }: CaptureProps) {
+  const { language } = useTranslation();
+  const navigate = useNavigate();
+  const [timelineOpen, setTimelineOpen] = useState(false);
+  const [activeMonth, setActiveMonth] = useState<TimelineMonth | null>(null);
+  const [timeOrder, setTimeOrder] = useState<TimeSortOrder>('desc');
+  const [viewer, setViewer] = useState<{ items: MediaItem[]; index: number } | null>(null);
+  const assets = useMemo(() => getCaptureAssets(), []);
+  const captureGroups = useMemo(() => groupCaptureAssets(assets, timeOrder), [assets, timeOrder]);
+  const yearGroups = useMemo(() => groupCaptureByYearAndMonth(captureGroups, timeOrder, language), [captureGroups, language, timeOrder]);
+  const timelineMonths = useMemo(() => buildCaptureTimelineMonths(captureGroups, timeOrder), [captureGroups, timeOrder]);
+  const viewerItems = useMemo(() => assets.map((asset) => ({ url: asset.image, type: 'image' as const })), [assets]);
+
+  const handlePreview = (asset: CaptureAsset) => {
+    const index = assets.findIndex((item) => item.id === asset.id);
+    if (index === -1) return;
+    setViewer({ items: viewerItems, index });
+  };
+
+  const jumpToMonth = (month: TimelineMonth) => {
+    const target = document.getElementById(`capture-month-${month.key}`);
+    target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setActiveMonth(month);
+    setTimelineOpen(false);
+  };
+
+  return (
+    <div className="min-h-screen pb-16">
+      <AlbumHeader
+        onBack={() => navigate(-1)}
+        onThemeToggle={onThemeToggle}
+        onTimelineToggle={() => setTimelineOpen((open) => !open)}
+        showTimeline={timelineMonths.length > 0}
+        subtitle={`${assets.length} items`}
+        theme={theme}
+        timelineOpen={timelineOpen}
+        title="Capture"
+      />
+
+      {timelineOpen ? <div className="fixed inset-0 z-30" onClick={() => setTimelineOpen(false)} /> : null}
+
+      <TimeColumn
+        activeMonth={activeMonth}
+        months={timelineMonths}
+        onJump={jumpToMonth}
+        onToggleOrder={() => setTimeOrder((current) => (current === 'desc' ? 'asc' : 'desc'))}
+        open={timelineOpen}
+        order={timeOrder}
+      />
+
+      <main className="mx-auto w-full max-w-5xl px-4 pb-10 pt-24">
+        {yearGroups.length === 0 ? (
+          <p className="py-12 text-center text-sm text-soft">No capture assets found.</p>
+        ) : (
+          <div className="space-y-10">
+            {yearGroups.map((year) => (
+              <section className="space-y-6" key={year.key}>
+                <h2 className="font-serif text-3xl font-semibold text-[var(--text-main)]">{year.label}</h2>
+                {year.months.map((month) => (
+                  <section className="space-y-4 scroll-mt-24" id={`capture-month-${month.key}`} key={month.key}>
+                    <h3 className="text-lg font-semibold text-soft">{month.label}</h3>
+                    <div className="space-y-5">
+                      {month.groups.map((group) => (
+                        <CaptureGroupBlock group={group} key={group.id} onPreview={handlePreview} />
+                      ))}
+                    </div>
+                  </section>
+                ))}
+              </section>
+            ))}
+          </div>
+        )}
+      </main>
+
+      {viewer ? (
+        <ImageViewer
+          initialIndex={viewer.index}
+          items={viewer.items}
+          onClose={() => setViewer(null)}
+        />
+      ) : null}
+    </div>
+  );
+}
+
+function CaptureDetail({ onThemeToggle, theme }: CaptureProps) {
+  const navigate = useNavigate();
+  const { id = '' } = useParams();
+  const asset = useMemo(() => getCaptureAssetById(id), [id]);
+
+  if (!asset) {
+    return <Navigate replace to="/story" />;
+  }
+
+  return (
+    <div className="min-h-screen pb-16">
+      <header className="fixed left-0 right-0 top-0 z-40 bg-[var(--panel-bg)] px-3 pt-3 backdrop-blur-xl">
+        <div className="mx-auto flex w-full max-w-5xl items-center justify-between">
+          <button
+            aria-label="Back"
+            className="inline-flex h-9 w-9 items-center justify-center text-[var(--text-main)] transition hover:text-[var(--text-accent)] active:scale-95"
+            onClick={() => navigate('/story')}
+            type="button"
+          >
+            <ArrowLeft size={22} />
+          </button>
+          <div className="min-w-0 flex-1 px-3 text-center">
+            <p className="truncate text-base font-semibold text-[var(--text-main)]">{asset.title || 'Capture'}</p>
+            {asset.date ? <p className="text-xs text-soft">{asset.date}</p> : null}
+          </div>
+          <ThemeButton onToggle={onThemeToggle} theme={theme} />
+        </div>
+      </header>
+
+      <main className="mx-auto grid w-full max-w-5xl gap-6 px-4 pb-10 pt-24">
+        <figure className="overflow-hidden rounded-lg border border-[var(--panel-border)] bg-[var(--panel-bg)] shadow-[var(--panel-shadow)]">
+          <img
+            alt={asset.title || asset.id}
+            className="max-h-[72vh] w-full object-contain"
+            decoding="async"
+            src={asset.image}
+          />
+          <figcaption className="flex flex-wrap items-center gap-2 px-4 py-3 text-sm text-soft">
+            {asset.date ? (
+              <time className="inline-flex items-center gap-1" dateTime={asset.date}>
+                <Calendar size={14} />
+                {asset.date}
+              </time>
+            ) : null}
+            {asset.tags.map((tag) => (
+              <span
+                className="inline-flex items-center gap-1 rounded-full border border-[var(--panel-border)] px-2 py-0.5"
+                key={tag}
+              >
+                <Tag size={13} />
+                {tag}
+              </span>
+            ))}
+          </figcaption>
+        </figure>
+
+        <section className="rounded-lg border border-[var(--panel-border)] bg-[var(--panel-bg)] p-4 shadow-[var(--panel-shadow)]">
+          <GiscusComments term={`capture:${asset.id}`} theme={theme} />
+        </section>
+      </main>
+    </div>
+  );
+}
+
+export function CaptureStory(props: CaptureProps) {
+  const { id } = useParams();
+  return id ? <CaptureDetail {...props} /> : <CaptureIndex {...props} />;
 }
 
 const getMonthKey = (startAt: string) => {

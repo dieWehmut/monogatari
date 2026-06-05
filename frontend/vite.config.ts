@@ -13,6 +13,7 @@ export default defineConfig(({ mode }) => {
   const enableSentry = env.SENTRY_UPLOAD === 'true' && Boolean(sentryAuthToken && sentryOrg && sentryProject);
 
   return {
+    base: env.VITE_BASE_PATH || '/',
     plugins: [
       react(),
       VitePWA({
