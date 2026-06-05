@@ -12,7 +12,7 @@ import { useAuth } from '../hooks/useAuth';
 import { useImages } from '../hooks/useImages';
 import { useFollows } from '../hooks/useFollows';
 import { useTranslation } from '../hooks/useTranslation';
-import { getCaptureAssetById, getCaptureAssets } from '../data/capture';
+import { getCaptureAssets } from '../data/capture';
 import { ImageViewer } from '../ui/ImageViewer';
 import { GiscusComments } from '../ui/GiscusComments';
 import { Link, Navigate, useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
@@ -83,6 +83,26 @@ function getCaptureDateKey(date?: string) {
   return captureDateFormatter.format(new Date(timestamp));
 }
 
+function slugCaptureValue(value: string) {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'undated';
+}
+
+function getStandaloneGroupKey(asset: CaptureAsset) {
+  const match = asset.image.match(/(?:^|\/)capture-assets\/standalone\/([^/]+\/[^/]+)\//);
+  return match ? `standalone/${match[1]}` : '';
+}
+
+function getCaptureGroupKey(asset: CaptureAsset) {
+  return getStandaloneGroupKey(asset) || String(asset.date || '').trim() || asset.id;
+}
+
+function formatCaptureDateOnly(date?: string) {
+  if (!date || date === 'Undated') return '';
+  const timestamp = getCaptureTimestamp(date);
+  if (!timestamp) return date.replace(/[ T]\d{2}:\d{2}(?::\d{2})?(?:\s*(?:Z|[+-]\d{2}:?\d{2}))?$/, '');
+  return captureDateFormatter.format(new Date(timestamp)).replace(/-/g, '/');
+}
+
 function getCaptureMonthLabel(key: string, language: string) {
   if (key === 'undated') return 'Undated';
   const [year, month] = key.split('-').map(Number);
@@ -115,8 +135,9 @@ function groupCaptureAssets(assets: CaptureAsset[], order: TimeSortOrder): Captu
 
   for (const asset of assets) {
     const date = getCaptureDateKey(asset.date);
-    const group = groups.get(date) ?? {
-      id: `capture-${date.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
+    const groupKey = getCaptureGroupKey(asset);
+    const group = groups.get(groupKey) ?? {
+      id: `capture-${slugCaptureValue(groupKey)}`,
       date,
       timestamp: getCaptureTimestamp(asset.date),
       tags: [],
@@ -127,10 +148,12 @@ function groupCaptureAssets(assets: CaptureAsset[], order: TimeSortOrder): Captu
     group.tags = mergeUnique(group.tags, asset.tags || []);
     group.sources = mergeCaptureSources(group.sources, asset.sourceRefs || []);
     group.assets.push(asset);
-    groups.set(date, group);
+    groups.set(groupKey, group);
   }
 
-  return [...groups.values()].sort((a, b) => compareCaptureTimestamp(a.timestamp, b.timestamp, order));
+  return [...groups.values()].sort(
+    (a, b) => compareCaptureTimestamp(a.timestamp, b.timestamp, order) || compareCaptureKey(a.id, b.id, order)
+  );
 }
 
 function groupCaptureByYearAndMonth(groups: CaptureGroup[], order: TimeSortOrder, language: string): CaptureYear[] {
@@ -222,39 +245,42 @@ function CaptureCard({ asset, onPreview }: { asset: CaptureAsset; onPreview: (as
           />
         </button>
       </div>
-      <div className="flex min-h-11 items-center justify-between gap-2 px-2.5 py-2 text-xs text-soft">
-        <div className="flex min-w-0 flex-wrap items-center gap-1.5">
-          {asset.date ? (
-            <time className="inline-flex items-center gap-1" dateTime={asset.date}>
-              <Calendar size={13} />
-              {asset.date}
-            </time>
-          ) : null}
-          {asset.tags.map((tag) => (
-            <span
-              className="inline-flex items-center gap-1 rounded-full border border-[var(--panel-border)] px-1.5 py-0.5"
-              key={tag}
-            >
-              <Tag size={12} />
-              {tag}
-            </span>
-          ))}
-        </div>
-        <Link
-          aria-label="Open comments"
-          className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[var(--text-main)] transition hover:text-[var(--text-accent)]"
-          to={`/story/${encodeURIComponent(asset.id)}`}
-        >
-          <MessageCircle size={17} />
-        </Link>
-      </div>
     </article>
   );
 }
 
 function CaptureGroupBlock({ group, onPreview }: { group: CaptureGroup; onPreview: (asset: CaptureAsset) => void }) {
   return (
-    <section className="space-y-2">
+    <section className="space-y-3">
+      <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
+        {group.assets.map((asset) => (
+          <CaptureCard asset={asset} key={asset.id} onPreview={onPreview} />
+        ))}
+      </div>
+      <div className="flex flex-wrap items-center gap-2 text-xs text-soft">
+        {group.date !== 'Undated' ? (
+          <time className="inline-flex items-center gap-1" dateTime={group.date}>
+            <Calendar size={13} />
+            {formatCaptureDateOnly(group.date)}
+          </time>
+        ) : null}
+        {group.tags.map((tag) => (
+          <span
+            className="inline-flex items-center gap-1 rounded-full border border-[var(--panel-border)] px-1.5 py-0.5"
+            key={tag}
+          >
+            <Tag size={12} />
+            {tag}
+          </span>
+        ))}
+        <Link
+          aria-label="Open comments"
+          className="ml-auto inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[var(--text-main)] transition hover:text-[var(--text-accent)]"
+          to={`/story/${encodeURIComponent(group.id)}`}
+        >
+          <MessageCircle size={17} />
+        </Link>
+      </div>
       {group.sources.length > 0 ? (
         <div className="flex flex-wrap gap-2">
           {group.sources.map((source) => (
@@ -268,11 +294,6 @@ function CaptureGroupBlock({ group, onPreview }: { group: CaptureGroup; onPrevie
           ))}
         </div>
       ) : null}
-      <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
-        {group.assets.map((asset) => (
-          <CaptureCard asset={asset} key={asset.id} onPreview={onPreview} />
-        ))}
-      </div>
     </section>
   );
 }
@@ -365,9 +386,16 @@ function CaptureIndex({ onThemeToggle, theme }: CaptureProps) {
 function CaptureDetail({ onThemeToggle, theme }: CaptureProps) {
   const navigate = useNavigate();
   const { id = '' } = useParams();
-  const asset = useMemo(() => getCaptureAssetById(id), [id]);
+  const assets = useMemo(() => getCaptureAssets(), []);
+  const captureGroups = useMemo(() => groupCaptureAssets(assets, 'desc'), [assets]);
+  const group = useMemo(() => {
+    const decodedId = decodeURIComponent(id);
+    return captureGroups.find(
+      (item) => item.id === decodedId || item.assets.some((asset) => asset.id === decodedId)
+    ) ?? null;
+  }, [captureGroups, id]);
 
-  if (!asset) {
+  if (!group) {
     return <Navigate replace to="/story" />;
   }
 
@@ -384,29 +412,39 @@ function CaptureDetail({ onThemeToggle, theme }: CaptureProps) {
             <ArrowLeft size={22} />
           </button>
           <div className="min-w-0 flex-1 px-3 text-center">
-            <p className="truncate text-base font-semibold text-[var(--text-main)]">{asset.title || 'Story'}</p>
-            {asset.date ? <p className="text-xs text-soft">{asset.date}</p> : null}
+            <p className="truncate text-base font-semibold text-[var(--text-main)]">Story</p>
+            {group.date !== 'Undated' ? <p className="text-xs text-soft">{formatCaptureDateOnly(group.date)}</p> : null}
           </div>
           <ThemeButton onToggle={onThemeToggle} theme={theme} />
         </div>
       </header>
 
       <main className="mx-auto grid w-full max-w-5xl gap-6 px-4 pb-10 pt-24">
-        <figure className="overflow-hidden rounded-lg border border-[var(--panel-border)] bg-[var(--panel-bg)] shadow-[var(--panel-shadow)]">
-          <img
-            alt={asset.title || asset.id}
-            className="max-h-[72vh] w-full object-contain"
-            decoding="async"
-            src={asset.image}
-          />
-          <figcaption className="flex flex-wrap items-center gap-2 px-4 py-3 text-sm text-soft">
-            {asset.date ? (
-              <time className="inline-flex items-center gap-1" dateTime={asset.date}>
+        <section className="grid grid-cols-3 gap-3">
+          {group.assets.map((asset) => (
+            <figure
+              className="overflow-hidden rounded-lg border border-[var(--panel-border)] bg-[var(--panel-bg)] shadow-[var(--panel-shadow)]"
+              key={asset.id}
+            >
+              <img
+                alt={asset.title || asset.id}
+                className="max-h-[72vh] w-full object-contain"
+                decoding="async"
+                src={asset.image}
+              />
+            </figure>
+          ))}
+        </section>
+
+        <section className="rounded-lg border border-[var(--panel-border)] bg-[var(--panel-bg)] p-4 shadow-[var(--panel-shadow)]">
+          <div className="flex flex-wrap items-center gap-2 text-sm text-soft">
+            {group.date !== 'Undated' ? (
+              <time className="inline-flex items-center gap-1" dateTime={group.date}>
                 <Calendar size={14} />
-                {asset.date}
+                {formatCaptureDateOnly(group.date)}
               </time>
             ) : null}
-            {asset.tags.map((tag) => (
+            {group.tags.map((tag) => (
               <span
                 className="inline-flex items-center gap-1 rounded-full border border-[var(--panel-border)] px-2 py-0.5"
                 key={tag}
@@ -415,11 +453,11 @@ function CaptureDetail({ onThemeToggle, theme }: CaptureProps) {
                 {tag}
               </span>
             ))}
-          </figcaption>
-        </figure>
+          </div>
+        </section>
 
         <section className="rounded-lg border border-[var(--panel-border)] bg-[var(--panel-bg)] p-4 shadow-[var(--panel-shadow)]">
-          <GiscusComments term={`capture:${asset.id}`} theme={theme} />
+          <GiscusComments term={`capture-group:${group.id}`} theme={theme} />
         </section>
       </main>
     </div>
