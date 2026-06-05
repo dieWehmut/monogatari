@@ -63,12 +63,18 @@ type CaptureYear = {
 
 type TimeSortOrder = 'desc' | 'asc';
 
+const storyScrollStorageKey = 'monogatari:story-scroll-y';
+
 const captureDateFormatter = new Intl.DateTimeFormat('sv-SE', {
   timeZone: 'UTC',
   year: 'numeric',
   month: '2-digit',
   day: '2-digit',
 });
+
+function saveStoryScrollPosition() {
+  window.sessionStorage.setItem(storyScrollStorageKey, String(window.scrollY));
+}
 
 function getCaptureTimestamp(date?: string) {
   if (!date) return 0;
@@ -229,7 +235,7 @@ function buildCaptureTimelineMonths(groups: CaptureGroup[], order: TimeSortOrder
 
 function CaptureCard({ asset, onPreview }: { asset: CaptureAsset; onPreview: (asset: CaptureAsset) => void }) {
   return (
-    <article className="overflow-hidden rounded-lg border border-[var(--panel-border)] bg-[var(--panel-bg)] shadow-[var(--panel-shadow)]">
+    <article className="overflow-hidden bg-[var(--panel-bg)]">
       <div className="aspect-square overflow-hidden bg-slate-950/20">
         <button
           className="block h-full w-full cursor-zoom-in overflow-hidden"
@@ -252,7 +258,7 @@ function CaptureCard({ asset, onPreview }: { asset: CaptureAsset; onPreview: (as
 function CaptureGroupBlock({ group, onPreview }: { group: CaptureGroup; onPreview: (asset: CaptureAsset) => void }) {
   return (
     <section className="space-y-3">
-      <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
+      <div className="-mx-4 grid grid-cols-3 gap-0 md:mx-0">
         {group.assets.map((asset) => (
           <CaptureCard asset={asset} key={asset.id} onPreview={onPreview} />
         ))}
@@ -276,6 +282,8 @@ function CaptureGroupBlock({ group, onPreview }: { group: CaptureGroup; onPrevie
         <Link
           aria-label="Open comments"
           className="ml-auto inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[var(--text-main)] transition hover:text-[var(--text-accent)]"
+          onClick={saveStoryScrollPosition}
+          state={{ fromStory: true }}
           to={`/story/${encodeURIComponent(group.id)}`}
         >
           <MessageCircle size={17} />
@@ -301,6 +309,7 @@ function CaptureGroupBlock({ group, onPreview }: { group: CaptureGroup; onPrevie
 function CaptureIndex({ onThemeToggle, theme }: CaptureProps) {
   const { language } = useTranslation();
   const navigate = useNavigate();
+  const location = useLocation();
   const [timelineOpen, setTimelineOpen] = useState(false);
   const [activeMonth, setActiveMonth] = useState<TimelineMonth | null>(null);
   const [timeOrder, setTimeOrder] = useState<TimeSortOrder>('desc');
@@ -310,6 +319,21 @@ function CaptureIndex({ onThemeToggle, theme }: CaptureProps) {
   const yearGroups = useMemo(() => groupCaptureByYearAndMonth(captureGroups, timeOrder, language), [captureGroups, language, timeOrder]);
   const timelineMonths = useMemo(() => buildCaptureTimelineMonths(captureGroups, timeOrder), [captureGroups, timeOrder]);
   const viewerItems = useMemo(() => assets.map((asset) => ({ url: asset.image, type: 'image' as const })), [assets]);
+
+  useEffect(() => {
+    const savedScrollY = window.sessionStorage.getItem(storyScrollStorageKey);
+    if (!savedScrollY) return;
+    window.sessionStorage.removeItem(storyScrollStorageKey);
+
+    const top = Number(savedScrollY);
+    if (!Number.isFinite(top)) return;
+
+    const frame = window.requestAnimationFrame(() => {
+      window.scrollTo({ top, behavior: 'auto' });
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [location.key]);
 
   const handlePreview = (asset: CaptureAsset) => {
     const index = assets.findIndex((item) => item.id === asset.id);
@@ -385,6 +409,7 @@ function CaptureIndex({ onThemeToggle, theme }: CaptureProps) {
 
 function CaptureDetail({ onThemeToggle, theme }: CaptureProps) {
   const navigate = useNavigate();
+  const location = useLocation();
   const { id = '' } = useParams();
   const assets = useMemo(() => getCaptureAssets(), []);
   const captureGroups = useMemo(() => groupCaptureAssets(assets, 'desc'), [assets]);
@@ -399,6 +424,15 @@ function CaptureDetail({ onThemeToggle, theme }: CaptureProps) {
     return <Navigate replace to="/story" />;
   }
 
+  const fromStory = Boolean((location.state as { fromStory?: boolean } | null)?.fromStory);
+  const handleBack = () => {
+    if (fromStory) {
+      navigate(-1);
+      return;
+    }
+    navigate('/story', { replace: true });
+  };
+
   return (
     <div className="min-h-screen pb-16">
       <header className="fixed left-0 right-0 top-0 z-40 bg-[var(--panel-bg)] px-3 pt-3 backdrop-blur-xl">
@@ -406,7 +440,7 @@ function CaptureDetail({ onThemeToggle, theme }: CaptureProps) {
           <button
             aria-label="Back"
             className="inline-flex h-9 w-9 items-center justify-center text-[var(--text-main)] transition hover:text-[var(--text-accent)] active:scale-95"
-            onClick={() => navigate('/story')}
+            onClick={handleBack}
             type="button"
           >
             <ArrowLeft size={22} />
@@ -420,15 +454,15 @@ function CaptureDetail({ onThemeToggle, theme }: CaptureProps) {
       </header>
 
       <main className="mx-auto grid w-full max-w-5xl gap-6 px-4 pb-10 pt-24">
-        <section className="grid grid-cols-3 gap-3">
+        <section className="-mx-4 grid grid-cols-3 gap-0 md:mx-0">
           {group.assets.map((asset) => (
             <figure
-              className="overflow-hidden rounded-lg border border-[var(--panel-border)] bg-[var(--panel-bg)] shadow-[var(--panel-shadow)]"
+              className="aspect-square overflow-hidden bg-[var(--panel-bg)]"
               key={asset.id}
             >
               <img
                 alt={asset.title || asset.id}
-                className="max-h-[72vh] w-full object-contain"
+                className="h-full w-full object-cover"
                 decoding="async"
                 src={asset.image}
               />
