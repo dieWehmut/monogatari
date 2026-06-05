@@ -313,7 +313,7 @@ function CaptureIndex({ onThemeToggle, theme }: CaptureProps) {
         subtitle={`${assets.length} items`}
         theme={theme}
         timelineOpen={timelineOpen}
-        title="Capture"
+        title="Story"
       />
 
       {timelineOpen ? <div className="fixed inset-0 z-30" onClick={() => setTimelineOpen(false)} /> : null}
@@ -384,7 +384,7 @@ function CaptureDetail({ onThemeToggle, theme }: CaptureProps) {
             <ArrowLeft size={22} />
           </button>
           <div className="min-w-0 flex-1 px-3 text-center">
-            <p className="truncate text-base font-semibold text-[var(--text-main)]">{asset.title || 'Capture'}</p>
+            <p className="truncate text-base font-semibold text-[var(--text-main)]">{asset.title || 'Story'}</p>
             {asset.date ? <p className="text-xs text-soft">{asset.date}</p> : null}
           </div>
           <ThemeButton onToggle={onThemeToggle} theme={theme} />

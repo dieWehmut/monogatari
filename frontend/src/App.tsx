@@ -137,35 +137,43 @@ function ServerBackedApp({ onThemeToggle, theme }: { onThemeToggle: () => void; 
                   <Route
                     path="/story"
                     element={
-                      <Story
-                        activeMonth={activeMonth}
-                        auth={auth}
-                        follows={follows}
-                        images={images}
-                        onActiveMonthChange={setActiveMonth}
-                        onThemeToggle={onThemeToggle}
-                        onTimelineClose={() => setTimelineOpen(false)}
-                        onTimelineToggle={() => setTimelineOpen((open) => !open)}
-                        theme={theme}
-                        timelineOpen={timelineOpen}
-                      />
+                      staticStoryMode ? (
+                        <CaptureStory onThemeToggle={onThemeToggle} theme={theme} />
+                      ) : (
+                        <Story
+                          activeMonth={activeMonth}
+                          auth={auth}
+                          follows={follows}
+                          images={images}
+                          onActiveMonthChange={setActiveMonth}
+                          onThemeToggle={onThemeToggle}
+                          onTimelineClose={() => setTimelineOpen(false)}
+                          onTimelineToggle={() => setTimelineOpen((open) => !open)}
+                          theme={theme}
+                          timelineOpen={timelineOpen}
+                        />
+                      )
                     }
                   />
                   <Route
                     path="/story/:id"
                     element={
-                      <Story
-                        activeMonth={activeMonth}
-                        auth={auth}
-                        follows={follows}
-                        images={images}
-                        onActiveMonthChange={setActiveMonth}
-                        onThemeToggle={onThemeToggle}
-                        onTimelineClose={() => setTimelineOpen(false)}
-                        onTimelineToggle={() => setTimelineOpen((open) => !open)}
-                        theme={theme}
-                        timelineOpen={timelineOpen}
-                      />
+                      staticStoryMode ? (
+                        <CaptureStory onThemeToggle={onThemeToggle} theme={theme} />
+                      ) : (
+                        <Story
+                          activeMonth={activeMonth}
+                          auth={auth}
+                          follows={follows}
+                          images={images}
+                          onActiveMonthChange={setActiveMonth}
+                          onThemeToggle={onThemeToggle}
+                          onTimelineClose={() => setTimelineOpen(false)}
+                          onTimelineToggle={() => setTimelineOpen((open) => !open)}
+                          theme={theme}
+                          timelineOpen={timelineOpen}
+                        />
+                      )
                     }
                   />
                   <Route
@@ -228,16 +236,7 @@ function App() {
             </div>
           }>
             <Routes>
-              {staticStoryMode ? (
-                <>
-                  <Route path="/" element={<Navigate to="/story" replace />} />
-                  <Route path="/story" element={<CaptureStory onThemeToggle={onThemeToggle} theme={theme} />} />
-                  <Route path="/story/:id" element={<CaptureStory onThemeToggle={onThemeToggle} theme={theme} />} />
-                  <Route path="*" element={<Navigate to="/story" replace />} />
-                </>
-              ) : (
-                <Route path="/*" element={<ServerBackedApp onThemeToggle={onThemeToggle} theme={theme} />} />
-              )}
+              <Route path="/*" element={<ServerBackedApp onThemeToggle={onThemeToggle} theme={theme} />} />
             </Routes>
           </Suspense>
         </BrowserRouter>
