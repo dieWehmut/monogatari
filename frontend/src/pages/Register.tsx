@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { MoonStar, SunMedium } from 'lucide-react';
 
 import { LanguageSwitcher } from '../components/LanguageSwitcher';
@@ -7,6 +7,7 @@ import { useTranslation } from '../hooks/useTranslation';
 import { useToast } from '../utils/useToast';
 import { api } from '../lib/api';
 import { useAuth } from '../hooks/useAuth';
+import { authProviderConfig } from '../lib/authProviders';
 
 interface RegisterProps {
   auth: ReturnType<typeof useAuth>;
@@ -108,6 +109,16 @@ export default function Register({ auth, theme, onThemeToggle }: RegisterProps) 
     setStep('form');
   };
 
+  const registerMethods = [
+    authProviderConfig.github ? 'github' : null,
+    authProviderConfig.google ? 'google' : null,
+    authProviderConfig.email ? 'email' : null,
+  ].filter(Boolean) as RegisterMethod[];
+
+  if (!authProviderConfig.register) {
+    return <Navigate replace to="/login" />;
+  }
+
   const validate = (): boolean => {
     if (!username.trim()) {
       toast(t('messages.usernameRequired'), 'error');
@@ -178,7 +189,7 @@ export default function Register({ auth, theme, onThemeToggle }: RegisterProps) 
             <button
               aria-label={t('tooltips.githubRepo')}
               className={iconBtnCls}
-              onClick={() => window.open('https://github.com/story-timeline/story-timeline', '_blank')}
+              onClick={() => window.open('https://github.com/dieWehmut/monogatari', '_blank')}
               type="button"
               title={t('tooltips.githubRepo')}
             >
@@ -197,25 +208,12 @@ export default function Register({ auth, theme, onThemeToggle }: RegisterProps) 
             <div key="choose" className="step-transition">
               {/* Step 1: choose register method */}
               <div className="mt-6 flex flex-col gap-3">
-                <button className={btnCls} onClick={() => chooseMethod('github')} type="button">
-                  <GitHubIcon size={20} />
-                  <span>{t('auth.registerWith.github')}</span>
-                </button>
-                <button className={btnCls} onClick={() => chooseMethod('google')} type="button">
-                  <GoogleIcon size={20} />
-                  <span>{t('auth.registerWith.google')}</span>
-                </button>
-
-                <div className="flex items-center gap-1">
-                  <div className="h-px flex-1 bg-[var(--panel-border)]" />
-                  <span className="text-xs text-soft">{t('common.or')}</span>
-                  <div className="h-px flex-1 bg-[var(--panel-border)]" />
-                </div>
-
-                <button className={btnCls} onClick={() => chooseMethod('email')} type="button">
-                  <EmailIcon size={25} />
-                  <span>{t('auth.registerWith.email')}</span>
-                </button>
+                {registerMethods.map((targetMethod) => (
+                  <button className={btnCls} key={targetMethod} onClick={() => chooseMethod(targetMethod)} type="button">
+                    <MethodIcon method={targetMethod} size={targetMethod === 'email' ? 25 : 20} />
+                    <span>{t(`auth.registerWith.${targetMethod}`)}</span>
+                  </button>
+                ))}
               </div>
 
               {/* Switch to login */}

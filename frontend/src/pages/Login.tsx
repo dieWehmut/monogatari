@@ -7,6 +7,7 @@ import { useTranslation } from '../hooks/useTranslation';
 import { useToast } from '../utils/useToast';
 import { useAuth, LOGIN_RETURN_KEY } from '../hooks/useAuth';
 import { canUseDevAuthBypass, setDevAuthBypass } from '../lib/devAuth';
+import { authProviderConfig } from '../lib/authProviders';
 
 interface LoginProps {
   auth: ReturnType<typeof useAuth>;
@@ -63,7 +64,9 @@ export default function Login({ auth, theme, onThemeToggle }: LoginProps) {
   const [emailSent, setEmailSent] = useState(false);
   const emailFormRef = useRef<HTMLDivElement>(null);
 
-  const showGoogle = !!auth.googleLoginUrl;
+  const showGitHub = authProviderConfig.github;
+  const showGoogle = authProviderConfig.google && !!auth.googleLoginUrl;
+  const showEmail = authProviderConfig.email;
   const showDevBypass = canUseDevAuthBypass();
 
   // Redirect away from login page once authenticated (e.g. after email polling succeeds)
@@ -166,7 +169,7 @@ export default function Login({ auth, theme, onThemeToggle }: LoginProps) {
             <button
               aria-label={t('tooltips.githubRepo')}
               className={iconBtnCls}
-              onClick={() => window.open('https://github.com/dieWehmut/story-timeline', '_blank')}
+              onClick={() => window.open('https://github.com/dieWehmut/monogatari', '_blank')}
               type="button"
               title={t('tooltips.githubRepo')}
             >
@@ -188,14 +191,16 @@ export default function Login({ auth, theme, onThemeToggle }: LoginProps) {
 
           {/* Login buttons */}
           <div className="mt-6 flex flex-col gap-3">
-            <button
-              className="flex w-full items-center justify-center gap-3 rounded-xl border border-[var(--panel-border)] bg-[var(--panel-bg)] px-4 py-3 text-sm backdrop-blur-xl transition hover:border-[var(--text-accent)] hover:text-[var(--text-accent)]"
-              onClick={() => auth.loginWith('github')}
-              type="button"
-            >
-              <GitHubIcon size={20} />
-              <span>{t('auth.loginWith.github')}</span>
-            </button>
+            {showGitHub ? (
+              <button
+                className="flex w-full items-center justify-center gap-3 rounded-xl border border-[var(--panel-border)] bg-[var(--panel-bg)] px-4 py-3 text-sm backdrop-blur-xl transition hover:border-[var(--text-accent)] hover:text-[var(--text-accent)]"
+                onClick={() => auth.loginWith('github')}
+                type="button"
+              >
+                <GitHubIcon size={20} />
+                <span>{t('auth.loginWith.github')}</span>
+              </button>
+            ) : null}
 
             {showGoogle && (
               <button
@@ -208,81 +213,86 @@ export default function Login({ auth, theme, onThemeToggle }: LoginProps) {
               </button>
             )}
 
-            {/* or divider */}
-            <div className="flex items-center gap-1">
-              <div className="h-px flex-1 bg-[var(--panel-border)]" />
-              <span className="text-xs text-soft">{t('common.or')}</span>
-              <div className="h-px flex-1 bg-[var(--panel-border)]" />
-            </div>
+            {showEmail ? (
+              <div className="flex items-center gap-1">
+                <div className="h-px flex-1 bg-[var(--panel-border)]" />
+                <span className="text-xs text-soft">{t('common.or')}</span>
+                <div className="h-px flex-1 bg-[var(--panel-border)]" />
+              </div>
+            ) : null}
 
             {/* Email: button or inline form */}
-            {emailSent || auth.emailPolling ? (
-              <div className="space-y-2 text-center">
-                <div className="flex items-center justify-center gap-2 text-sm text-soft">
-                  <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-[var(--text-accent)] border-t-transparent" />
-                  {t('auth.waitingEmail')}
+            {showEmail ? (
+              emailSent || auth.emailPolling ? (
+                <div className="space-y-2 text-center">
+                  <div className="flex items-center justify-center gap-2 text-sm text-soft">
+                    <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-[var(--text-accent)] border-t-transparent" />
+                    {t('auth.waitingEmail')}
+                  </div>
+                  <p className="text-xs text-soft">{t('auth.checkEmail')}</p>
                 </div>
-                <p className="text-xs text-soft">{t('auth.checkEmail')}</p>
-              </div>
-            ) : (
-              <div
-                ref={emailFormRef}
-                className={`flex h-[46px] cursor-pointer items-center rounded-xl border border-[var(--panel-border)] bg-[var(--panel-bg)] px-4 backdrop-blur-xl transition-all duration-300 hover:border-[var(--text-accent)] ${showEmailForm ? '' : 'justify-center'}`}
-                onClick={() => { if (!showEmailForm) setShowEmailForm(true); }}
-                role={showEmailForm ? undefined : 'button'}
-              >
-                <div className="flex items-center gap-3">
-                  <EmailIcon size={25} />
-                  <span
-                    className="text-sm transition-all duration-300 whitespace-nowrap"
-                    style={{
-                      maxWidth: showEmailForm ? 0 : '12rem',
-                      opacity: showEmailForm ? 0 : 1,
-                      overflow: 'hidden',
-                    }}
-                  >
-                    {t('auth.loginWith.email')}
-                  </span>
-                </div>
+              ) : (
                 <div
-                  className="flex items-center gap-2 transition-all duration-300"
-                  style={{
-                    maxWidth: showEmailForm ? '20rem' : 0,
-                    opacity: showEmailForm ? 1 : 0,
-                    overflow: 'hidden',
-                    marginLeft: showEmailForm ? '0.5rem' : 0,
-                    flex: showEmailForm ? 1 : 0,
-                  }}
+                  ref={emailFormRef}
+                  className={`flex h-[46px] cursor-pointer items-center rounded-xl border border-[var(--panel-border)] bg-[var(--panel-bg)] px-4 backdrop-blur-xl transition-all duration-300 hover:border-[var(--text-accent)] ${showEmailForm ? '' : 'justify-center'}`}
+                  onClick={() => { if (!showEmailForm) setShowEmailForm(true); }}
+                  role={showEmailForm ? undefined : 'button'}
                 >
-                  <input
-                    className="min-w-0 flex-1 bg-transparent text-sm text-[var(--text-main)] outline-none placeholder:text-soft"
-                    onChange={(event) => setEmail(event.target.value)}
-                    onFocus={() => setShowEmailForm(true)}
-                    onKeyDown={(event) => {
-                      if (event.key === 'Enter') {
-                        void handleEmailSubmit();
-                      }
+                  <div className="flex items-center gap-3">
+                    <EmailIcon size={25} />
+                    <span
+                      className="text-sm transition-all duration-300 whitespace-nowrap"
+                      style={{
+                        maxWidth: showEmailForm ? 0 : '12rem',
+                        opacity: showEmailForm ? 0 : 1,
+                        overflow: 'hidden',
+                      }}
+                    >
+                      {t('auth.loginWith.email')}
+                    </span>
+                  </div>
+                  <div
+                    className="flex items-center gap-2 transition-all duration-300"
+                    style={{
+                      maxWidth: showEmailForm ? '20rem' : 0,
+                      opacity: showEmailForm ? 1 : 0,
+                      overflow: 'hidden',
+                      marginLeft: showEmailForm ? '0.5rem' : 0,
+                      flex: showEmailForm ? 1 : 0,
                     }}
-                    placeholder={t('auth.emailPlaceholder')}
-                    ref={(el) => { if (el && showEmailForm) el.focus(); }}
-                    type="email"
-                    value={email}
-                  />
-                  <button
-                    aria-label={t('auth.sendLoginLink')}
-                    className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-[var(--text-main)] transition-all duration-300 hover:translate-x-1 hover:scale-110 hover:text-[var(--text-accent)] disabled:opacity-40"
-                    disabled={sending}
-                    onClick={(e) => { e.stopPropagation(); void handleEmailSubmit(); }}
-                    type="button"
                   >
-                    {sending ? (
-                      <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
-                    ) : (
-                      <svg aria-hidden="true" height={18} viewBox="0 0 24 24" width={18} fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
-                    )}
-                  </button>
+                    <input
+                      className="min-w-0 flex-1 bg-transparent text-sm text-[var(--text-main)] outline-none placeholder:text-soft"
+                      onChange={(event) => setEmail(event.target.value)}
+                      onFocus={() => setShowEmailForm(true)}
+                      onKeyDown={(event) => {
+                        if (event.key === 'Enter') {
+                          void handleEmailSubmit();
+                        }
+                      }}
+                      placeholder={t('auth.emailPlaceholder')}
+                      ref={(el) => { if (el && showEmailForm) el.focus(); }}
+                      type="email"
+                      value={email}
+                    />
+                    <button
+                      aria-label={t('auth.sendLoginLink')}
+                      className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-[var(--text-main)] transition-all duration-300 hover:translate-x-1 hover:scale-110 hover:text-[var(--text-accent)] disabled:opacity-40"
+                      disabled={sending}
+                      onClick={(e) => { e.stopPropagation(); void handleEmailSubmit(); }}
+                      type="button"
+                    >
+                      {sending ? (
+                        <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+                      ) : (
+                        <svg aria-hidden="true" height={18} viewBox="0 0 24 24" width={18} fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
+                      )}
+                    </button>
+                  </div>
                 </div>
-              </div>
+              )
+            ) : (
+              null
             )}
 
             {showDevBypass ? (
@@ -306,7 +316,7 @@ export default function Login({ auth, theme, onThemeToggle }: LoginProps) {
 
 
           {/* Switch to register */}
-          <div className="mt-3">
+          {authProviderConfig.register ? <div className="mt-3">
             <button
               className="flex w-full items-center justify-center gap-3 rounded-xl border border-[var(--panel-border)] bg-[var(--panel-bg)] px-4 py-3 text-sm backdrop-blur-xl transition hover:border-[var(--text-accent)] hover:text-[var(--text-accent)]"
               onClick={() => navigate('/register')}
@@ -320,7 +330,7 @@ export default function Login({ auth, theme, onThemeToggle }: LoginProps) {
               </svg>
               <span>{t('auth.noAccount')}</span>
             </button>
-          </div>
+          </div> : null}
         </div>
       </div>
     </div>

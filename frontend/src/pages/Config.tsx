@@ -10,6 +10,7 @@ import { api } from '../lib/api';
 import { useToast } from '../utils/useToast';
 import { useAuth } from '../hooks/useAuth';
 import { ConfirmModal } from '../ui/ConfirmModal';
+import { authProviderConfig } from '../lib/authProviders';
 import type { Identity } from '../types/image';
 
 interface ConfigProps {
@@ -413,7 +414,10 @@ function AccountBindingSection({ authUser }: { authUser: ReturnType<typeof useAu
     );
   }
 
-  const oauthProviders = ['github', 'google'];
+  const oauthProviders = [
+    authProviderConfig.github ? 'github' : null,
+    authProviderConfig.google ? 'google' : null,
+  ].filter(Boolean) as Array<'github' | 'google'>;
 
   return (
     <div className="space-y-3">
