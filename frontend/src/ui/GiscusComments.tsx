@@ -14,13 +14,18 @@ const config = {
   strict: import.meta.env.VITE_CAPTURE_GISCUS_STRICT || import.meta.env.VITE_GISCUS_STRICT || '0',
   reactionsEnabled: import.meta.env.VITE_CAPTURE_GISCUS_REACTIONS_ENABLED || import.meta.env.VITE_GISCUS_REACTIONS_ENABLED || '1',
   inputPosition: import.meta.env.VITE_CAPTURE_GISCUS_INPUT_POSITION || import.meta.env.VITE_GISCUS_INPUT_POSITION || 'bottom',
-  theme: import.meta.env.VITE_CAPTURE_GISCUS_THEME || import.meta.env.VITE_GISCUS_THEME || '',
+  theme: import.meta.env.VITE_CAPTURE_GISCUS_THEME || import.meta.env.VITE_GISCUS_THEME || 'nexus',
   lang: import.meta.env.VITE_CAPTURE_GISCUS_LANG || import.meta.env.VITE_GISCUS_LANG || 'zh-CN',
 };
 
 const hasGiscusConfig = Boolean(config.repo && config.repoId && config.category && config.categoryId);
 
 function resolveGiscusTheme(appTheme: 'dark' | 'light') {
+  if (config.theme === 'nexus') {
+    const themeFile = appTheme === 'light' ? 'giscus-nexus-light.css' : 'giscus-nexus.css';
+    return new URL(`${import.meta.env.BASE_URL}${themeFile}`, window.location.origin).toString();
+  }
+
   if (config.theme) return config.theme;
   return appTheme === 'light' ? 'light' : 'dark';
 }
@@ -64,11 +69,15 @@ export function GiscusComments({ term, theme }: GiscusCommentsProps) {
 
   if (!hasGiscusConfig) {
     return import.meta.env.DEV ? (
-      <p className="rounded-lg border border-[var(--panel-border)] bg-[var(--panel-bg)] px-4 py-3 text-sm text-soft">
-        Configure VITE_CAPTURE_GISCUS_* to enable GitHub comments.
-      </p>
+      <section aria-label="Comments" className="giscus-comments giscus-comments--inline">
+        <p className="giscus-comments__empty">Configure VITE_CAPTURE_GISCUS_* to enable GitHub comments.</p>
+      </section>
     ) : null;
   }
 
-  return <div className="min-h-32" ref={containerRef} />;
+  return (
+    <section aria-label="Comments" className="giscus-comments giscus-comments--inline">
+      <div className="giscus-comments__container" ref={containerRef} />
+    </section>
+  );
 }

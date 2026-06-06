@@ -1,0 +1,214 @@
+@import url("https://giscus.app/themes/light.css");
+
+:root {
+  --color-canvas-default: #fbfbfb;
+  --color-canvas-overlay: #ffffff;
+  --color-canvas-inset: rgba(26, 158, 26, 0.035);
+  --color-canvas-subtle: rgba(26, 158, 26, 0.03);
+  --color-border-default: rgba(0, 0, 0, 0.16);
+  --color-border-muted: rgba(0, 0, 0, 0.08);
+  --color-fg-default: #111811;
+  --color-fg-muted: #445044;
+  --color-fg-subtle: #667066;
+  --color-accent-fg: #1a9e1a;
+  --color-accent-emphasis: #1a9e1a;
+  --color-accent-muted: rgba(26, 158, 26, 0.34);
+  --color-accent-subtle: rgba(26, 158, 26, 0.08);
+  --color-success-fg: #1a9e1a;
+  --color-attention-fg: #8a6500;
+  --color-danger-fg: #c62828;
+  --color-btn-text: #111811;
+  --color-btn-bg: #ffffff;
+  --color-btn-border: rgba(0, 0, 0, 0.16);
+  --color-btn-hover-bg: rgba(26, 158, 26, 0.08);
+  --color-btn-hover-border: rgba(26, 158, 26, 0.42);
+  --color-btn-active-bg: rgba(26, 158, 26, 0.12);
+  --color-btn-primary-text: #ffffff;
+  --color-btn-primary-bg: #1a9e1a;
+  --color-btn-primary-border: #1a9e1a;
+  --color-btn-primary-hover-bg: #148514;
+  --color-btn-primary-hover-border: #148514;
+  --color-btn-primary-selected-bg: #127512;
+  --color-btn-primary-disabled-bg: rgba(26, 158, 26, 0.38);
+  --color-btn-primary-disabled-border: rgba(26, 158, 26, 0.22);
+  --color-input-bg: #ffffff;
+  --color-input-contrast-bg: rgba(26, 158, 26, 0.03);
+  --color-input-border: rgba(0, 0, 0, 0.16);
+  --color-neutral-muted: rgba(0, 0, 0, 0.08);
+  --color-neutral-subtle: rgba(26, 158, 26, 0.03);
+  --color-primer-shadow-focus: 0 0 0 3px rgba(26, 158, 26, 0.18);
+}
+
+body {
+  background: transparent;
+  color: var(--color-fg-default);
+  font-family:
+    "LXGW WenKai",
+    "LXGW WenKai Screen",
+    "Noto Serif SC",
+    "Microsoft YaHei",
+    system-ui,
+    sans-serif;
+}
+
+a {
+  color: var(--color-accent-fg);
+}
+
+.gsc-main {
+  color: var(--color-fg-default);
+}
+
+.gsc-header {
+  padding-bottom: 10px;
+  border-bottom-color: var(--color-border-muted);
+}
+
+.gsc-comments-count,
+.gsc-header .color-fg-muted,
+.gsc-timeline .color-fg-muted {
+  color: var(--color-fg-muted) !important;
+}
+
+.gsc-comment-box,
+.gsc-comment {
+  overflow: hidden;
+  border: 1px solid var(--color-border-default);
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: none;
+}
+
+.gsc-comment-box-tabs,
+.gsc-comment-box-bottom,
+.gsc-comment-header {
+  border-color: var(--color-border-muted);
+  background: rgba(26, 158, 26, 0.03);
+}
+
+.gsc-comment-content,
+.gsc-comment-box-main {
+  background: transparent;
+}
+
+.gsc-comment-box-textarea {
+  min-height: 116px;
+  border: 1px solid var(--color-border-default);
+  color: var(--color-fg-default);
+  background: var(--color-input-bg);
+  line-height: 1.7;
+}
+
+.gsc-comment-box-textarea:focus {
+  border-color: var(--color-accent-fg);
+  box-shadow: var(--color-primer-shadow-focus);
+}
+
+.gsc-comment-box-write,
+.gsc-comment-box-preview {
+  color: var(--color-fg-muted);
+  border: 1px solid transparent;
+  border-radius: 8px 8px 0 0;
+  background: transparent;
+}
+
+.gsc-comment-box-write[aria-selected="true"],
+.gsc-comment-box-preview[aria-selected="true"] {
+  color: var(--color-accent-fg);
+  border-color: rgba(26, 158, 26, 0.6);
+  background: rgba(26, 158, 26, 0.08);
+}
+
+.gsc-comment-author,
+.Link--primary,
+.Link--muted:hover,
+.gsc-reactions-button.has-reacted {
+  color: var(--color-accent-fg) !important;
+}
+
+.gsc-comment-created-at,
+.gsc-comment-edited,
+.gsc-reactions-count {
+  color: var(--color-fg-muted);
+}
+
+.gsc-comment-content {
+  color: var(--color-fg-default);
+  line-height: 1.7;
+}
+
+.gsc-comment-content blockquote {
+  color: var(--color-fg-muted);
+  border-left-color: var(--color-accent-muted);
+}
+
+.gsc-comment-content code,
+.gsc-comment-content pre {
+  border-radius: 6px;
+  color: #145914;
+  background: rgba(26, 158, 26, 0.1);
+}
+
+.gsc-reactions {
+  border-top-color: var(--color-border-default);
+}
+
+.gsc-reactions-button,
+.gsc-social-reaction-summary-item,
+.btn {
+  border-radius: 8px;
+  color: var(--color-btn-text);
+  background: var(--color-btn-bg);
+  border-color: var(--color-btn-border);
+  box-shadow: none;
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease,
+    transform 160ms ease;
+}
+
+.gsc-reactions-button:hover,
+.gsc-social-reaction-summary-item:hover,
+.btn:hover {
+  color: var(--color-accent-fg);
+  background: var(--color-btn-hover-bg);
+  border-color: var(--color-btn-hover-border);
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  color: var(--color-btn-primary-text);
+  background: var(--color-btn-primary-bg);
+  border-color: var(--color-btn-primary-border);
+}
+
+.btn-primary:hover {
+  color: var(--color-btn-primary-text);
+  background: var(--color-btn-primary-hover-bg);
+  border-color: var(--color-btn-primary-hover-border);
+}
+
+.form-control,
+.form-select {
+  border-radius: 8px;
+  color: var(--color-fg-default);
+  background: var(--color-input-bg);
+  border-color: var(--color-input-border);
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--color-accent-muted);
+  box-shadow: var(--color-primer-shadow-focus);
+}
+
+@media (max-width: 540px) {
+  .gsc-comment-box-textarea {
+    min-height: 96px;
+  }
+
+  .gsc-comment-box,
+  .gsc-comment {
+    border-radius: 8px;
+  }
+}

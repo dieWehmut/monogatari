@@ -294,6 +294,49 @@
   .online-pulse {
     animation: online-dot-pulse 2s ease-in-out infinite;
   }
+
+  .giscus-comments {
+    width: 100%;
+    margin: 0;
+    padding: 0 0 24px;
+    color: var(--text-main);
+  }
+
+  .giscus-comments__empty {
+    margin: 0;
+    padding: 14px 0 4px;
+    color: var(--text-soft);
+    font-size: 13px;
+    font-weight: 800;
+  }
+
+  .giscus-comments__container {
+    min-width: 0;
+  }
+
+  .giscus-comments--inline {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .giscus-comments__container .giscus,
+  .giscus-comments__container .giscus-frame {
+    width: 100%;
+  }
+
+  @media (max-width: 900px) {
+    .giscus-comments {
+      width: auto;
+      margin: 0;
+      padding-bottom: 18px;
+    }
+
+    .giscus-comments--inline {
+      width: 100%;
+      padding: 0;
+    }
+  }
 }
 
 /* Page fade in animation */

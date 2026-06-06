@@ -477,7 +477,7 @@ function CaptureDetail({ onThemeToggle, theme }: CaptureProps) {
           ))}
         </section>
 
-        <section className="rounded-lg border border-[var(--panel-border)] bg-[var(--panel-bg)] p-4 shadow-[var(--panel-shadow)]">
+        <section className="grid min-w-0 gap-4 rounded-lg border border-[var(--panel-border)] bg-[var(--panel-bg)] p-4 shadow-[var(--panel-shadow)]">
           <div className="flex flex-wrap items-center gap-2 text-sm text-soft">
             {group.date !== 'Undated' ? (
               <time className="inline-flex items-center gap-1" dateTime={group.date}>
@@ -495,9 +495,7 @@ function CaptureDetail({ onThemeToggle, theme }: CaptureProps) {
               </span>
             ))}
           </div>
-        </section>
 
-        <section className="rounded-lg border border-[var(--panel-border)] bg-[var(--panel-bg)] p-4 shadow-[var(--panel-shadow)]">
           <GiscusComments term={`capture-group:${group.id}`} theme={theme} />
         </section>
       </main>
