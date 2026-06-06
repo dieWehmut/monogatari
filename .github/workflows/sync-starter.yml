@@ -1,0 +1,275 @@
+name: Sync Monogatari Starter
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'frontend/**'
+      - '.github/workflows/sync-starter.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sync-starter:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Check starter token
+        env:
+          STARTER_PUSH_TOKEN: ${{ secrets.STARTER_PUSH_TOKEN }}
+        run: |
+          if [ -z "$STARTER_PUSH_TOKEN" ]; then
+            echo "STARTER_PUSH_TOKEN is not set." >&2
+            exit 1
+          fi
+
+      - name: Prepare starter template
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          export_dir="$RUNNER_TEMP/monogatari-starter-export"
+          rm -rf "$export_dir"
+          mkdir -p "$export_dir"
+
+          rsync -a frontend/ "$export_dir"/ \
+            --exclude='.env' \
+            --exclude='.env.local' \
+            --exclude='.vercel/' \
+            --exclude='android/' \
+            --exclude='api/' \
+            --exclude='assets/' \
+            --exclude='dist/' \
+            --exclude='node_modules/' \
+            --exclude='public/capture-assets/' \
+            --exclude='react-native/' \
+            --exclude='resources/'
+
+          cd "$export_dir"
+          rm -f capacitor.config.ts package-lock.json vercel.json
+          rm -f scripts/checkout-assets-repo.mjs scripts/dev-server.mjs
+
+          node --input-type=module << 'EOF'
+          import fs from 'node:fs'
+
+          function writeJson(filePath, data) {
+            fs.writeFileSync(filePath, `${JSON.stringify(data, null, 2)}\n`)
+          }
+
+          const packagePath = 'package.json'
+          const packageJson = JSON.parse(fs.readFileSync(packagePath, 'utf8'))
+          packageJson.name = 'monogatari-starter'
+          packageJson.description = 'Static Monogatari story starter'
+          delete packageJson.private
+          if (packageJson.scripts) {
+            delete packageJson.scripts['dev:server']
+          }
+          writeJson(packagePath, packageJson)
+          EOF
+
+          cat > README.md << 'EOF'
+          # monogatari-starter
+
+          Static frontend starter for a Monogatari story/capture site.
+
+          ## Deploy
+
+          This template deploys with GitHub Pages Actions. The default build is a pure frontend story site:
+
+          - `VITE_STATIC_STORY=true`
+          - GitHub login button visible
+          - Google, email, and registration entry points hidden
+          - capture comments configured through Giscus variables
+
+          Set these repository variables when you want capture comments:
+
+          - `VITE_CAPTURE_GISCUS_REPO`
+          - `VITE_CAPTURE_GISCUS_REPO_ID`
+          - `VITE_CAPTURE_GISCUS_CATEGORY`
+          - `VITE_CAPTURE_GISCUS_CATEGORY_ID`
+
+          Optional variables include `VITE_CAPTURE_GISCUS_MAPPING`, `VITE_CAPTURE_GISCUS_STRICT`,
+          `VITE_CAPTURE_GISCUS_REACTIONS_ENABLED`, `VITE_CAPTURE_GISCUS_INPUT_POSITION`,
+          `VITE_CAPTURE_GISCUS_THEME`, and `VITE_CAPTURE_GISCUS_LANG`.
+
+          Put capture assets in an external assets repository or edit `src/data/capture/manifest.json`.
+          The starter intentionally ships without the author's personal capture database.
+          EOF
+
+          cat > .env.example << 'EOF'
+          VITE_API_BASE=
+          VITE_BASE_PATH=/
+          VITE_STATIC_STORY=true
+
+          VITE_AUTH_ENABLE_GITHUB=true
+          VITE_AUTH_ENABLE_GOOGLE=false
+          VITE_AUTH_ENABLE_EMAIL=false
+          VITE_AUTH_ENABLE_REGISTER=false
+
+          VITE_CAPTURE_GISCUS_REPO=
+          VITE_CAPTURE_GISCUS_REPO_ID=
+          VITE_CAPTURE_GISCUS_CATEGORY=General
+          VITE_CAPTURE_GISCUS_CATEGORY_ID=
+          VITE_CAPTURE_GISCUS_MAPPING=specific
+          VITE_CAPTURE_GISCUS_STRICT=0
+          VITE_CAPTURE_GISCUS_REACTIONS_ENABLED=1
+          VITE_CAPTURE_GISCUS_INPUT_POSITION=bottom
+          VITE_CAPTURE_GISCUS_THEME=nexus
+          VITE_CAPTURE_GISCUS_LANG=zh-CN
+          EOF
+
+          cat > src/data/capture/manifest.json << 'EOF'
+          []
+          EOF
+
+          cat > src/data/capture/generated.ts << 'EOF'
+          import type { CaptureAsset } from '../../types/capture'
+
+          export const generatedCaptureAssets: CaptureAsset[] = [] as CaptureAsset[]
+
+          export default generatedCaptureAssets
+          EOF
+
+          mkdir -p .github/workflows
+          rm -f .github/workflows/*.yml .github/workflows/*.yaml
+
+          cat > .github/workflows/deploy.yml << 'EOF'
+          name: Deploy to GitHub Pages
+
+          on:
+            push:
+              branches:
+                - main
+            workflow_dispatch:
+
+          permissions:
+            contents: read
+            pages: write
+            id-token: write
+
+          concurrency:
+            group: pages
+            cancel-in-progress: true
+
+          jobs:
+            deploy:
+              runs-on: ubuntu-latest
+              environment:
+                name: github-pages
+                url: __EXPR__ steps.deployment.outputs.page_url }}
+
+              steps:
+                - name: Checkout
+                  uses: actions/checkout@v4
+
+                - name: Setup Node.js
+                  uses: actions/setup-node@v4
+                  with:
+                    node-version: 22
+
+                - name: Enable pnpm
+                  run: |
+                    corepack enable
+                    corepack prepare pnpm@10 --activate
+
+                - name: Install dependencies
+                  run: pnpm install --frozen-lockfile
+
+                - name: Build
+                  env:
+                    VITE_API_BASE: ''
+                    VITE_STATIC_STORY: 'true'
+                    VITE_AUTH_ENABLE_GITHUB: 'true'
+                    VITE_AUTH_ENABLE_GOOGLE: 'false'
+                    VITE_AUTH_ENABLE_EMAIL: 'false'
+                    VITE_AUTH_ENABLE_REGISTER: 'false'
+                    VITE_CAPTURE_GISCUS_REPO: __EXPR__ vars.VITE_CAPTURE_GISCUS_REPO || github.repository }}
+                    VITE_CAPTURE_GISCUS_REPO_ID: __EXPR__ vars.VITE_CAPTURE_GISCUS_REPO_ID }}
+                    VITE_CAPTURE_GISCUS_CATEGORY: __EXPR__ vars.VITE_CAPTURE_GISCUS_CATEGORY || 'General' }}
+                    VITE_CAPTURE_GISCUS_CATEGORY_ID: __EXPR__ vars.VITE_CAPTURE_GISCUS_CATEGORY_ID }}
+                    VITE_CAPTURE_GISCUS_MAPPING: __EXPR__ vars.VITE_CAPTURE_GISCUS_MAPPING || 'specific' }}
+                    VITE_CAPTURE_GISCUS_STRICT: __EXPR__ vars.VITE_CAPTURE_GISCUS_STRICT || '0' }}
+                    VITE_CAPTURE_GISCUS_REACTIONS_ENABLED: __EXPR__ vars.VITE_CAPTURE_GISCUS_REACTIONS_ENABLED || '1' }}
+                    VITE_CAPTURE_GISCUS_INPUT_POSITION: __EXPR__ vars.VITE_CAPTURE_GISCUS_INPUT_POSITION || 'bottom' }}
+                    VITE_CAPTURE_GISCUS_THEME: __EXPR__ vars.VITE_CAPTURE_GISCUS_THEME || 'nexus' }}
+                    VITE_CAPTURE_GISCUS_LANG: __EXPR__ vars.VITE_CAPTURE_GISCUS_LANG || 'zh-CN' }}
+                  run: |
+                    repo_name="${GITHUB_REPOSITORY#*/}"
+                    if [ "$repo_name" = "${GITHUB_REPOSITORY_OWNER}.github.io" ]; then
+                      export VITE_BASE_PATH="/"
+                    else
+                      export VITE_BASE_PATH="/${repo_name}/"
+                    fi
+                    echo "VITE_BASE_PATH=$VITE_BASE_PATH"
+                    pnpm build
+
+                - name: Setup Pages
+                  uses: actions/configure-pages@v5
+
+                - name: Upload artifact
+                  uses: actions/upload-pages-artifact@v3
+                  with:
+                    path: dist
+
+                - name: Deploy to GitHub Pages
+                  id: deployment
+                  uses: actions/deploy-pages@v4
+          EOF
+
+          node --input-type=module << 'EOF'
+          import fs from 'node:fs'
+
+          const workflowPath = '.github/workflows/deploy.yml'
+          const raw = fs.readFileSync(workflowPath, 'utf8')
+          fs.writeFileSync(workflowPath, raw.replaceAll('__EXPR__', '${' + '{'), 'utf8')
+          EOF
+
+          cat > .gitignore << 'EOF'
+          node_modules/
+          dist/
+          .env
+          .env.local
+          .env.*.local
+          .vercel/
+          public/capture-assets/
+          EOF
+
+      - name: Push to starter repo
+        env:
+          STARTER_PUSH_TOKEN: ${{ secrets.STARTER_PUSH_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          export_dir="$RUNNER_TEMP/monogatari-starter-export"
+          tmp_dir="$(mktemp -d)"
+
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+
+          git clone "https://x-access-token:${STARTER_PUSH_TOKEN}@github.com/dieWehmut/monogatari-starter.git" "$tmp_dir"
+          cd "$tmp_dir"
+          if git show-ref --verify --quiet refs/remotes/origin/main; then
+            git switch main
+          else
+            git switch -c main
+          fi
+
+          rsync -a --delete --exclude='.git' "$export_dir"/ "$tmp_dir"/
+
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No starter template changes to push."
+            exit 0
+          fi
+
+          git commit -m "sync: update starter template"
+          git push origin main --force-with-lease
