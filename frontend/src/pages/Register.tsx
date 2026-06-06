@@ -8,6 +8,7 @@ import { useToast } from '../utils/useToast';
 import { api } from '../lib/api';
 import { useAuth } from '../hooks/useAuth';
 import { authProviderConfig } from '../lib/authProviders';
+import { staticAuthDisabled } from '../lib/staticMode';
 
 interface RegisterProps {
   auth: ReturnType<typeof useAuth>;
@@ -115,7 +116,7 @@ export default function Register({ auth, theme, onThemeToggle }: RegisterProps) 
     authProviderConfig.email ? 'email' : null,
   ].filter(Boolean) as RegisterMethod[];
 
-  if (!authProviderConfig.register) {
+  if (staticAuthDisabled || !authProviderConfig.register) {
     return <Navigate replace to="/login" />;
   }
 

@@ -9,6 +9,7 @@ import { UserBar } from './UserBar';
 import { useProfile } from '../context/ProfileContext';
 import type { AuthUser, FeedUser, TimelineMonth } from '../types/image';
 import { useTranslation } from '../hooks/useTranslation';
+import { staticAuthDisabled } from '../lib/staticMode';
 
 interface HeaderProps {
   activeMonth: TimelineMonth | null;
@@ -87,7 +88,7 @@ export function Header({
             <>
               <HomeButton />
               <SettingsButton />
-              {!authAuthenticated ? (
+              {!authAuthenticated && !staticAuthDisabled ? (
                 <AuthButton
                   authenticated={authAuthenticated}
                   loading={authLoading}
@@ -101,7 +102,7 @@ export function Header({
             <>
               <HomeButton />
               <SettingsButton />
-              {!authAuthenticated ? (
+              {!authAuthenticated && !staticAuthDisabled ? (
                 <AuthButton
                   authenticated={authAuthenticated}
                   loading={authLoading}

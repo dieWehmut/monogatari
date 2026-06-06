@@ -3,6 +3,7 @@ import { LogOut, UserRound } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import type { AuthUser } from '../types/image';
 import { useTranslation } from '../hooks/useTranslation';
+import { staticAuthDisabled } from '../lib/staticMode';
 
 interface AuthButtonProps {
   authenticated: boolean;
@@ -25,6 +26,7 @@ export function AuthButton({
 
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
+    if (staticAuthDisabled && !authenticated) return;
     if (!authenticated || !user) {
       navigate('/login');
       return;
@@ -35,8 +37,9 @@ export function AuthButton({
   return (
     <button
       aria-busy={loading}
+      aria-disabled={staticAuthDisabled && !authenticated}
       aria-label={authenticated ? `${t('nav.logout')} ${user?.login ?? ''}`.trim() : t('nav.login')}
-      className={`${iconBtnCls} ${loading ? 'opacity-70' : ''}`}
+      className={`${iconBtnCls} ${loading ? 'opacity-70' : ''} ${staticAuthDisabled && !authenticated ? 'pointer-events-none opacity-40' : ''}`}
       onClick={handleClick}
       type="button"
     >

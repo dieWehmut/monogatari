@@ -10,6 +10,7 @@ import { useFollows } from '../hooks/useFollows';
 import { useProfile } from '../context/ProfileContext';
 import { useTranslation } from '../hooks/useTranslation';
 import { shouldBypassAuthRequired } from '../lib/devAuth';
+import { staticAuthDisabled } from '../lib/staticMode';
 
 interface HomeProps {
   auth: ReturnType<typeof useAuth>;
@@ -106,13 +107,15 @@ export default function Home({ auth, images, follows, theme, onThemeToggle }: Ho
                 />
                 <span className="text-sm font-medium text-[var(--text-main)]">{displayName || authUser.login}</span>
               </>
-            ) : (
+            ) : !staticAuthDisabled ? (
               <AuthButton
                 authenticated={authAuthenticated}
                 loading={authLoading}
                 onLogout={onLogout}
                 user={authUser}
               />
+            ) : (
+              <span />
             )}
           </div>
           <div className="flex items-center -space-x-1">

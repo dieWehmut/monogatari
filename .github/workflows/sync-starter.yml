@@ -85,8 +85,7 @@ jobs:
           This template deploys with GitHub Pages Actions. The default build is a pure frontend story site:
 
           - `VITE_STATIC_STORY=true`
-          - GitHub login button visible
-          - Google, email, and registration entry points hidden
+          - login entry points hidden
           - capture comments configured through Giscus variables
 
           Set these repository variables when you want capture comments:
@@ -108,8 +107,9 @@ jobs:
           VITE_API_BASE=
           VITE_BASE_PATH=/
           VITE_STATIC_STORY=true
+          VITE_STATIC_AUTH=false
 
-          VITE_AUTH_ENABLE_GITHUB=true
+          VITE_AUTH_ENABLE_GITHUB=false
           VITE_AUTH_ENABLE_GOOGLE=false
           VITE_AUTH_ENABLE_EMAIL=false
           VITE_AUTH_ENABLE_REGISTER=false
@@ -187,7 +187,8 @@ jobs:
                   env:
                     VITE_API_BASE: ''
                     VITE_STATIC_STORY: 'true'
-                    VITE_AUTH_ENABLE_GITHUB: 'true'
+                    VITE_STATIC_AUTH: 'false'
+                    VITE_AUTH_ENABLE_GITHUB: 'false'
                     VITE_AUTH_ENABLE_GOOGLE: 'false'
                     VITE_AUTH_ENABLE_EMAIL: 'false'
                     VITE_AUTH_ENABLE_REGISTER: 'false'

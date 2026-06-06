@@ -12,6 +12,7 @@ import { AuthProvider } from './context/AuthContext';
 import { LanguageProvider } from './context/LanguageContext';
 import { isPublicPath } from './utils/AuthGuard';
 import { shouldBypassAuthRequired } from './lib/devAuth';
+import { staticAuthDisabled, staticStoryMode } from './lib/staticMode';
 import type { TimelineMonth } from './types/image';
 
 const Home = lazy(() => import('./pages/Home'));
@@ -27,9 +28,6 @@ const Login = lazy(() => import('./pages/Login'));
 const Register = lazy(() => import('./pages/Register'));
 const InviteRedirect = lazy(() => import('./pages/InviteRedirect'));
 
-const staticStoryMode = import.meta.env.VITE_STATIC_STORY
-  ? import.meta.env.VITE_STATIC_STORY === 'true'
-  : import.meta.env.DEV;
 const routerBasename = import.meta.env.BASE_URL === '/'
   ? undefined
   : import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -200,11 +198,11 @@ function ServerBackedApp({ onThemeToggle, theme }: { onThemeToggle: () => void; 
                   />
                   <Route
                     path="/login"
-                    element={<Login auth={auth} onThemeToggle={onThemeToggle} theme={theme} />}
+                    element={staticAuthDisabled ? <Navigate to="/story" replace /> : <Login auth={auth} onThemeToggle={onThemeToggle} theme={theme} />}
                   />
                   <Route
                     path="/register"
-                    element={<Register auth={auth} onThemeToggle={onThemeToggle} theme={theme} />}
+                    element={staticAuthDisabled ? <Navigate to="/story" replace /> : <Register auth={auth} onThemeToggle={onThemeToggle} theme={theme} />}
                   />
                   <Route path="/invites/:code" element={<InviteRedirect />} />
                   <Route path="/auth/email" element={<AuthEmail />} />
