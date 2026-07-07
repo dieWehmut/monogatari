@@ -47,13 +47,6 @@
 
 這個倉庫也保留了靜態故事擷取模式，可把故事內容建置成唯讀站點，並透過 Giscus 接入留言。
 
-## 範例
-
-- 主倉庫：<https://github.com/dieWehmut/monogatari>
-- 靜態 starter 同步目標：<https://github.com/dieWehmut/monogatari-starter>
-
-`gh-pages` 分支已從主倉庫遠端刪除。當前主倉庫不再把 GitHub Pages 分支作為推薦發布路徑；如果保留歷史 `deploy-gh-pages.yml`，請避免它在 `main` 更新時重新建立該分支。
-
 ## 功能
 
 - 時間線動態、故事視圖和相簿視圖

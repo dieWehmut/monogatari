@@ -47,13 +47,6 @@
 
 このリポジトリには静的ストーリーキャプチャモードもあり、ストーリー内容を読み取り専用サイトとしてビルドし、Giscus コメントを接続できます。
 
-## 例
-
-- メインリポジトリ：<https://github.com/dieWehmut/monogatari>
-- 静的 starter の同期先：<https://github.com/dieWehmut/monogatari-starter>
-
-リモートの `gh-pages` ブランチはメインリポジトリから削除済みです。現在、このリポジトリでは GitHub Pages ブランチを推奨デプロイ先として扱っていません。履歴上の `deploy-gh-pages.yml` を残す場合は、`main` 更新時にそのブランチを再作成しないようにしてください。
-
 ## 機能
 
 - タイムラインフィード、ストーリービュー、アルバムビュー

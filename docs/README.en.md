@@ -47,13 +47,6 @@
 
 The repository also keeps a static story capture mode that can build the story content into a read-only site with optional Giscus comments.
 
-## Examples
-
-- Main repository: <https://github.com/dieWehmut/monogatari>
-- Static starter sync target: <https://github.com/dieWehmut/monogatari-starter>
-
-The remote `gh-pages` branch has been deleted from the main repository. This repository no longer recommends a GitHub Pages branch as its deployment target; if the historical `deploy-gh-pages.yml` workflow stays in the repo, make sure it does not recreate the branch on `main` updates.
-
 ## Features
 
 - Timeline feed, story view, and album view
