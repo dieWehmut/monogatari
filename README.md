@@ -1,89 +1,134 @@
-# Story Timeline
+<h1 align="center">monogatari</h1>
 
-一个围绕“时间线叙事”展开的社交应用。用户可以发布带时间点或时间段的故事内容，浏览动态与相册，上传图片和视频，点赞、评论、关注他人，并通过邀请码与审核流程完成注册。
+<p align="center">
+  <img src="https://count.getloli.com/get/@monogatari?theme=rule34" alt="Visitors">
+</p>
 
-## 功能概览
+<div align="center">
 
-- 时间线动态、故事视图、相册视图
-- 图片和视频内容发布
+<div>
+<a href="https://react.dev/" target="_blank">
+  <img src="https://img.shields.io/badge/REACT-19-61DAFB?style=flat-square&logo=react&logoColor=white&labelColor=555555" alt="React 19">
+</a>
+<a href="https://vite.dev/" target="_blank">
+  <img src="https://img.shields.io/badge/VITE-7-646CFF?style=flat-square&logo=vite&logoColor=white&labelColor=555555" alt="Vite 7">
+</a>
+<a href="https://www.typescriptlang.org/" target="_blank">
+  <img src="https://img.shields.io/badge/TYPE%20SCRIPT-5.9-3178C6?style=flat-square&logo=typescript&logoColor=white&labelColor=555555" alt="TypeScript">
+</a>
+<a href="https://go.dev/" target="_blank">
+  <img src="https://img.shields.io/badge/GO-1.25-00ADD8?style=flat-square&logo=go&logoColor=white&labelColor=555555" alt="Go 1.25">
+</a>
+</div>
+
+<div>
+<a href="https://supabase.com/" target="_blank">
+  <img src="https://img.shields.io/badge/SUPABASE-PostgreSQL-3FCF8E?style=flat-square&logo=supabase&logoColor=white&labelColor=555555" alt="Supabase">
+</a>
+<a href="https://cloudinary.com/" target="_blank">
+  <img src="https://img.shields.io/badge/CLOUDINARY-Media-3448C5?style=flat-square&logo=cloudinary&logoColor=white&labelColor=555555" alt="Cloudinary">
+</a>
+<a href="https://capacitorjs.com/" target="_blank">
+  <img src="https://img.shields.io/badge/CAPACITOR-Android-119EFF?style=flat-square&logo=capacitor&logoColor=white&labelColor=555555" alt="Capacitor Android">
+</a>
+</div>
+
+</div>
+
+<div align="center">
+
+简体中文 | [繁體中文](docs/README.zh-TW.md) | [English](docs/README.en.md) | [日本語](docs/README.ja.md)
+
+</div>
+
+---
+
+`monogatari` 是一个围绕时间线叙事展开的社交应用。它包含 React / Vite Web 前端、Capacitor Android 壳、实验中的 Expo React Native 客户端，以及 Go / Gin API 服务。用户可以发布带时间点或时间段的故事，上传图片和视频，浏览动态与相册，点赞、评论、关注他人，并通过邀请码和审核流程完成注册。
+
+这个仓库也保留了静态故事捕获模式，可把故事内容构建成只读站点，并通过 Giscus 接入评论。
+
+## 示例
+
+- 主仓库：<https://github.com/dieWehmut/monogatari>
+- 静态 starter 同步目标：<https://github.com/dieWehmut/monogatari-starter>
+
+`gh-pages` 分支已从主仓库远程删除。当前主仓库不再把 GitHub Pages 分支作为推荐发布路径；如果保留历史 `deploy-gh-pages.yml`，请避免它在 `main` 更新时重新创建该分支。
+
+## 功能
+
+- 时间线动态、故事视图和相册视图
+- 图片 / 视频发布与 Cloudinary 媒体存储
 - 帖子点赞、评论、评论点赞、关注关系
 - GitHub / Google / Email 登录
 - 账号绑定与解绑
 - 邀请码注册、管理员审核、通知公告
-- Web、Capacitor Android，以及一个仍在整理中的 Expo React Native 客户端
+- Supabase PostgreSQL 数据存储
+- Redis 登录限流、临时 token 和 session 状态，可选
+- Resend 审核邮件和 Email 登录，可选
+- Sentry 前后端监控，可选
+- Capacitor Android 客户端
+- 实验中的 Expo React Native 客户端
+- 静态故事捕获模式和 Giscus 评论
+- 可选 Vercel 同源 API 代理
 
-## 仓库结构
+## 快速开始
 
-```text
-frontend/                 React SPA + Capacitor Android + 可选 Vercel 代理
-  src/                    Web 前端（Vite + React 19 + Tailwind CSS 4）
-  android/                Capacitor Android 壳
-  react-native/           Expo React Native 客户端（实验中）
-  api/proxy.go            可选的同源 API 代理
+### 1. 克隆仓库
 
-backend/                  Go API 服务（Gin）
-  cmd/server/             服务入口
-  internal/               controller / service / storage / router
-  supabase/schema.sql     数据库 schema
-  upstash/                Redis 初始化脚本
-
-.github/workflows/        当前 CI/CD 工作流
+```bash
+git clone https://github.com/dieWehmut/monogatari.git
+cd monogatari
 ```
 
-## 技术栈
+### 2. 配置后端
 
-| 层级 | 技术 |
-|------|------|
-| 前端 | React 19、TypeScript、Vite 7 |
-| 样式 | Tailwind CSS 4 |
-| 路由 | React Router v6 |
-| 移动端 | Capacitor 8（Android）、Expo React Native |
-| 后端 | Go 1.25、Gin |
-| 数据库 | Supabase（PostgreSQL） |
-| 媒体存储 | Cloudinary |
-| 缓存 / 状态 | Redis（可选） |
-| 邮件 | Resend（可选） |
-| 监控 | Sentry（可选） |
+按 [backend/README.md](backend/README.md) 创建并填写 `backend/.env`。最小可用配置需要：
 
-## 本地开发
+```env
+SUPABASE_URL=
+SUPABASE_SERVICE_ROLE_KEY=
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
+SESSION_SECRET=
+FRONTEND_BASE_URL=http://localhost:5173
+FRONTEND_ORIGIN=http://localhost:5173
+```
 
-### 前置依赖
+Redis、Resend、GitHub OAuth、Google OAuth 和 Sentry 可以按功能需要再配置。
 
-- Node.js 22+
-- pnpm
-- Go 1.25+
-- 一个可用的 Supabase 项目
-- 一个可用的 Cloudinary 账号
-
-Redis、Resend、GitHub / Google OAuth 都是可选项；不启用对应功能时可以先不配。
-
-### 1. 启动后端
-
-先按 [backend/README.md](backend/README.md) 配好 `backend/.env`，然后运行：
+### 3. 启动后端
 
 ```bash
 cd backend
 go run ./cmd/server
 ```
 
-默认监听 `http://localhost:7860`。
+默认地址是 `http://localhost:7860`。
 
-### 2. 启动前端
+### 4. 启动前端
 
 ```bash
 cd frontend
 pnpm install
+```
+
+PowerShell：
+
+```powershell
+$env:VITE_API_BASE = "http://localhost:7860"
+pnpm dev
+```
+
+Bash / zsh：
+
+```bash
 VITE_API_BASE=http://localhost:7860 pnpm dev
 ```
 
-开发服务器默认监听 `http://localhost:5173`。
+默认地址是 `http://localhost:5173`。
 
-说明：
-
-- 本地直接跑 Vite 时，建议显式设置 `VITE_API_BASE=http://localhost:7860`
-- 如果不设置，浏览器会按同源请求 `/api/*`，而仓库当前没有为 Vite dev server 配置本地代理
-
-### 3. Android（Capacitor）
+### 5. 构建 Android 应用
 
 ```bash
 cd frontend
@@ -92,19 +137,19 @@ npx cap sync android
 npx cap open android
 ```
 
-## 部署方式
+## 部署
 
 ### 后端
 
-后端不再绑定任何特定平台，直接按普通 Go 服务部署即可：
+后端是普通 Go 服务，可部署到 VPS、Docker 主机、Coolify、Railway、Fly.io 或 Kubernetes。
 
 ```bash
 cd backend
-docker build -t story-timeline-backend .
-docker run -p 7860:7860 --env-file .env story-timeline-backend
+docker build -t monogatari-backend .
+docker run -p 7860:7860 --env-file .env monogatari-backend
 ```
 
-也可以直接编译后以二进制方式运行：
+也可以直接编译运行：
 
 ```bash
 cd backend
@@ -112,42 +157,99 @@ go build -o server ./cmd/server
 ./server
 ```
 
-适合的部署环境包括 VPS、Docker 主机、Coolify、Railway、Fly.io、Kubernetes 等。
+### 前端静态站点
 
-### 前端静态部署
+构建时把 `VITE_API_BASE` 指向后端公网地址：
 
-如果前端部署到 GitHub Pages、Netlify 或其他纯静态托管：
+```bash
+cd frontend
+VITE_API_BASE=https://api.example.com pnpm build
+```
 
-- 构建时把 `VITE_API_BASE` 指向你的后端公网地址
-- 例如：`VITE_API_BASE=https://api.example.com pnpm build`
+产物位于 `frontend/dist/`，可以发布到 Vercel、Netlify、Cloudflare Pages 或其他静态托管服务。
 
-仓库里现有的 `deploy-gh-pages.yml` 会自动构建并推送 `gh-pages` 分支；启用前请把 workflow 中的 `VITE_API_BASE` 改成你自己的后端地址。
+### Vercel 同源代理
 
-### Vercel 同源代理（可选）
-
-`frontend/api/proxy.go` 可以把 `/api/*` 请求转发到后端，适合把静态前端和 API 代理一起放到 Vercel：
+`frontend/api/proxy.go` 可以把 `/api/*` 请求转发到后端：
 
 - Vercel 项目根目录设为 `frontend`
-- 设置环境变量 `BACKEND_URL=https://api.example.com`
-- 前端构建时可以不设置 `VITE_API_BASE`，让浏览器走同源 `/api/*`
+- 设置 `BACKEND_URL=https://api.example.com`
+- 前端构建时可不设置 `VITE_API_BASE`，让浏览器走同源 `/api/*`
 
-## GitHub Actions
+### 静态故事模式
 
-当前仓库里保留的工作流只有这些：
+只发布静态故事站点时：
 
-| 工作流 | 作用 |
-|--------|------|
-| `deploy-gh-pages.yml` | 构建前端并发布到 `gh-pages` |
-| `apply-supabase-schema.yml` | 将 `backend/supabase/schema.sql` 应用到 Supabase |
-| `redis-init.yml` | 初始化 Redis 所需数据结构 |
+```bash
+cd frontend
+VITE_STATIC_STORY=true VITE_STATIC_AUTH=false pnpm build
+```
 
-## 运行时依赖说明
+静态评论需要配置 `VITE_CAPTURE_GISCUS_*` 环境变量，示例见 [frontend/.env.example](frontend/.env.example)。
 
-- Supabase：存储用户、帖子、评论、关注、邀请码与站点设置
-- Cloudinary：存储帖子和评论里的图片 / 视频资源
-- Redis：可选，用于 session 状态、登录限流和部分短期状态
-- Resend：可选，用于 Email 登录和审核邮件
+## Giscus 评论
 
-## 现状备注
+复制 `frontend/.env.example` 到本地环境文件，并填入 Giscus 配置：
 
-- `frontend/react-native/README.md` 还是 Expo 初始模板，暂时没有纳入这次文档重写范围
+```env
+VITE_CAPTURE_GISCUS_REPO=owner/repo
+VITE_CAPTURE_GISCUS_REPO_ID=
+VITE_CAPTURE_GISCUS_CATEGORY=General
+VITE_CAPTURE_GISCUS_CATEGORY_ID=
+VITE_CAPTURE_GISCUS_MAPPING=specific
+VITE_CAPTURE_GISCUS_THEME=nexus
+VITE_CAPTURE_GISCUS_LANG=zh-CN
+```
+
+配置为空时，静态评论区会保持隐藏或显示未配置提示。
+
+## 项目结构
+
+```text
+frontend/
+  src/                    Web 前端
+  android/                Capacitor Android 工程
+  react-native/           Expo React Native 客户端，实验中
+  api/proxy.go            Vercel 同源 API 代理
+  scripts/                捕获数据与开发脚本
+
+backend/
+  cmd/server/             Go API 入口
+  internal/               controller / service / storage / router
+  supabase/schema.sql     Supabase schema
+  upstash/                Redis 初始化脚本
+
+.github/workflows/
+  apply-supabase-schema.yml
+  redis-init.yml
+  sync-starter.yml
+```
+
+## 常用命令
+
+```bash
+# frontend
+pnpm dev
+pnpm build
+pnpm lint
+pnpm preview
+
+# backend
+go run ./cmd/server
+go test ./...
+go build -o server ./cmd/server
+```
+
+## 运行时服务
+
+| 服务 | 用途 |
+|---|---|
+| Supabase | 用户、帖子、评论、关注、邀请码、站点设置 |
+| Cloudinary | 帖子和评论中的图片 / 视频资源 |
+| Redis | session 状态、登录限流、OAuth / Email 临时状态 |
+| Resend | Email 登录和注册审核邮件 |
+| Sentry | 前后端错误监控 |
+
+## 许可
+
+当前仓库未包含 `LICENSE` 文件。公开使用或分发前，请先补充明确的许可证。
