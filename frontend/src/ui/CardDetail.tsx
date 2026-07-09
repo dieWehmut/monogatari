@@ -179,8 +179,6 @@ function DetailImageGrid({
 
   alt,
 
-  collapseLabel,
-
   onImageClick,
 
 }: {
@@ -189,13 +187,9 @@ function DetailImageGrid({
 
   alt: string;
 
-  collapseLabel: string;
-
   onImageClick: (index: number) => void;
 
 }) {
-
-  const [expanded, setExpanded] = useState(false);
 
   if (items.length === 0) return null;
 
@@ -271,16 +265,12 @@ function DetailImageGrid({
 
 
 
-  const maxVisible = 9;
-  const needCollapse = items.length > maxVisible;
-  const visibleItems = needCollapse && !expanded ? items.slice(0, maxVisible) : items;
-  const extraCount = needCollapse && !expanded ? items.length - maxVisible : 0;
+  // 详情页展示全部图片,不做 9 张上限与折叠(仅卡片预览才限制)。
+  const visibleItems = items;
 
   const cols = visibleItems.length <= 2 ? 2 : 3;
 
   return (
-
-    <div>
 
     <div className={`grid gap-0.5 ${cols === 2 ? 'grid-cols-2' : 'grid-cols-3'}`}>
 
@@ -298,30 +288,9 @@ function DetailImageGrid({
 
           {renderMedia(item, `${alt} ${i + 1}`)}
 
-          {extraCount > 0 && i === visibleItems.length - 1 ? (
-            <div
-              className="absolute inset-0 flex items-center justify-center bg-black/50 cursor-pointer"
-              onClick={(e) => { e.stopPropagation(); setExpanded(true); }}
-            >
-              <span className="text-2xl font-bold text-white">+{extraCount}</span>
-            </div>
-          ) : null}
-
         </div>
 
       ))}
-
-    </div>
-
-    {needCollapse && expanded ? (
-      <button
-        className="mt-1 w-full text-center text-xs text-soft hover:text-[var(--text-accent)] transition"
-        onClick={() => setExpanded(false)}
-        type="button"
-      >
-        {collapseLabel}
-      </button>
-    ) : null}
 
     </div>
 
@@ -1258,7 +1227,6 @@ export function CardDetail({
 
                 <DetailImageGrid
                   alt={item.description}
-                  collapseLabel={t('time.collapse')}
                   items={mediaItems}
                   onImageClick={setViewerIndex}
                 />

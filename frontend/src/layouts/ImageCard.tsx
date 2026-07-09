@@ -186,9 +186,9 @@ function ImageGrid({
 
   alt,
 
-  collapseLabel,
-
   onImageClick,
+
+  onMore,
 
 }: {
 
@@ -196,13 +196,11 @@ function ImageGrid({
 
   alt: string;
 
-  collapseLabel: string;
-
   onImageClick: (index: number) => void;
 
-}) {
+  onMore?: () => void;
 
-  const [expanded, setExpanded] = useState(false);
+}) {
 
   if (items.length === 0) return null;
 
@@ -278,16 +276,15 @@ function ImageGrid({
 
 
 
+  // 卡片上最多展示 9 张(仿 Nexus capturePreviewLimit);其余在右下角显示 +X,
+  // 点击进入详情页查看全部,卡片本身不做内联展开。
   const maxVisible = 9;
-  const needCollapse = items.length > maxVisible;
-  const visibleItems = needCollapse && !expanded ? items.slice(0, maxVisible) : items;
-  const extraCount = needCollapse && !expanded ? items.length - maxVisible : 0;
+  const extraCount = Math.max(0, items.length - maxVisible);
+  const visibleItems = items.slice(0, maxVisible);
 
   const cols = visibleItems.length <= 2 ? 2 : 3;
 
   return (
-
-    <div>
 
     <div className={`grid gap-0.5 ${cols === 2 ? 'grid-cols-2' : 'grid-cols-3'}`}>
 
@@ -308,7 +305,7 @@ function ImageGrid({
           {extraCount > 0 && i === visibleItems.length - 1 ? (
             <div
               className="absolute inset-0 flex items-center justify-center bg-black/50 cursor-pointer"
-              onClick={(e) => { e.stopPropagation(); setExpanded(true); }}
+              onClick={(e) => { e.stopPropagation(); onMore?.(); }}
             >
               <span className="text-2xl font-bold text-white">+{extraCount}</span>
             </div>
@@ -317,18 +314,6 @@ function ImageGrid({
         </div>
 
       ))}
-
-    </div>
-
-    {needCollapse && expanded ? (
-      <button
-        className="mt-1 w-full text-center text-xs text-soft hover:text-[var(--text-accent)] transition"
-        onClick={(e) => { e.stopPropagation(); setExpanded(false); }}
-        type="button"
-      >
-        {collapseLabel}
-      </button>
-    ) : null}
 
     </div>
 
@@ -888,9 +873,9 @@ export const ImageCard = memo(function ImageCard({
 
             <ImageGrid
               alt={item.description}
-              collapseLabel={t('time.collapse')}
               items={mediaItems}
               onImageClick={setViewerIndex}
+              onMore={() => onOpenDetail?.()}
             />
 
           </div>
