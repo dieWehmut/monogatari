@@ -1650,6 +1650,3390 @@ export const generatedCaptureAssets: CaptureAsset[] = [
     "summary": "",
     "sourceRefs": [],
     "standalone": true
+  },
+  {
+    "id": "docs-calculus-Calculus-1",
+    "image": "/capture-assets/docs/calculus/Calculus_1.jpg",
+    "title": "calculus / Calculus_1",
+    "date": "",
+    "tags": [
+      "calculus"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-calculus-Calculus-10",
+    "image": "/capture-assets/docs/calculus/Calculus_10.jpg",
+    "title": "calculus / Calculus_10",
+    "date": "",
+    "tags": [
+      "calculus"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-calculus-Calculus-11",
+    "image": "/capture-assets/docs/calculus/Calculus_11.jpg",
+    "title": "calculus / Calculus_11",
+    "date": "",
+    "tags": [
+      "calculus"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-calculus-Calculus-12",
+    "image": "/capture-assets/docs/calculus/Calculus_12.jpg",
+    "title": "calculus / Calculus_12",
+    "date": "",
+    "tags": [
+      "calculus"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-calculus-Calculus-13",
+    "image": "/capture-assets/docs/calculus/Calculus_13.jpg",
+    "title": "calculus / Calculus_13",
+    "date": "",
+    "tags": [
+      "calculus"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-calculus-Calculus-14",
+    "image": "/capture-assets/docs/calculus/Calculus_14.jpg",
+    "title": "calculus / Calculus_14",
+    "date": "",
+    "tags": [
+      "calculus"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-calculus-Calculus-15",
+    "image": "/capture-assets/docs/calculus/Calculus_15.jpg",
+    "title": "calculus / Calculus_15",
+    "date": "",
+    "tags": [
+      "calculus"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-calculus-Calculus-16",
+    "image": "/capture-assets/docs/calculus/Calculus_16.jpg",
+    "title": "calculus / Calculus_16",
+    "date": "",
+    "tags": [
+      "calculus"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-calculus-Calculus-17",
+    "image": "/capture-assets/docs/calculus/Calculus_17.jpg",
+    "title": "calculus / Calculus_17",
+    "date": "",
+    "tags": [
+      "calculus"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-calculus-Calculus-18",
+    "image": "/capture-assets/docs/calculus/Calculus_18.jpg",
+    "title": "calculus / Calculus_18",
+    "date": "",
+    "tags": [
+      "calculus"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-calculus-Calculus-19",
+    "image": "/capture-assets/docs/calculus/Calculus_19.jpg",
+    "title": "calculus / Calculus_19",
+    "date": "",
+    "tags": [
+      "calculus"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-calculus-Calculus-2",
+    "image": "/capture-assets/docs/calculus/Calculus_2.jpg",
+    "title": "calculus / Calculus_2",
+    "date": "",
+    "tags": [
+      "calculus"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-calculus-Calculus-20",
+    "image": "/capture-assets/docs/calculus/Calculus_20.jpg",
+    "title": "calculus / Calculus_20",
+    "date": "",
+    "tags": [
+      "calculus"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-calculus-Calculus-21",
+    "image": "/capture-assets/docs/calculus/Calculus_21.jpg",
+    "title": "calculus / Calculus_21",
+    "date": "",
+    "tags": [
+      "calculus"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-calculus-Calculus-22",
+    "image": "/capture-assets/docs/calculus/Calculus_22.jpg",
+    "title": "calculus / Calculus_22",
+    "date": "",
+    "tags": [
+      "calculus"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-calculus-Calculus-23",
+    "image": "/capture-assets/docs/calculus/Calculus_23.jpg",
+    "title": "calculus / Calculus_23",
+    "date": "",
+    "tags": [
+      "calculus"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-calculus-Calculus-24",
+    "image": "/capture-assets/docs/calculus/Calculus_24.jpg",
+    "title": "calculus / Calculus_24",
+    "date": "",
+    "tags": [
+      "calculus"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-calculus-Calculus-25",
+    "image": "/capture-assets/docs/calculus/Calculus_25.jpg",
+    "title": "calculus / Calculus_25",
+    "date": "",
+    "tags": [
+      "calculus"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-calculus-Calculus-26",
+    "image": "/capture-assets/docs/calculus/Calculus_26.jpg",
+    "title": "calculus / Calculus_26",
+    "date": "",
+    "tags": [
+      "calculus"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-calculus-Calculus-27",
+    "image": "/capture-assets/docs/calculus/Calculus_27.jpg",
+    "title": "calculus / Calculus_27",
+    "date": "",
+    "tags": [
+      "calculus"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-calculus-Calculus-28",
+    "image": "/capture-assets/docs/calculus/Calculus_28.jpg",
+    "title": "calculus / Calculus_28",
+    "date": "",
+    "tags": [
+      "calculus"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-calculus-Calculus-29",
+    "image": "/capture-assets/docs/calculus/Calculus_29.jpg",
+    "title": "calculus / Calculus_29",
+    "date": "",
+    "tags": [
+      "calculus"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-calculus-Calculus-3",
+    "image": "/capture-assets/docs/calculus/Calculus_3.jpg",
+    "title": "calculus / Calculus_3",
+    "date": "",
+    "tags": [
+      "calculus"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-calculus-Calculus-30",
+    "image": "/capture-assets/docs/calculus/Calculus_30.jpg",
+    "title": "calculus / Calculus_30",
+    "date": "",
+    "tags": [
+      "calculus"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-calculus-Calculus-31",
+    "image": "/capture-assets/docs/calculus/Calculus_31.jpg",
+    "title": "calculus / Calculus_31",
+    "date": "",
+    "tags": [
+      "calculus"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-calculus-Calculus-32",
+    "image": "/capture-assets/docs/calculus/Calculus_32.jpg",
+    "title": "calculus / Calculus_32",
+    "date": "",
+    "tags": [
+      "calculus"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-calculus-Calculus-33",
+    "image": "/capture-assets/docs/calculus/Calculus_33.jpg",
+    "title": "calculus / Calculus_33",
+    "date": "",
+    "tags": [
+      "calculus"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-calculus-Calculus-4",
+    "image": "/capture-assets/docs/calculus/Calculus_4.jpg",
+    "title": "calculus / Calculus_4",
+    "date": "",
+    "tags": [
+      "calculus"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-calculus-Calculus-5",
+    "image": "/capture-assets/docs/calculus/Calculus_5.jpg",
+    "title": "calculus / Calculus_5",
+    "date": "",
+    "tags": [
+      "calculus"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-calculus-Calculus-6",
+    "image": "/capture-assets/docs/calculus/Calculus_6.jpg",
+    "title": "calculus / Calculus_6",
+    "date": "",
+    "tags": [
+      "calculus"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-calculus-Calculus-7",
+    "image": "/capture-assets/docs/calculus/Calculus_7.jpg",
+    "title": "calculus / Calculus_7",
+    "date": "",
+    "tags": [
+      "calculus"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-calculus-Calculus-8",
+    "image": "/capture-assets/docs/calculus/Calculus_8.jpg",
+    "title": "calculus / Calculus_8",
+    "date": "",
+    "tags": [
+      "calculus"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-calculus-Calculus-9",
+    "image": "/capture-assets/docs/calculus/Calculus_9.jpg",
+    "title": "calculus / Calculus_9",
+    "date": "",
+    "tags": [
+      "calculus"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-chemistry-Chemistry-1",
+    "image": "/capture-assets/docs/chemistry/Chemistry_1.jpg",
+    "title": "chemistry / Chemistry_1",
+    "date": "",
+    "tags": [
+      "chemistry"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-chemistry-Chemistry-10",
+    "image": "/capture-assets/docs/chemistry/Chemistry_10.jpg",
+    "title": "chemistry / Chemistry_10",
+    "date": "",
+    "tags": [
+      "chemistry"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-chemistry-Chemistry-11",
+    "image": "/capture-assets/docs/chemistry/Chemistry_11.jpg",
+    "title": "chemistry / Chemistry_11",
+    "date": "",
+    "tags": [
+      "chemistry"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-chemistry-Chemistry-2",
+    "image": "/capture-assets/docs/chemistry/Chemistry_2.jpg",
+    "title": "chemistry / Chemistry_2",
+    "date": "",
+    "tags": [
+      "chemistry"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-chemistry-Chemistry-3",
+    "image": "/capture-assets/docs/chemistry/Chemistry_3.jpg",
+    "title": "chemistry / Chemistry_3",
+    "date": "",
+    "tags": [
+      "chemistry"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-chemistry-Chemistry-4",
+    "image": "/capture-assets/docs/chemistry/Chemistry_4.jpg",
+    "title": "chemistry / Chemistry_4",
+    "date": "",
+    "tags": [
+      "chemistry"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-chemistry-Chemistry-5",
+    "image": "/capture-assets/docs/chemistry/Chemistry_5.jpg",
+    "title": "chemistry / Chemistry_5",
+    "date": "",
+    "tags": [
+      "chemistry"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-chemistry-Chemistry-6",
+    "image": "/capture-assets/docs/chemistry/Chemistry_6.jpg",
+    "title": "chemistry / Chemistry_6",
+    "date": "",
+    "tags": [
+      "chemistry"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-chemistry-Chemistry-7",
+    "image": "/capture-assets/docs/chemistry/Chemistry_7.jpg",
+    "title": "chemistry / Chemistry_7",
+    "date": "",
+    "tags": [
+      "chemistry"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-chemistry-Chemistry-8",
+    "image": "/capture-assets/docs/chemistry/Chemistry_8.jpg",
+    "title": "chemistry / Chemistry_8",
+    "date": "",
+    "tags": [
+      "chemistry"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-chemistry-Chemistry-9",
+    "image": "/capture-assets/docs/chemistry/Chemistry_9.jpg",
+    "title": "chemistry / Chemistry_9",
+    "date": "",
+    "tags": [
+      "chemistry"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-cm-cm1",
+    "image": "/capture-assets/docs/cm/cm1.jpg",
+    "title": "cm / cm1",
+    "date": "",
+    "tags": [
+      "cm"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-cm-cm2",
+    "image": "/capture-assets/docs/cm/cm2.jpg",
+    "title": "cm / cm2",
+    "date": "",
+    "tags": [
+      "cm"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-cognitiveScience-1-1",
+    "image": "/capture-assets/docs/cognitiveScience/1 (1).png",
+    "title": "cognitiveScience / 1 (1)",
+    "date": "",
+    "tags": [
+      "cognitiveScience"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-cognitiveScience-1-10",
+    "image": "/capture-assets/docs/cognitiveScience/1 (10).png",
+    "title": "cognitiveScience / 1 (10)",
+    "date": "",
+    "tags": [
+      "cognitiveScience"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-cognitiveScience-1-11",
+    "image": "/capture-assets/docs/cognitiveScience/1 (11).png",
+    "title": "cognitiveScience / 1 (11)",
+    "date": "",
+    "tags": [
+      "cognitiveScience"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-cognitiveScience-1-12",
+    "image": "/capture-assets/docs/cognitiveScience/1 (12).png",
+    "title": "cognitiveScience / 1 (12)",
+    "date": "",
+    "tags": [
+      "cognitiveScience"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-cognitiveScience-1-13",
+    "image": "/capture-assets/docs/cognitiveScience/1 (13).png",
+    "title": "cognitiveScience / 1 (13)",
+    "date": "",
+    "tags": [
+      "cognitiveScience"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-cognitiveScience-1-14",
+    "image": "/capture-assets/docs/cognitiveScience/1 (14).png",
+    "title": "cognitiveScience / 1 (14)",
+    "date": "",
+    "tags": [
+      "cognitiveScience"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-cognitiveScience-1-15",
+    "image": "/capture-assets/docs/cognitiveScience/1 (15).png",
+    "title": "cognitiveScience / 1 (15)",
+    "date": "",
+    "tags": [
+      "cognitiveScience"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-cognitiveScience-1-16",
+    "image": "/capture-assets/docs/cognitiveScience/1 (16).png",
+    "title": "cognitiveScience / 1 (16)",
+    "date": "",
+    "tags": [
+      "cognitiveScience"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-cognitiveScience-1-17",
+    "image": "/capture-assets/docs/cognitiveScience/1 (17).png",
+    "title": "cognitiveScience / 1 (17)",
+    "date": "",
+    "tags": [
+      "cognitiveScience"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-cognitiveScience-1-18",
+    "image": "/capture-assets/docs/cognitiveScience/1 (18).png",
+    "title": "cognitiveScience / 1 (18)",
+    "date": "",
+    "tags": [
+      "cognitiveScience"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-cognitiveScience-1-19",
+    "image": "/capture-assets/docs/cognitiveScience/1 (19).png",
+    "title": "cognitiveScience / 1 (19)",
+    "date": "",
+    "tags": [
+      "cognitiveScience"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-cognitiveScience-1-2",
+    "image": "/capture-assets/docs/cognitiveScience/1 (2).png",
+    "title": "cognitiveScience / 1 (2)",
+    "date": "",
+    "tags": [
+      "cognitiveScience"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-cognitiveScience-1-20",
+    "image": "/capture-assets/docs/cognitiveScience/1 (20).png",
+    "title": "cognitiveScience / 1 (20)",
+    "date": "",
+    "tags": [
+      "cognitiveScience"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-cognitiveScience-1-3",
+    "image": "/capture-assets/docs/cognitiveScience/1 (3).png",
+    "title": "cognitiveScience / 1 (3)",
+    "date": "",
+    "tags": [
+      "cognitiveScience"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-cognitiveScience-1-4",
+    "image": "/capture-assets/docs/cognitiveScience/1 (4).png",
+    "title": "cognitiveScience / 1 (4)",
+    "date": "",
+    "tags": [
+      "cognitiveScience"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-cognitiveScience-1-5",
+    "image": "/capture-assets/docs/cognitiveScience/1 (5).png",
+    "title": "cognitiveScience / 1 (5)",
+    "date": "",
+    "tags": [
+      "cognitiveScience"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-cognitiveScience-1-6",
+    "image": "/capture-assets/docs/cognitiveScience/1 (6).png",
+    "title": "cognitiveScience / 1 (6)",
+    "date": "",
+    "tags": [
+      "cognitiveScience"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-cognitiveScience-1-7",
+    "image": "/capture-assets/docs/cognitiveScience/1 (7).png",
+    "title": "cognitiveScience / 1 (7)",
+    "date": "",
+    "tags": [
+      "cognitiveScience"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-cognitiveScience-1-8",
+    "image": "/capture-assets/docs/cognitiveScience/1 (8).png",
+    "title": "cognitiveScience / 1 (8)",
+    "date": "",
+    "tags": [
+      "cognitiveScience"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-cognitiveScience-1-9",
+    "image": "/capture-assets/docs/cognitiveScience/1 (9).png",
+    "title": "cognitiveScience / 1 (9)",
+    "date": "",
+    "tags": [
+      "cognitiveScience"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-1-1",
+    "image": "/capture-assets/docs/image2/calculus/1 (1).png",
+    "title": "image2/calculus / 1 (1)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-1-10",
+    "image": "/capture-assets/docs/image2/calculus/1 (10).png",
+    "title": "image2/calculus / 1 (10)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-1-2",
+    "image": "/capture-assets/docs/image2/calculus/1 (2).png",
+    "title": "image2/calculus / 1 (2)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-1-3",
+    "image": "/capture-assets/docs/image2/calculus/1 (3).png",
+    "title": "image2/calculus / 1 (3)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-1-4",
+    "image": "/capture-assets/docs/image2/calculus/1 (4).png",
+    "title": "image2/calculus / 1 (4)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-1-5",
+    "image": "/capture-assets/docs/image2/calculus/1 (5).png",
+    "title": "image2/calculus / 1 (5)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-1-6",
+    "image": "/capture-assets/docs/image2/calculus/1 (6).png",
+    "title": "image2/calculus / 1 (6)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-1-7",
+    "image": "/capture-assets/docs/image2/calculus/1 (7).png",
+    "title": "image2/calculus / 1 (7)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-1-8",
+    "image": "/capture-assets/docs/image2/calculus/1 (8).png",
+    "title": "image2/calculus / 1 (8)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-1-9",
+    "image": "/capture-assets/docs/image2/calculus/1 (9).png",
+    "title": "image2/calculus / 1 (9)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-2-1",
+    "image": "/capture-assets/docs/image2/calculus/2 (1).png",
+    "title": "image2/calculus / 2 (1)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-2-10",
+    "image": "/capture-assets/docs/image2/calculus/2 (10).png",
+    "title": "image2/calculus / 2 (10)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-2-11",
+    "image": "/capture-assets/docs/image2/calculus/2 (11).png",
+    "title": "image2/calculus / 2 (11)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-2-12",
+    "image": "/capture-assets/docs/image2/calculus/2 (12).png",
+    "title": "image2/calculus / 2 (12)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-2-13",
+    "image": "/capture-assets/docs/image2/calculus/2 (13).png",
+    "title": "image2/calculus / 2 (13)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-2-14",
+    "image": "/capture-assets/docs/image2/calculus/2 (14).png",
+    "title": "image2/calculus / 2 (14)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-2-15",
+    "image": "/capture-assets/docs/image2/calculus/2 (15).png",
+    "title": "image2/calculus / 2 (15)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-2-16",
+    "image": "/capture-assets/docs/image2/calculus/2 (16).png",
+    "title": "image2/calculus / 2 (16)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-2-17",
+    "image": "/capture-assets/docs/image2/calculus/2 (17).png",
+    "title": "image2/calculus / 2 (17)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-2-18",
+    "image": "/capture-assets/docs/image2/calculus/2 (18).png",
+    "title": "image2/calculus / 2 (18)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-2-19",
+    "image": "/capture-assets/docs/image2/calculus/2 (19).png",
+    "title": "image2/calculus / 2 (19)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-2-2",
+    "image": "/capture-assets/docs/image2/calculus/2 (2).png",
+    "title": "image2/calculus / 2 (2)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-2-20",
+    "image": "/capture-assets/docs/image2/calculus/2 (20).png",
+    "title": "image2/calculus / 2 (20)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-2-21",
+    "image": "/capture-assets/docs/image2/calculus/2 (21).png",
+    "title": "image2/calculus / 2 (21)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-2-22",
+    "image": "/capture-assets/docs/image2/calculus/2 (22).png",
+    "title": "image2/calculus / 2 (22)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-2-23",
+    "image": "/capture-assets/docs/image2/calculus/2 (23).png",
+    "title": "image2/calculus / 2 (23)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-2-24",
+    "image": "/capture-assets/docs/image2/calculus/2 (24).png",
+    "title": "image2/calculus / 2 (24)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-2-25",
+    "image": "/capture-assets/docs/image2/calculus/2 (25).png",
+    "title": "image2/calculus / 2 (25)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-2-26",
+    "image": "/capture-assets/docs/image2/calculus/2 (26).png",
+    "title": "image2/calculus / 2 (26)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-2-27",
+    "image": "/capture-assets/docs/image2/calculus/2 (27).png",
+    "title": "image2/calculus / 2 (27)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-2-28",
+    "image": "/capture-assets/docs/image2/calculus/2 (28).png",
+    "title": "image2/calculus / 2 (28)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-2-29",
+    "image": "/capture-assets/docs/image2/calculus/2 (29).png",
+    "title": "image2/calculus / 2 (29)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-2-3",
+    "image": "/capture-assets/docs/image2/calculus/2 (3).png",
+    "title": "image2/calculus / 2 (3)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-2-30",
+    "image": "/capture-assets/docs/image2/calculus/2 (30).png",
+    "title": "image2/calculus / 2 (30)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-2-4",
+    "image": "/capture-assets/docs/image2/calculus/2 (4).png",
+    "title": "image2/calculus / 2 (4)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-2-5",
+    "image": "/capture-assets/docs/image2/calculus/2 (5).png",
+    "title": "image2/calculus / 2 (5)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-2-6",
+    "image": "/capture-assets/docs/image2/calculus/2 (6).png",
+    "title": "image2/calculus / 2 (6)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-2-7",
+    "image": "/capture-assets/docs/image2/calculus/2 (7).png",
+    "title": "image2/calculus / 2 (7)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-2-8",
+    "image": "/capture-assets/docs/image2/calculus/2 (8).png",
+    "title": "image2/calculus / 2 (8)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-calculus-2-9",
+    "image": "/capture-assets/docs/image2/calculus/2 (9).png",
+    "title": "image2/calculus / 2 (9)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-chemistry-1",
+    "image": "/capture-assets/docs/image2/chemistry/1.png",
+    "title": "image2/chemistry / 1",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-chemistry-10",
+    "image": "/capture-assets/docs/image2/chemistry/10.png",
+    "title": "image2/chemistry / 10",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-chemistry-2",
+    "image": "/capture-assets/docs/image2/chemistry/2.png",
+    "title": "image2/chemistry / 2",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-chemistry-3",
+    "image": "/capture-assets/docs/image2/chemistry/3.png",
+    "title": "image2/chemistry / 3",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-chemistry-4",
+    "image": "/capture-assets/docs/image2/chemistry/4.png",
+    "title": "image2/chemistry / 4",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-chemistry-5",
+    "image": "/capture-assets/docs/image2/chemistry/5.png",
+    "title": "image2/chemistry / 5",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-chemistry-6",
+    "image": "/capture-assets/docs/image2/chemistry/6.png",
+    "title": "image2/chemistry / 6",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-chemistry-7",
+    "image": "/capture-assets/docs/image2/chemistry/7.png",
+    "title": "image2/chemistry / 7",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-chemistry-8",
+    "image": "/capture-assets/docs/image2/chemistry/8.png",
+    "title": "image2/chemistry / 8",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-chemistry-9",
+    "image": "/capture-assets/docs/image2/chemistry/9.png",
+    "title": "image2/chemistry / 9",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-db-1-1",
+    "image": "/capture-assets/docs/image2/db/1 (1).png",
+    "title": "image2/db / 1 (1)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-db-1-10",
+    "image": "/capture-assets/docs/image2/db/1 (10).png",
+    "title": "image2/db / 1 (10)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-db-1-2",
+    "image": "/capture-assets/docs/image2/db/1 (2).png",
+    "title": "image2/db / 1 (2)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-db-1-3",
+    "image": "/capture-assets/docs/image2/db/1 (3).png",
+    "title": "image2/db / 1 (3)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-db-1-4",
+    "image": "/capture-assets/docs/image2/db/1 (4).png",
+    "title": "image2/db / 1 (4)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-db-1-5",
+    "image": "/capture-assets/docs/image2/db/1 (5).png",
+    "title": "image2/db / 1 (5)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-db-1-6",
+    "image": "/capture-assets/docs/image2/db/1 (6).png",
+    "title": "image2/db / 1 (6)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-db-1-7",
+    "image": "/capture-assets/docs/image2/db/1 (7).png",
+    "title": "image2/db / 1 (7)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-db-1-8",
+    "image": "/capture-assets/docs/image2/db/1 (8).png",
+    "title": "image2/db / 1 (8)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-db-1-9",
+    "image": "/capture-assets/docs/image2/db/1 (9).png",
+    "title": "image2/db / 1 (9)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-linear-algebra-1-1",
+    "image": "/capture-assets/docs/image2/linear-algebra/1 (1).png",
+    "title": "image2/linear-algebra / 1 (1)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-linear-algebra-1-10",
+    "image": "/capture-assets/docs/image2/linear-algebra/1 (10).png",
+    "title": "image2/linear-algebra / 1 (10)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-linear-algebra-1-2",
+    "image": "/capture-assets/docs/image2/linear-algebra/1 (2).png",
+    "title": "image2/linear-algebra / 1 (2)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-linear-algebra-1-3",
+    "image": "/capture-assets/docs/image2/linear-algebra/1 (3).png",
+    "title": "image2/linear-algebra / 1 (3)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-linear-algebra-1-4",
+    "image": "/capture-assets/docs/image2/linear-algebra/1 (4).png",
+    "title": "image2/linear-algebra / 1 (4)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-linear-algebra-1-5",
+    "image": "/capture-assets/docs/image2/linear-algebra/1 (5).png",
+    "title": "image2/linear-algebra / 1 (5)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-linear-algebra-1-6",
+    "image": "/capture-assets/docs/image2/linear-algebra/1 (6).png",
+    "title": "image2/linear-algebra / 1 (6)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-linear-algebra-1-7",
+    "image": "/capture-assets/docs/image2/linear-algebra/1 (7).png",
+    "title": "image2/linear-algebra / 1 (7)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-linear-algebra-1-8",
+    "image": "/capture-assets/docs/image2/linear-algebra/1 (8).png",
+    "title": "image2/linear-algebra / 1 (8)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-linear-algebra-1-9",
+    "image": "/capture-assets/docs/image2/linear-algebra/1 (9).png",
+    "title": "image2/linear-algebra / 1 (9)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-1-1",
+    "image": "/capture-assets/docs/image2/math/1 (1).png",
+    "title": "image2/math / 1 (1)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-1-10",
+    "image": "/capture-assets/docs/image2/math/1 (10).png",
+    "title": "image2/math / 1 (10)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-1-2",
+    "image": "/capture-assets/docs/image2/math/1 (2).png",
+    "title": "image2/math / 1 (2)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-1-3",
+    "image": "/capture-assets/docs/image2/math/1 (3).png",
+    "title": "image2/math / 1 (3)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-1-4",
+    "image": "/capture-assets/docs/image2/math/1 (4).png",
+    "title": "image2/math / 1 (4)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-1-5",
+    "image": "/capture-assets/docs/image2/math/1 (5).png",
+    "title": "image2/math / 1 (5)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-1-6",
+    "image": "/capture-assets/docs/image2/math/1 (6).png",
+    "title": "image2/math / 1 (6)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-1-7",
+    "image": "/capture-assets/docs/image2/math/1 (7).png",
+    "title": "image2/math / 1 (7)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-1-8",
+    "image": "/capture-assets/docs/image2/math/1 (8).png",
+    "title": "image2/math / 1 (8)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-1-9",
+    "image": "/capture-assets/docs/image2/math/1 (9).png",
+    "title": "image2/math / 1 (9)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-2-1",
+    "image": "/capture-assets/docs/image2/math/2 (1).png",
+    "title": "image2/math / 2 (1)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-2-10",
+    "image": "/capture-assets/docs/image2/math/2 (10).png",
+    "title": "image2/math / 2 (10)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-2-11",
+    "image": "/capture-assets/docs/image2/math/2 (11).png",
+    "title": "image2/math / 2 (11)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-2-12",
+    "image": "/capture-assets/docs/image2/math/2 (12).png",
+    "title": "image2/math / 2 (12)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-2-13",
+    "image": "/capture-assets/docs/image2/math/2 (13).png",
+    "title": "image2/math / 2 (13)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-2-14",
+    "image": "/capture-assets/docs/image2/math/2 (14).png",
+    "title": "image2/math / 2 (14)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-2-15",
+    "image": "/capture-assets/docs/image2/math/2 (15).png",
+    "title": "image2/math / 2 (15)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-2-16",
+    "image": "/capture-assets/docs/image2/math/2 (16).png",
+    "title": "image2/math / 2 (16)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-2-17",
+    "image": "/capture-assets/docs/image2/math/2 (17).png",
+    "title": "image2/math / 2 (17)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-2-18",
+    "image": "/capture-assets/docs/image2/math/2 (18).png",
+    "title": "image2/math / 2 (18)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-2-19",
+    "image": "/capture-assets/docs/image2/math/2 (19).png",
+    "title": "image2/math / 2 (19)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-2-2",
+    "image": "/capture-assets/docs/image2/math/2 (2).png",
+    "title": "image2/math / 2 (2)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-2-20",
+    "image": "/capture-assets/docs/image2/math/2 (20).png",
+    "title": "image2/math / 2 (20)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-2-21",
+    "image": "/capture-assets/docs/image2/math/2 (21).png",
+    "title": "image2/math / 2 (21)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-2-22",
+    "image": "/capture-assets/docs/image2/math/2 (22).png",
+    "title": "image2/math / 2 (22)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-2-23",
+    "image": "/capture-assets/docs/image2/math/2 (23).png",
+    "title": "image2/math / 2 (23)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-2-24",
+    "image": "/capture-assets/docs/image2/math/2 (24).png",
+    "title": "image2/math / 2 (24)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-2-25",
+    "image": "/capture-assets/docs/image2/math/2 (25).png",
+    "title": "image2/math / 2 (25)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-2-26",
+    "image": "/capture-assets/docs/image2/math/2 (26).png",
+    "title": "image2/math / 2 (26)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-2-27",
+    "image": "/capture-assets/docs/image2/math/2 (27).png",
+    "title": "image2/math / 2 (27)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-2-28",
+    "image": "/capture-assets/docs/image2/math/2 (28).png",
+    "title": "image2/math / 2 (28)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-2-29",
+    "image": "/capture-assets/docs/image2/math/2 (29).png",
+    "title": "image2/math / 2 (29)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-2-3",
+    "image": "/capture-assets/docs/image2/math/2 (3).png",
+    "title": "image2/math / 2 (3)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-2-30",
+    "image": "/capture-assets/docs/image2/math/2 (30).png",
+    "title": "image2/math / 2 (30)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-2-4",
+    "image": "/capture-assets/docs/image2/math/2 (4).png",
+    "title": "image2/math / 2 (4)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-2-5",
+    "image": "/capture-assets/docs/image2/math/2 (5).png",
+    "title": "image2/math / 2 (5)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-2-6",
+    "image": "/capture-assets/docs/image2/math/2 (6).png",
+    "title": "image2/math / 2 (6)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-2-7",
+    "image": "/capture-assets/docs/image2/math/2 (7).png",
+    "title": "image2/math / 2 (7)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-2-8",
+    "image": "/capture-assets/docs/image2/math/2 (8).png",
+    "title": "image2/math / 2 (8)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-math-2-9",
+    "image": "/capture-assets/docs/image2/math/2 (9).png",
+    "title": "image2/math / 2 (9)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-1-1",
+    "image": "/capture-assets/docs/image2/physics/1 (1).png",
+    "title": "image2/physics / 1 (1)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-1-10",
+    "image": "/capture-assets/docs/image2/physics/1 (10).png",
+    "title": "image2/physics / 1 (10)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-1-2",
+    "image": "/capture-assets/docs/image2/physics/1 (2).png",
+    "title": "image2/physics / 1 (2)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-1-3",
+    "image": "/capture-assets/docs/image2/physics/1 (3).png",
+    "title": "image2/physics / 1 (3)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-1-4",
+    "image": "/capture-assets/docs/image2/physics/1 (4).png",
+    "title": "image2/physics / 1 (4)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-1-5",
+    "image": "/capture-assets/docs/image2/physics/1 (5).png",
+    "title": "image2/physics / 1 (5)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-1-6",
+    "image": "/capture-assets/docs/image2/physics/1 (6).png",
+    "title": "image2/physics / 1 (6)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-1-7",
+    "image": "/capture-assets/docs/image2/physics/1 (7).png",
+    "title": "image2/physics / 1 (7)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-1-8",
+    "image": "/capture-assets/docs/image2/physics/1 (8).png",
+    "title": "image2/physics / 1 (8)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-1-9",
+    "image": "/capture-assets/docs/image2/physics/1 (9).png",
+    "title": "image2/physics / 1 (9)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-2-1",
+    "image": "/capture-assets/docs/image2/physics/2 (1).png",
+    "title": "image2/physics / 2 (1)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-2-10",
+    "image": "/capture-assets/docs/image2/physics/2 (10).png",
+    "title": "image2/physics / 2 (10)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-2-11",
+    "image": "/capture-assets/docs/image2/physics/2 (11).png",
+    "title": "image2/physics / 2 (11)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-2-12",
+    "image": "/capture-assets/docs/image2/physics/2 (12).png",
+    "title": "image2/physics / 2 (12)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-2-13",
+    "image": "/capture-assets/docs/image2/physics/2 (13).png",
+    "title": "image2/physics / 2 (13)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-2-14",
+    "image": "/capture-assets/docs/image2/physics/2 (14).png",
+    "title": "image2/physics / 2 (14)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-2-15",
+    "image": "/capture-assets/docs/image2/physics/2 (15).png",
+    "title": "image2/physics / 2 (15)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-2-16",
+    "image": "/capture-assets/docs/image2/physics/2 (16).png",
+    "title": "image2/physics / 2 (16)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-2-17",
+    "image": "/capture-assets/docs/image2/physics/2 (17).png",
+    "title": "image2/physics / 2 (17)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-2-18",
+    "image": "/capture-assets/docs/image2/physics/2 (18).png",
+    "title": "image2/physics / 2 (18)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-2-19",
+    "image": "/capture-assets/docs/image2/physics/2 (19).png",
+    "title": "image2/physics / 2 (19)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-2-2",
+    "image": "/capture-assets/docs/image2/physics/2 (2).png",
+    "title": "image2/physics / 2 (2)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-2-20",
+    "image": "/capture-assets/docs/image2/physics/2 (20).png",
+    "title": "image2/physics / 2 (20)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-2-21",
+    "image": "/capture-assets/docs/image2/physics/2 (21).png",
+    "title": "image2/physics / 2 (21)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-2-22",
+    "image": "/capture-assets/docs/image2/physics/2 (22).png",
+    "title": "image2/physics / 2 (22)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-2-23",
+    "image": "/capture-assets/docs/image2/physics/2 (23).png",
+    "title": "image2/physics / 2 (23)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-2-24",
+    "image": "/capture-assets/docs/image2/physics/2 (24).png",
+    "title": "image2/physics / 2 (24)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-2-25",
+    "image": "/capture-assets/docs/image2/physics/2 (25).png",
+    "title": "image2/physics / 2 (25)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-2-26",
+    "image": "/capture-assets/docs/image2/physics/2 (26).png",
+    "title": "image2/physics / 2 (26)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-2-27",
+    "image": "/capture-assets/docs/image2/physics/2 (27).png",
+    "title": "image2/physics / 2 (27)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-2-28",
+    "image": "/capture-assets/docs/image2/physics/2 (28).png",
+    "title": "image2/physics / 2 (28)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-2-29",
+    "image": "/capture-assets/docs/image2/physics/2 (29).png",
+    "title": "image2/physics / 2 (29)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-2-3",
+    "image": "/capture-assets/docs/image2/physics/2 (3).png",
+    "title": "image2/physics / 2 (3)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-2-4",
+    "image": "/capture-assets/docs/image2/physics/2 (4).png",
+    "title": "image2/physics / 2 (4)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-2-5",
+    "image": "/capture-assets/docs/image2/physics/2 (5).png",
+    "title": "image2/physics / 2 (5)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-2-6",
+    "image": "/capture-assets/docs/image2/physics/2 (6).png",
+    "title": "image2/physics / 2 (6)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-2-7",
+    "image": "/capture-assets/docs/image2/physics/2 (7).png",
+    "title": "image2/physics / 2 (7)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-2-8",
+    "image": "/capture-assets/docs/image2/physics/2 (8).png",
+    "title": "image2/physics / 2 (8)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-image2-physics-2-9",
+    "image": "/capture-assets/docs/image2/physics/2 (9).png",
+    "title": "image2/physics / 2 (9)",
+    "date": "",
+    "tags": [
+      "image2"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-linear-algebra-LinearAlgebra-1",
+    "image": "/capture-assets/docs/linear-algebra/LinearAlgebra_1.jpg",
+    "title": "linear-algebra / LinearAlgebra_1",
+    "date": "",
+    "tags": [
+      "linear-algebra"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-linear-algebra-LinearAlgebra-2",
+    "image": "/capture-assets/docs/linear-algebra/LinearAlgebra_2.jpg",
+    "title": "linear-algebra / LinearAlgebra_2",
+    "date": "",
+    "tags": [
+      "linear-algebra"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-linear-algebra-LinearAlgebra-3",
+    "image": "/capture-assets/docs/linear-algebra/LinearAlgebra_3.jpg",
+    "title": "linear-algebra / LinearAlgebra_3",
+    "date": "",
+    "tags": [
+      "linear-algebra"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-linear-algebra-LinearAlgebra-4",
+    "image": "/capture-assets/docs/linear-algebra/LinearAlgebra_4.jpg",
+    "title": "linear-algebra / LinearAlgebra_4",
+    "date": "",
+    "tags": [
+      "linear-algebra"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-linear-algebra-LinearAlgebra-5",
+    "image": "/capture-assets/docs/linear-algebra/LinearAlgebra_5.jpg",
+    "title": "linear-algebra / LinearAlgebra_5",
+    "date": "",
+    "tags": [
+      "linear-algebra"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-linear-algebra-LinearAlgebra-6",
+    "image": "/capture-assets/docs/linear-algebra/LinearAlgebra_6.jpg",
+    "title": "linear-algebra / LinearAlgebra_6",
+    "date": "",
+    "tags": [
+      "linear-algebra"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-linear-algebra-LinearAlgebra-7",
+    "image": "/capture-assets/docs/linear-algebra/LinearAlgebra_7.jpg",
+    "title": "linear-algebra / LinearAlgebra_7",
+    "date": "",
+    "tags": [
+      "linear-algebra"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-linear-algebra-LinearAlgebra-8",
+    "image": "/capture-assets/docs/linear-algebra/LinearAlgebra_8.jpg",
+    "title": "linear-algebra / LinearAlgebra_8",
+    "date": "",
+    "tags": [
+      "linear-algebra"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-maths-Maths-1",
+    "image": "/capture-assets/docs/maths/Maths_1.jpg",
+    "title": "maths / Maths_1",
+    "date": "",
+    "tags": [
+      "maths"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-maths-Maths-10",
+    "image": "/capture-assets/docs/maths/Maths_10.jpg",
+    "title": "maths / Maths_10",
+    "date": "",
+    "tags": [
+      "maths"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-maths-Maths-11",
+    "image": "/capture-assets/docs/maths/Maths_11.jpg",
+    "title": "maths / Maths_11",
+    "date": "",
+    "tags": [
+      "maths"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-maths-Maths-12",
+    "image": "/capture-assets/docs/maths/Maths_12.jpg",
+    "title": "maths / Maths_12",
+    "date": "",
+    "tags": [
+      "maths"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-maths-Maths-13",
+    "image": "/capture-assets/docs/maths/Maths_13.jpg",
+    "title": "maths / Maths_13",
+    "date": "",
+    "tags": [
+      "maths"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-maths-Maths-14",
+    "image": "/capture-assets/docs/maths/Maths_14.jpg",
+    "title": "maths / Maths_14",
+    "date": "",
+    "tags": [
+      "maths"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-maths-Maths-15",
+    "image": "/capture-assets/docs/maths/Maths_15.jpg",
+    "title": "maths / Maths_15",
+    "date": "",
+    "tags": [
+      "maths"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-maths-Maths-16",
+    "image": "/capture-assets/docs/maths/Maths_16.jpg",
+    "title": "maths / Maths_16",
+    "date": "",
+    "tags": [
+      "maths"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-maths-Maths-17",
+    "image": "/capture-assets/docs/maths/Maths_17.jpg",
+    "title": "maths / Maths_17",
+    "date": "",
+    "tags": [
+      "maths"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-maths-Maths-18",
+    "image": "/capture-assets/docs/maths/Maths_18.jpg",
+    "title": "maths / Maths_18",
+    "date": "",
+    "tags": [
+      "maths"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-maths-Maths-19",
+    "image": "/capture-assets/docs/maths/Maths_19.jpg",
+    "title": "maths / Maths_19",
+    "date": "",
+    "tags": [
+      "maths"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-maths-Maths-2",
+    "image": "/capture-assets/docs/maths/Maths_2.jpg",
+    "title": "maths / Maths_2",
+    "date": "",
+    "tags": [
+      "maths"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-maths-Maths-20",
+    "image": "/capture-assets/docs/maths/Maths_20.jpg",
+    "title": "maths / Maths_20",
+    "date": "",
+    "tags": [
+      "maths"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-maths-Maths-21",
+    "image": "/capture-assets/docs/maths/Maths_21.jpg",
+    "title": "maths / Maths_21",
+    "date": "",
+    "tags": [
+      "maths"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-maths-Maths-22",
+    "image": "/capture-assets/docs/maths/Maths_22.jpg",
+    "title": "maths / Maths_22",
+    "date": "",
+    "tags": [
+      "maths"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-maths-Maths-23",
+    "image": "/capture-assets/docs/maths/Maths_23.jpg",
+    "title": "maths / Maths_23",
+    "date": "",
+    "tags": [
+      "maths"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-maths-Maths-24",
+    "image": "/capture-assets/docs/maths/Maths_24.jpg",
+    "title": "maths / Maths_24",
+    "date": "",
+    "tags": [
+      "maths"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-maths-Maths-25",
+    "image": "/capture-assets/docs/maths/Maths_25.jpg",
+    "title": "maths / Maths_25",
+    "date": "",
+    "tags": [
+      "maths"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-maths-Maths-26",
+    "image": "/capture-assets/docs/maths/Maths_26.jpg",
+    "title": "maths / Maths_26",
+    "date": "",
+    "tags": [
+      "maths"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-maths-Maths-27",
+    "image": "/capture-assets/docs/maths/Maths_27.jpg",
+    "title": "maths / Maths_27",
+    "date": "",
+    "tags": [
+      "maths"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-maths-Maths-28",
+    "image": "/capture-assets/docs/maths/Maths_28.jpg",
+    "title": "maths / Maths_28",
+    "date": "",
+    "tags": [
+      "maths"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-maths-Maths-29",
+    "image": "/capture-assets/docs/maths/Maths_29.jpg",
+    "title": "maths / Maths_29",
+    "date": "",
+    "tags": [
+      "maths"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-maths-Maths-3",
+    "image": "/capture-assets/docs/maths/Maths_3.jpg",
+    "title": "maths / Maths_3",
+    "date": "",
+    "tags": [
+      "maths"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-maths-Maths-30",
+    "image": "/capture-assets/docs/maths/Maths_30.jpg",
+    "title": "maths / Maths_30",
+    "date": "",
+    "tags": [
+      "maths"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-maths-Maths-4",
+    "image": "/capture-assets/docs/maths/Maths_4.jpg",
+    "title": "maths / Maths_4",
+    "date": "",
+    "tags": [
+      "maths"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-maths-Maths-5",
+    "image": "/capture-assets/docs/maths/Maths_5.jpg",
+    "title": "maths / Maths_5",
+    "date": "",
+    "tags": [
+      "maths"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-maths-Maths-6",
+    "image": "/capture-assets/docs/maths/Maths_6.jpg",
+    "title": "maths / Maths_6",
+    "date": "",
+    "tags": [
+      "maths"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-maths-Maths-7",
+    "image": "/capture-assets/docs/maths/Maths_7.jpg",
+    "title": "maths / Maths_7",
+    "date": "",
+    "tags": [
+      "maths"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-maths-Maths-8",
+    "image": "/capture-assets/docs/maths/Maths_8.jpg",
+    "title": "maths / Maths_8",
+    "date": "",
+    "tags": [
+      "maths"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-maths-Maths-9",
+    "image": "/capture-assets/docs/maths/Maths_9.jpg",
+    "title": "maths / Maths_9",
+    "date": "",
+    "tags": [
+      "maths"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-physics-Physics-1",
+    "image": "/capture-assets/docs/physics/Physics_1.jpg",
+    "title": "physics / Physics_1",
+    "date": "",
+    "tags": [
+      "physics"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-physics-Physics-10",
+    "image": "/capture-assets/docs/physics/Physics_10.jpg",
+    "title": "physics / Physics_10",
+    "date": "",
+    "tags": [
+      "physics"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-physics-Physics-11",
+    "image": "/capture-assets/docs/physics/Physics_11.jpg",
+    "title": "physics / Physics_11",
+    "date": "",
+    "tags": [
+      "physics"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-physics-Physics-12",
+    "image": "/capture-assets/docs/physics/Physics_12.jpg",
+    "title": "physics / Physics_12",
+    "date": "",
+    "tags": [
+      "physics"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-physics-Physics-13",
+    "image": "/capture-assets/docs/physics/Physics_13.jpg",
+    "title": "physics / Physics_13",
+    "date": "",
+    "tags": [
+      "physics"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-physics-Physics-14",
+    "image": "/capture-assets/docs/physics/Physics_14.jpg",
+    "title": "physics / Physics_14",
+    "date": "",
+    "tags": [
+      "physics"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-physics-Physics-15",
+    "image": "/capture-assets/docs/physics/Physics_15.jpg",
+    "title": "physics / Physics_15",
+    "date": "",
+    "tags": [
+      "physics"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-physics-Physics-16",
+    "image": "/capture-assets/docs/physics/Physics_16.jpg",
+    "title": "physics / Physics_16",
+    "date": "",
+    "tags": [
+      "physics"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-physics-Physics-17",
+    "image": "/capture-assets/docs/physics/Physics_17.jpg",
+    "title": "physics / Physics_17",
+    "date": "",
+    "tags": [
+      "physics"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-physics-Physics-18",
+    "image": "/capture-assets/docs/physics/Physics_18.jpg",
+    "title": "physics / Physics_18",
+    "date": "",
+    "tags": [
+      "physics"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-physics-Physics-19",
+    "image": "/capture-assets/docs/physics/Physics_19.jpg",
+    "title": "physics / Physics_19",
+    "date": "",
+    "tags": [
+      "physics"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-physics-Physics-2",
+    "image": "/capture-assets/docs/physics/Physics_2.jpg",
+    "title": "physics / Physics_2",
+    "date": "",
+    "tags": [
+      "physics"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-physics-Physics-20",
+    "image": "/capture-assets/docs/physics/Physics_20.jpg",
+    "title": "physics / Physics_20",
+    "date": "",
+    "tags": [
+      "physics"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-physics-Physics-21",
+    "image": "/capture-assets/docs/physics/Physics_21.jpg",
+    "title": "physics / Physics_21",
+    "date": "",
+    "tags": [
+      "physics"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-physics-Physics-22",
+    "image": "/capture-assets/docs/physics/Physics_22.jpg",
+    "title": "physics / Physics_22",
+    "date": "",
+    "tags": [
+      "physics"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-physics-Physics-23",
+    "image": "/capture-assets/docs/physics/Physics_23.jpg",
+    "title": "physics / Physics_23",
+    "date": "",
+    "tags": [
+      "physics"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-physics-Physics-24",
+    "image": "/capture-assets/docs/physics/Physics_24.jpg",
+    "title": "physics / Physics_24",
+    "date": "",
+    "tags": [
+      "physics"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-physics-Physics-25",
+    "image": "/capture-assets/docs/physics/Physics_25.jpg",
+    "title": "physics / Physics_25",
+    "date": "",
+    "tags": [
+      "physics"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-physics-Physics-26",
+    "image": "/capture-assets/docs/physics/Physics_26.jpg",
+    "title": "physics / Physics_26",
+    "date": "",
+    "tags": [
+      "physics"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-physics-Physics-27",
+    "image": "/capture-assets/docs/physics/Physics_27.jpg",
+    "title": "physics / Physics_27",
+    "date": "",
+    "tags": [
+      "physics"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-physics-Physics-28",
+    "image": "/capture-assets/docs/physics/Physics_28.jpg",
+    "title": "physics / Physics_28",
+    "date": "",
+    "tags": [
+      "physics"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-physics-Physics-29",
+    "image": "/capture-assets/docs/physics/Physics_29.jpg",
+    "title": "physics / Physics_29",
+    "date": "",
+    "tags": [
+      "physics"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-physics-Physics-3",
+    "image": "/capture-assets/docs/physics/Physics_3.jpg",
+    "title": "physics / Physics_3",
+    "date": "",
+    "tags": [
+      "physics"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-physics-Physics-4",
+    "image": "/capture-assets/docs/physics/Physics_4.jpg",
+    "title": "physics / Physics_4",
+    "date": "",
+    "tags": [
+      "physics"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-physics-Physics-5",
+    "image": "/capture-assets/docs/physics/Physics_5.jpg",
+    "title": "physics / Physics_5",
+    "date": "",
+    "tags": [
+      "physics"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-physics-Physics-6",
+    "image": "/capture-assets/docs/physics/Physics_6.jpg",
+    "title": "physics / Physics_6",
+    "date": "",
+    "tags": [
+      "physics"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-physics-Physics-7",
+    "image": "/capture-assets/docs/physics/Physics_7.jpg",
+    "title": "physics / Physics_7",
+    "date": "",
+    "tags": [
+      "physics"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-physics-Physics-8",
+    "image": "/capture-assets/docs/physics/Physics_8.jpg",
+    "title": "physics / Physics_8",
+    "date": "",
+    "tags": [
+      "physics"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
+  },
+  {
+    "id": "docs-physics-Physics-9",
+    "image": "/capture-assets/docs/physics/Physics_9.jpg",
+    "title": "physics / Physics_9",
+    "date": "",
+    "tags": [
+      "physics"
+    ],
+    "summary": "",
+    "sourceRefs": [],
+    "standalone": true
   }
 ] as CaptureAsset[]
 

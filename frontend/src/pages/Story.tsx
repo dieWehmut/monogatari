@@ -98,8 +98,18 @@ function getStandaloneGroupKey(asset: CaptureAsset) {
   return match ? `standalone/${match[1]}` : '';
 }
 
+function getDocsGroupKey(asset: CaptureAsset) {
+  const match = asset.image.match(/(?:^|\/)capture-assets\/docs\/([^/]+)\//);
+  return match ? `docs/${match[1]}` : '';
+}
+
 function getCaptureGroupKey(asset: CaptureAsset) {
-  return getStandaloneGroupKey(asset) || String(asset.date || '').trim() || asset.id;
+  return (
+    getStandaloneGroupKey(asset) ||
+    getDocsGroupKey(asset) ||
+    String(asset.date || '').trim() ||
+    asset.id
+  );
 }
 
 function formatCaptureDateOnly(date?: string) {

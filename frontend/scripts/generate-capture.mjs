@@ -256,6 +256,62 @@ function dateFromStandalonePath(relativePath) {
   return match ? `${match[1]}-${match[2]}-01` : ''
 }
 
+function titleFromDocsPath(relativePath) {
+  const parts = toPosix(relativePath).split('/')
+  const fileName = path.basename(relativePath, path.extname(relativePath))
+  const folder = parts.slice(0, -1).join('/')
+  return [folder, fileName].filter(Boolean).join(' / ')
+}
+
+function docsGroupTagFromPath(relativePath) {
+  return toPosix(relativePath).split('/')[0] || 'docs'
+}
+
+function loadDocAssetsFromRepository(assetsDir) {
+  const repoDocsDir = path.join(assetsDir, 'docs')
+  if (!fs.existsSync(repoDocsDir)) return []
+  const assets = []
+
+  function walk(dirPath) {
+    const entries = fs.readdirSync(dirPath, { withFileTypes: true })
+    for (const entry of entries) {
+      const fullPath = path.join(dirPath, entry.name)
+      if (entry.isDirectory()) {
+        walk(fullPath)
+        continue
+      }
+      if (!entry.isFile()) continue
+      if (!/\.(?:avif|gif|jpe?g|png|webp|svg)$/i.test(entry.name)) continue
+
+      const relativePath = toPosix(path.relative(repoDocsDir, fullPath))
+      const id = `docs-${relativePath.replace(/\.[^.]+$/i, '').replace(/[^a-zA-Z0-9]+/g, '-').replace(/^-+|-+$/g, '')}`
+      assets.push({
+        id,
+        image: `${captureUrlPrefix}docs/${relativePath}`,
+        title: titleFromDocsPath(relativePath),
+        date: '',
+        tags: [docsGroupTagFromPath(relativePath)],
+        summary: '',
+        sourceRefs: [],
+        standalone: true,
+      })
+    }
+  }
+
+  walk(repoDocsDir)
+  return assets
+}
+
+function copyDocRepositoryAsset(assetsDir, imageUrl) {
+  const relativeAssetPath = captureAssetRelativePath(imageUrl)
+  const docRelativePath = relativeAssetPath.replace(/^docs\//, '')
+  const sourcePath = path.join(assetsDir, 'docs', docRelativePath)
+  const destinationPath = path.join(publicCaptureDir, relativeAssetPath)
+  assertFileExists(sourcePath, 'Docs asset')
+  ensureDir(path.dirname(destinationPath))
+  fs.copyFileSync(sourcePath, destinationPath)
+}
+
 function loadStandaloneAssetsFromRepository(assetsDir) {
   const standaloneDir = path.join(assetsDir, 'standalone')
   if (!fs.existsSync(standaloneDir)) return []
@@ -317,6 +373,11 @@ async function main() {
   for (const asset of loadStandaloneAssetsFromRepository(assetsDir)) {
     byImage.set(asset.image, asset)
     copyStandaloneAsset(assetsDir, asset.image)
+  }
+
+  for (const asset of loadDocAssetsFromRepository(assetsDir)) {
+    byImage.set(asset.image, asset)
+    copyDocRepositoryAsset(assetsDir, asset.image)
   }
 
   for (const asset of loadExistingCaptureAssets()) {
