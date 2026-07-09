@@ -38,6 +38,12 @@ jobs:
           DIESW_ASSETS_TOKEN: ${{ secrets.DIESW_ASSETS_TOKEN }}
         run: node scripts/checkout-assets-repo.mjs
 
+      - name: Report assets revision
+        run: |
+          echo "diesw-assets repository: $DIESW_ASSETS_REPOSITORY@$DIESW_ASSETS_REF"
+          echo "Pulled HEAD: $(git -C "$DIESW_ASSETS_DIR" rev-parse HEAD)"
+          git -C "$DIESW_ASSETS_DIR" log -1 --pretty='  %h %ci %s'
+
       - name: Install deps
         working-directory: frontend
         run: pnpm install --frozen-lockfile
