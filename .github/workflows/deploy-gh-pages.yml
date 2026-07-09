@@ -1,3 +1,6 @@
+# Publishes frontend/dist to GitHub Pages via the Actions artifact flow.
+# Requires: Settings > Pages > Source = "GitHub Actions" and the github-pages
+# environment allowing the main branch.
 name: Deploy Frontend to GitHub Pages
 
 on:
