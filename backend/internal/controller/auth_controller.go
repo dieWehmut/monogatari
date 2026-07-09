@@ -853,7 +853,10 @@ func (controller *AuthController) publicBaseURL(r *http.Request) string {
 }
 
 func (controller *AuthController) redirectTarget(r *http.Request, returnTo string) string {
-	base := strings.TrimRight(controller.publicBaseURL(r), "/")
+	base := strings.TrimRight(controller.frontendBaseURL, "/")
+	if base == "" {
+		base = strings.TrimRight(controller.publicBaseURL(r), "/")
+	}
 	if returnTo == "" {
 		return base
 	}
@@ -956,7 +959,11 @@ func defaultAvatarFor(login string, provider string, fallback string) string {
 }
 
 func (controller *AuthController) emailLinkBaseURL(r *http.Request, client string, returnTo string) string {
-	base := strings.TrimRight(controller.publicBaseURL(r), "/") + "/auth/email"
+	base := strings.TrimRight(controller.frontendBaseURL, "/")
+	if base == "" {
+		base = strings.TrimRight(controller.publicBaseURL(r), "/")
+	}
+	base += "/auth/email"
 	params := url.Values{}
 	if returnTo != "" {
 		params.Set("return", returnTo)
