@@ -178,6 +178,11 @@ const revokePreviewUrls = (items: PreviewItem[]) => {
 
 type CommentViewItem = CommentItem & { pending?: boolean; optimisticPreviews?: PreviewItem[] };
 
+const CARD_MEDIA_PREVIEW_LIMIT = 9;
+
+const mediaMoreBadgeClass =
+  'absolute bottom-2.5 right-2.5 z-10 inline-flex h-8 min-w-11 items-center justify-center rounded-lg border border-white/35 bg-black/70 px-2.5 text-sm font-black leading-none text-white shadow-[0_8px_20px_rgba(0,0,0,0.28)]';
+
 
 
 function ImageGrid({
@@ -188,7 +193,7 @@ function ImageGrid({
 
   onImageClick,
 
-  onMore,
+  onMoreClick,
 
 }: {
 
@@ -198,7 +203,7 @@ function ImageGrid({
 
   onImageClick: (index: number) => void;
 
-  onMore?: () => void;
+  onMoreClick?: () => void;
 
 }) {
 
@@ -276,15 +281,14 @@ function ImageGrid({
 
 
 
-  // 卡片上最多展示 9 张(仿 Nexus capturePreviewLimit);其余在右下角显示 +X,
-  // 点击进入详情页查看全部,卡片本身不做内联展开。
-  const maxVisible = 9;
-  const extraCount = Math.max(0, items.length - maxVisible);
-  const visibleItems = items.slice(0, maxVisible);
+  const visibleItems = items.slice(0, CARD_MEDIA_PREVIEW_LIMIT);
+  const extraCount = Math.max(0, items.length - CARD_MEDIA_PREVIEW_LIMIT);
 
   const cols = visibleItems.length <= 2 ? 2 : 3;
 
   return (
+
+    <div>
 
     <div className={`grid gap-0.5 ${cols === 2 ? 'grid-cols-2' : 'grid-cols-3'}`}>
 
@@ -303,17 +307,28 @@ function ImageGrid({
           {renderMedia(item, `${alt} ${i + 1}`)}
 
           {extraCount > 0 && i === visibleItems.length - 1 ? (
-            <div
-              className="absolute inset-0 flex items-center justify-center bg-black/50 cursor-pointer"
-              onClick={(e) => { e.stopPropagation(); onMore?.(); }}
+            <button
+              aria-label={`+${extraCount}`}
+              className={mediaMoreBadgeClass}
+              onClick={(e) => {
+                e.stopPropagation();
+                if (onMoreClick) {
+                  onMoreClick();
+                  return;
+                }
+                onImageClick(i);
+              }}
+              type="button"
             >
-              <span className="text-2xl font-bold text-white">+{extraCount}</span>
-            </div>
+              +{extraCount}
+            </button>
           ) : null}
 
         </div>
 
       ))}
+
+    </div>
 
     </div>
 
@@ -875,7 +890,7 @@ export const ImageCard = memo(function ImageCard({
               alt={item.description}
               items={mediaItems}
               onImageClick={setViewerIndex}
-              onMore={() => onOpenDetail?.()}
+              onMoreClick={onOpenDetail}
             />
 
           </div>
@@ -883,9 +898,15 @@ export const ImageCard = memo(function ImageCard({
         ) : imageUrls.length > 0 ? (
 
           <div className="mt-2 px-2">
-            <div className={`grid gap-0.5 ${Math.min(imageUrls.length, 9) <= 2 ? 'grid-cols-2' : 'grid-cols-3'}`}>
-              {Array.from({ length: Math.min(imageUrls.length, 9) }).map((_, i) => (
-                <div key={i} className="aspect-square bg-slate-950/20" />
+            <div className={`grid gap-0.5 ${Math.min(imageUrls.length, CARD_MEDIA_PREVIEW_LIMIT) <= 2 ? 'grid-cols-2' : 'grid-cols-3'}`}>
+              {Array.from({ length: Math.min(imageUrls.length, CARD_MEDIA_PREVIEW_LIMIT) }).map((_, i, list) => (
+                <div key={i} className="relative aspect-square bg-slate-950/20">
+                  {imageUrls.length > CARD_MEDIA_PREVIEW_LIMIT && i === list.length - 1 ? (
+                    <span className={mediaMoreBadgeClass} aria-hidden="true">
+                      +{imageUrls.length - CARD_MEDIA_PREVIEW_LIMIT}
+                    </span>
+                  ) : null}
+                </div>
               ))}
             </div>
           </div>

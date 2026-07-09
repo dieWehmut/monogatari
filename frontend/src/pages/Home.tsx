@@ -77,7 +77,7 @@ export default function Home({ auth, images, follows, theme, onThemeToggle }: Ho
   const { t } = useTranslation();
   const profile = useProfile();
   const githubOwner = images.stats.githubOwner || auth.user?.login || 'GitHub';
-  const repoUrl = `https://github.com/${githubOwner}/story-timeline`;
+  const repoUrl = `https://github.com/${githubOwner}/monogatari`;
   const androidUrl = `${repoUrl}/releases/latest`;
   const albumUser = auth.user?.login || githubOwner;
   const albumUrl = `/album?user=${encodeURIComponent(albumUser)}`;

@@ -59,6 +59,8 @@ const toDisplayTime = (item: ImageItem) => {
   return `${startText} - ${toDisplayDateTime(item.endAt)}`;
 };
 
+const CARD_MEDIA_PREVIEW_LIMIT = 9;
+
 type StoryCardProps = {
   item: ImageItem;
   onPress?: () => void;
@@ -92,7 +94,10 @@ export function StoryCard({
 }: StoryCardProps) {
   const { theme, auth, images } = useApp();
   const colors = Colors[theme];
-  const preview = item.imageUrls?.[0];
+  const mediaUrls = item.imageUrls ?? [];
+  const visibleMediaUrls = mediaUrls.slice(0, CARD_MEDIA_PREVIEW_LIMIT);
+  const hiddenMediaCount = Math.max(0, mediaUrls.length - CARD_MEDIA_PREVIEW_LIMIT);
+  const mediaColumns = visibleMediaUrls.length <= 2 ? 2 : 3;
   const displayTime = toDisplayTime(item);
   const [likeBusy, setLikeBusy] = useState(false);
   const roleBg = theme === 'light' ? 'rgba(17, 24, 39, 0.08)' : 'rgba(255, 255, 255, 0.08)';
@@ -167,8 +172,32 @@ export function StoryCard({
           <FollowButton following={!!followed} onPress={onFollowToggle} />
         ) : null}
       </View>
-      {preview ? (
-        <Image source={{ uri: preview }} style={styles.preview} resizeMode="cover" />
+      {visibleMediaUrls.length ? (
+        <View style={[styles.mediaGrid, { backgroundColor: colors.pageBgSoft }]}>
+          {visibleMediaUrls.map((url, index) => {
+            const isLastVisible = index === visibleMediaUrls.length - 1;
+            return (
+              <View
+                key={`${item.id}-${url}-${index}`}
+                style={[
+                  styles.mediaCell,
+                  visibleMediaUrls.length === 1
+                    ? styles.mediaCellSingle
+                    : mediaColumns === 2
+                      ? styles.mediaCellDouble
+                      : styles.mediaCellTriple,
+                ]}
+              >
+                <Image source={{ uri: url }} style={styles.mediaImage} resizeMode="cover" />
+                {hiddenMediaCount > 0 && isLastVisible ? (
+                  <View style={styles.moreBadge} pointerEvents="none">
+                    <Text style={styles.moreBadgeText}>+{hiddenMediaCount}</Text>
+                  </View>
+                ) : null}
+              </View>
+            );
+          })}
+        </View>
       ) : null}
       {item.description ? (
         <Text style={[styles.description, { color: colors.textMain }]} numberOfLines={3}>
@@ -267,11 +296,55 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  preview: {
-    width: '100%',
-    height: 180,
+  mediaGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    overflow: 'hidden',
     borderRadius: 14,
     marginBottom: 10,
+  },
+  mediaCell: {
+    position: 'relative',
+    overflow: 'hidden',
+    aspectRatio: 1,
+  },
+  mediaCellSingle: {
+    width: '100%',
+  },
+  mediaCellDouble: {
+    width: '50%',
+  },
+  mediaCellTriple: {
+    width: '33.333333%',
+  },
+  mediaImage: {
+    width: '100%',
+    height: '100%',
+  },
+  moreBadge: {
+    position: 'absolute',
+    right: 10,
+    bottom: 10,
+    minWidth: 44,
+    height: 32,
+    paddingHorizontal: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.36)',
+    backgroundColor: 'rgba(0, 0, 0, 0.68)',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.28,
+    shadowRadius: 20,
+    elevation: 4,
+  },
+  moreBadgeText: {
+    color: '#fff',
+    fontSize: 15,
+    fontWeight: '900',
+    lineHeight: 16,
   },
   description: {
     fontSize: 18,

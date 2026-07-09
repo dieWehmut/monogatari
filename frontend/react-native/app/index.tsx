@@ -51,7 +51,7 @@ export default function HomeScreen() {
   const colors = Colors[theme];
 
   const githubOwner = images.stats.githubOwner || auth.user?.login || 'GitHub';
-  const repoUrl = `https://github.com/${githubOwner}/story-timeline`;
+  const repoUrl = `https://github.com/${githubOwner}/monogatari`;
   const androidUrl = `${repoUrl}/releases/latest`;
   const albumUser = auth.user?.login || githubOwner;
 

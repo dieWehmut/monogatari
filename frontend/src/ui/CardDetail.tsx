@@ -265,12 +265,13 @@ function DetailImageGrid({
 
 
 
-  // 详情页展示全部图片,不做 9 张上限与折叠(仅卡片预览才限制)。
   const visibleItems = items;
 
   const cols = visibleItems.length <= 2 ? 2 : 3;
 
   return (
+
+    <div>
 
     <div className={`grid gap-0.5 ${cols === 2 ? 'grid-cols-2' : 'grid-cols-3'}`}>
 
@@ -291,6 +292,8 @@ function DetailImageGrid({
         </div>
 
       ))}
+
+    </div>
 
     </div>
 
