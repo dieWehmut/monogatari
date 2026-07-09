@@ -267,9 +267,22 @@ function docsGroupTagFromPath(relativePath) {
   return toPosix(relativePath).split('/')[0] || 'docs'
 }
 
+// Dates live in Nexus markdown frontmatter; the sync pipeline distills them
+// into docs/docs-meta.json (folder -> date) so this repo can date each group.
+function loadDocsMeta(assetsDir) {
+  const metaPath = path.join(assetsDir, 'docs', 'docs-meta.json')
+  if (!fs.existsSync(metaPath)) return {}
+  try {
+    return JSON.parse(fs.readFileSync(metaPath, 'utf8'))
+  } catch {
+    return {}
+  }
+}
+
 function loadDocAssetsFromRepository(assetsDir) {
   const repoDocsDir = path.join(assetsDir, 'docs')
   if (!fs.existsSync(repoDocsDir)) return []
+  const docsMeta = loadDocsMeta(assetsDir)
   const assets = []
 
   function walk(dirPath) {
@@ -284,13 +297,14 @@ function loadDocAssetsFromRepository(assetsDir) {
       if (!/\.(?:avif|gif|jpe?g|png|webp|svg)$/i.test(entry.name)) continue
 
       const relativePath = toPosix(path.relative(repoDocsDir, fullPath))
+      const groupTag = docsGroupTagFromPath(relativePath)
       const id = `docs-${relativePath.replace(/\.[^.]+$/i, '').replace(/[^a-zA-Z0-9]+/g, '-').replace(/^-+|-+$/g, '')}`
       assets.push({
         id,
         image: `${captureUrlPrefix}docs/${relativePath}`,
         title: titleFromDocsPath(relativePath),
-        date: '',
-        tags: [docsGroupTagFromPath(relativePath)],
+        date: docsMeta[groupTag] || '',
+        tags: [groupTag],
         summary: '',
         sourceRefs: [],
         standalone: true,
