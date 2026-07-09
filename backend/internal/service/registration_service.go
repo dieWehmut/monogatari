@@ -16,7 +16,7 @@ import (
 
 	"github.com/resend/resend-go/v3"
 
-	"github.com/dieWehmut/story-timeline/backend/internal/storage"
+	"github.com/dieWehmut/monogatari/backend/internal/storage"
 )
 
 //go:embed templates/admin_notify_email.html

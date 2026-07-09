@@ -13,11 +13,10 @@ import { mediaTypeFromFile, normalizeAssetTypes } from './media';
 
 const normalizeApiBase = (value: string) => value.trim().replace(/\/$/, '');
 
-const API_BASE_FALLBACK = 'https://REDACTED.example.com';
+const API_BASE_FALLBACK = 'https://api.monogatari.diesw.tech';
 const rawApiBase = typeof process !== 'undefined' ? process.env.EXPO_PUBLIC_API_BASE ?? '' : '';
 const hasExplicitBase = !!rawApiBase;
 export const API_BASE = normalizeApiBase(rawApiBase || API_BASE_FALLBACK);
-const usesHostedFallbackBase = (value: string) => value.includes('.hf.space');
 
 const withApiBase = (value: string) => {
   if (!value || value.startsWith('http://') || value.startsWith('https://')) {
@@ -70,7 +69,7 @@ const extractErrorMessage = async (response: Response) => {
 
   const text = await response.text();
   if (text.includes('<!DOCTYPE html') || text.includes('<html')) {
-    return 'Backend returned HTML. Check API base/proxy configuration.';
+    return 'Backend returned HTML. Check API base configuration.';
   }
 
   return text || 'Request failed';
@@ -97,21 +96,10 @@ const request = async <T>(input: string, init?: RequestInit): Promise<T> => {
 
   try {
     return await doFetch(input);
-  } catch (err: any) {
+  } catch (err: unknown) {
     if (
       hasExplicitBase &&
-      usesHostedFallbackBase(API_BASE) &&
-      input.startsWith(API_BASE) &&
-      err instanceof Error &&
-      typeof err.message === 'string' &&
-      err.message.includes('HTML')
-    ) {
-      const alt = input.replace(API_BASE, '');
-      return await doFetch(alt);
-    }
-
-    if (
-      hasExplicitBase &&
+      API_BASE !== API_BASE_FALLBACK &&
       (input.startsWith('/') || input.startsWith(API_BASE)) &&
       err instanceof Error &&
       (err.message.includes('redirect') || err.message.includes('Too many redirects'))
@@ -164,7 +152,7 @@ const toFormFile = (file: UploadFile) => ({
 
 const uploadToCloudinary = async (signed: SignedUpload, file: UploadFile) => {
   const formData = new FormData();
-  formData.append('file', toFormFile(file) as any);
+  formData.append('file', toFormFile(file) as unknown as Blob);
   formData.append('api_key', signed.apiKey);
   formData.append('timestamp', signed.timestamp);
   formData.append('signature', signed.signature);
@@ -237,10 +225,7 @@ export const api = {
   unfollowUser: (login: string) =>
     request<{ ok: boolean }>(`${API_BASE}/api/follow/${encodeURIComponent(login)}`, { method: 'DELETE' }),
   createImage: async (payload: CreateImagePayload) => {
-    const imagesEndpoint =
-      API_BASE === '' || usesHostedFallbackBase(API_BASE)
-        ? `${API_BASE}/api/images/`
-        : `${API_BASE}/api/images`;
+    const imagesEndpoint = API_BASE === '' ? `${API_BASE}/api/images/` : `${API_BASE}/api/images`;
 
     const basePayload = {
       description: payload.description,
@@ -363,7 +348,7 @@ export const api = {
 
       await Promise.all(plan.uploads.map((upload, index) => uploadToCloudinary(upload, items[index].file)));
 
-      const payload: Record<string, any> = {
+      const payload: Record<string, unknown> = {
         text,
         commentId: plan.commentId,
         assetPaths: plan.uploads.map((upload) => upload.publicId),

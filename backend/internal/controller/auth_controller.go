@@ -12,9 +12,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/dieWehmut/story-timeline/backend/internal/model"
-	"github.com/dieWehmut/story-timeline/backend/internal/service"
-	"github.com/dieWehmut/story-timeline/backend/internal/storage"
+	"github.com/dieWehmut/monogatari/backend/internal/model"
+	"github.com/dieWehmut/monogatari/backend/internal/service"
+	"github.com/dieWehmut/monogatari/backend/internal/storage"
 )
 
 type AuthController struct {
@@ -790,8 +790,8 @@ func (controller *AuthController) checkLoginLimit(c *gin.Context) bool {
 
 	allowed, count, ttl, err := controller.loginLimiter.Allow(c.Request.Context(), c.ClientIP())
 	if err != nil {
-		c.JSON(http.StatusBadGateway, gin.H{"error": err.Error()})
-		return false
+		_ = c.Error(err)
+		return true
 	}
 	if allowed {
 		return true
@@ -885,7 +885,7 @@ func (controller *AuthController) appScheme() string {
 	scheme := strings.TrimSpace(controller.appURLScheme)
 	scheme = strings.TrimSuffix(scheme, "://")
 	if scheme == "" {
-		scheme = "storytimeline.me"
+		scheme = "monogatari"
 	}
 	return scheme
 }

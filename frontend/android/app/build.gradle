@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace = "storytimeline.me"
+    namespace = "tech.diesw.monogatari"
     compileSdk = rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "storytimeline.me"
+        applicationId "tech.diesw.monogatari"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

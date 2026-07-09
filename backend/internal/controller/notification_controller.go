@@ -6,7 +6,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/dieWehmut/story-timeline/backend/internal/storage"
+	"github.com/dieWehmut/monogatari/backend/internal/storage"
 )
 
 const settingKeyNotification = "notification"

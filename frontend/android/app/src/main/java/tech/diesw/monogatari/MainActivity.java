@@ -1,4 +1,4 @@
-package storytimeline.me;
+package tech.diesw.monogatari;
 
 import android.os.Bundle;
 import com.getcapacitor.BridgeActivity;

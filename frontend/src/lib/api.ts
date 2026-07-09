@@ -14,15 +14,13 @@ import { mediaTypeFromFile, normalizeAssetTypes } from './media';
 
 const normalizeApiBase = (value: string) => value.trim().replace(/\/$/, '');
 
-export const API_BASE_FALLBACK = 'https://REDACTED.hf.space';
+const DEFAULT_PRODUCTION_API_BASE = 'https://api.monogatari.diesw.tech';
 
-export const API_BASE = normalizeApiBase(import.meta.env.VITE_API_BASE ?? '');
-const usesHostedFallbackBase = (value: string) => value.includes('.hf.space');
+export const API_BASE_FALLBACK = DEFAULT_PRODUCTION_API_BASE;
 
-// log the computed base so we can spot misconfiguration in client consoles
-if (typeof window !== 'undefined') {
-  // eslint-disable-next-line no-console
-}
+export const API_BASE = normalizeApiBase(
+  import.meta.env.VITE_API_BASE ?? (import.meta.env.PROD ? DEFAULT_PRODUCTION_API_BASE : ''),
+);
 
 const withApiBase = (value: string) => {
   if (!value || value.startsWith('http://') || value.startsWith('https://')) {
@@ -117,7 +115,7 @@ const extractErrorMessage = async (response: Response) => {
 };
 
 const request = async <T>(input: RequestInfo | URL, init?: RequestInit): Promise<T> => {
-  const doFetch = async (url: string | URL) => {
+  const doFetch = async (url: RequestInfo | URL) => {
     const response = await fetch(url, {
       credentials: 'include',
       ...init,
@@ -136,27 +134,11 @@ const request = async <T>(input: RequestInfo | URL, init?: RequestInit): Promise
   };
 
   try {
-    return await doFetch(input as any);
-  } catch (err: any) {
-    // If a direct backend URL returns HTML, retry through the same-origin proxy.
+    return await doFetch(input);
+  } catch (err: unknown) {
     if (
       API_BASE &&
-      usesHostedFallbackBase(API_BASE) &&
-      typeof input === 'string' &&
-      input.startsWith(API_BASE) &&
-      err instanceof Error &&
-      typeof err.message === 'string' &&
-      err.message.includes('HTML 页面')
-    ) {
-      const alt = input.replace(API_BASE, '');
-      console.warn('API request failed against configured backend, retrying via proxy', input, '->', alt);
-      return await doFetch(alt);
-    }
-
-    // When same-origin proxying is already in use, only try the fallback base
-    // after an explicit backend URL has failed.
-    if (
-      API_BASE &&
+      API_BASE !== API_BASE_FALLBACK &&
       typeof input === 'string' &&
       (input.startsWith('/') || input.startsWith(API_BASE)) &&
       (err instanceof Error && (err.message.includes('redirect') || err.message.includes('Too many redirects') || err instanceof TypeError))
@@ -165,7 +147,7 @@ const request = async <T>(input: RequestInfo | URL, init?: RequestInit): Promise
       try {
         console.warn('API request failed via configured backend, retrying via fallback base', input, '->', alt);
         return await doFetch(alt);
-      } catch (innerErr) {
+      } catch {
         // continue to throw original error below if direct retry also fails
       }
     }
@@ -399,11 +381,7 @@ export const api = {
   unfollowUser: (login: string) =>
     request<{ ok: boolean }>(`${API_BASE}/api/follow/${encodeURIComponent(login)}`, { method: 'DELETE' }),
   createImage: async (payload: CreateImagePayload) => {
-    // Use a trailing slash for hosted fallback and same-origin proxy paths to avoid redirect loops.
-    const imagesEndpoint =
-      API_BASE === '' || usesHostedFallbackBase(API_BASE)
-        ? `${API_BASE}/api/images/`
-        : `${API_BASE}/api/images`;
+    const imagesEndpoint = API_BASE === '' ? `${API_BASE}/api/images/` : `${API_BASE}/api/images`;
 
     const basePayload = {
       description: payload.description,
@@ -535,7 +513,7 @@ export const api = {
 
       await Promise.all(plan.uploads.map((upload, index) => uploadToCloudinary(upload, items[index].file)));
 
-      const payload: Record<string, any> = {
+      const payload: Record<string, unknown> = {
         text,
         commentId: plan.commentId,
         assetPaths: plan.uploads.map((upload) => upload.publicId),

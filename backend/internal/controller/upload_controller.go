@@ -7,9 +7,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/dieWehmut/story-timeline/backend/internal/middleware"
-	"github.com/dieWehmut/story-timeline/backend/internal/storage"
-	"github.com/dieWehmut/story-timeline/backend/internal/utils"
+	"github.com/dieWehmut/monogatari/backend/internal/middleware"
+	"github.com/dieWehmut/monogatari/backend/internal/storage"
+	"github.com/dieWehmut/monogatari/backend/internal/utils"
 )
 
 const (
@@ -43,9 +43,9 @@ type signCommentUploadRequest struct {
 }
 
 type signUploadResponse struct {
-	ImageID   string                  `json:"imageId,omitempty"`
-	CommentID string                  `json:"commentId,omitempty"`
-	Uploads   []storage.SignedUpload  `json:"uploads"`
+	ImageID   string                 `json:"imageId,omitempty"`
+	CommentID string                 `json:"commentId,omitempty"`
+	Uploads   []storage.SignedUpload `json:"uploads"`
 }
 
 func (controller *UploadController) SignImageUploads(c *gin.Context) {

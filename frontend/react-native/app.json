@@ -1,18 +1,18 @@
 {
   "expo": {
-    "name": "Story Timeline",
-    "slug": "story-timeline-app",
+    "name": "Monogatari",
+    "slug": "monogatari-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "storytimeline",
+    "scheme": "monogatari",
     "userInterfaceStyle": "automatic",
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "me.hcdsw.storytimeline",
+      "bundleIdentifier": "tech.diesw.monogatari",
       "infoPlist": {
-        "NSPhotoLibraryUsageDescription": "Allow Story Timeline to access your photos for uploads.",
-        "NSCameraUsageDescription": "Allow Story Timeline to access your camera for uploads."
+        "NSPhotoLibraryUsageDescription": "Allow Monogatari to access your photos for uploads.",
+        "NSCameraUsageDescription": "Allow Monogatari to access your camera for uploads."
       }
     },
     "android": {
@@ -24,7 +24,7 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "me.hcdsw.storytimeline",
+      "package": "tech.diesw.monogatari",
       "permissions": [
         "READ_MEDIA_IMAGES",
         "READ_MEDIA_VIDEO",

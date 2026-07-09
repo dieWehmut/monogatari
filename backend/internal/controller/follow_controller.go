@@ -6,8 +6,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/dieWehmut/story-timeline/backend/internal/middleware"
-	"github.com/dieWehmut/story-timeline/backend/internal/service"
+	"github.com/dieWehmut/monogatari/backend/internal/middleware"
+	"github.com/dieWehmut/monogatari/backend/internal/service"
 )
 
 type FollowController struct {

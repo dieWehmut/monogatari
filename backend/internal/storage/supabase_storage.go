@@ -13,7 +13,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/dieWehmut/story-timeline/backend/internal/model"
+	"github.com/dieWehmut/monogatari/backend/internal/model"
 )
 
 type SupabaseStorage struct {
@@ -77,13 +77,13 @@ type followRecord struct {
 }
 
 type userRecord struct {
-	Login      string    `json:"login"`
-	Provider   string    `json:"provider"`
-	ProviderID string    `json:"provider_id"`
-	AvatarURL  string    `json:"avatar_url"`
-	DisplayName string   `json:"display_name"`
-	CreatedAt  time.Time `json:"created_at,omitempty"`
-	UpdatedAt  time.Time `json:"updated_at,omitempty"`
+	Login       string    `json:"login"`
+	Provider    string    `json:"provider"`
+	ProviderID  string    `json:"provider_id"`
+	AvatarURL   string    `json:"avatar_url"`
+	DisplayName string    `json:"display_name"`
+	CreatedAt   time.Time `json:"created_at,omitempty"`
+	UpdatedAt   time.Time `json:"updated_at,omitempty"`
 }
 
 type emailLoginRecord struct {

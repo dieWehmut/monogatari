@@ -30,7 +30,7 @@
 | `PORT` | `7860` | HTTP 监听端口 |
 | `FRONTEND_BASE_URL` | `http://localhost:5173` | 前端公开地址，用于生成回调地址和邮件链接 |
 | `FRONTEND_ORIGIN` | `http://localhost:5173` | CORS 允许来源；当前实现只支持单个 origin |
-| `APP_URL_SCHEME` | `storytimeline.me` | 移动端 Deep Link scheme |
+| `APP_URL_SCHEME` | `monogatari` | 移动端 Deep Link scheme |
 | `SESSION_SECRET` | `change-me` | Session 加密密钥；生产环境必须覆盖 |
 | `SECURE_COOKIES` | `false` | 是否给 cookie 加 `Secure` 标记 |
 | `GITHUB_REPO_OWNER` | — | 管理员 / 站点 owner 登录名，影响管理权限和部分前端展示 |
@@ -180,13 +180,13 @@ curl -fsS http://127.0.0.1:7860/healthz
 前端部署时把 `VITE_API_BASE` 设置为后端公网地址，例如：
 
 ```env
-VITE_API_BASE=https://api.example.com
+VITE_API_BASE=https://api.monogatari.diesw.tech
 ```
 
 `FRONTEND_BASE_URL` 和 `FRONTEND_ORIGIN` 仍然应该填写真实前端地址。GitHub / Google OAuth 的回调地址应指向后端公网地址：
 
-- `https://api.example.com/api/auth/github/callback`
-- `https://api.example.com/api/auth/google/callback`
+- `https://api.monogatari.diesw.tech/api/auth/github/callback`
+- `https://api.monogatari.diesw.tech/api/auth/google/callback`
 
 如果后端位于反向代理之后，反向代理需要转发 `X-Forwarded-Proto` 和 `X-Forwarded-Host`，否则 OAuth 回调地址可能会被生成为内部地址或错误协议。
 

@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/dieWehmut/story-timeline/backend/internal/storage"
+	"github.com/dieWehmut/monogatari/backend/internal/storage"
 )
 
 const defaultLoginAttemptLimit = int64(5)

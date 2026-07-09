@@ -1,17 +1,17 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.storytimeline.app',
+  appId: 'tech.diesw.monogatari',
   appName: '物語集',
 
   webDir: 'dist',
 
   server: {
     androidScheme: 'https',
-    url: 'https://story-timeline.hc-dsw-nexus.me',
+    url: 'https://monogatari.diesw.tech',
     cleartext: false,
     allowNavigation: [
-      "story-timeline.hc-dsw-nexus.me",
+      "monogatari.diesw.tech",
       "github.com",
       "api.github.com",
       "accounts.google.com",

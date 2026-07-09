@@ -6,7 +6,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/dieWehmut/story-timeline/backend/internal/storage"
+	"github.com/dieWehmut/monogatari/backend/internal/storage"
 	"go.uber.org/zap"
 )
 

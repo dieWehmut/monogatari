@@ -10,7 +10,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/dieWehmut/story-timeline/backend/internal/model"
+	"github.com/dieWehmut/monogatari/backend/internal/model"
 )
 
 const graphqlEndpoint = "https://api.github.com/graphql"
@@ -314,7 +314,7 @@ func (c *GraphQLClient) CheckRepo(ctx context.Context, token string, owner strin
 // CreateRepo creates a new public repository for the authenticated user.
 func (c *GraphQLClient) CreateRepo(ctx context.Context, token string, name string) error {
 	query := `mutation($name: String!) {
-		createRepository(input: {name: $name, visibility: PUBLIC, description: "story-timeline data repository"}) {
+		createRepository(input: {name: $name, visibility: PUBLIC, description: "monogatari data repository"}) {
 			repository { name }
 		}
 	}`
@@ -331,7 +331,7 @@ func (c *GraphQLClient) InitializeRepo(ctx context.Context, token string, owner 
 
 	initialIndex := `{"items":[]}`
 	body, _ := json.Marshal(map[string]string{
-		"message": "Initialize story-timeline-data",
+		"message": "Initialize monogatari-data",
 		"content": base64.StdEncoding.EncodeToString([]byte(initialIndex)),
 		"branch":  branch,
 	})

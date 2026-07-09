@@ -1,4 +1,4 @@
-module github.com/dieWehmut/story-timeline/backend
+module github.com/dieWehmut/monogatari/backend
 
 go 1.25.0
 

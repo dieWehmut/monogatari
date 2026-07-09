@@ -12,22 +12,22 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/dieWehmut/story-timeline/backend/internal/dto"
-	"github.com/dieWehmut/story-timeline/backend/internal/middleware"
-	"github.com/dieWehmut/story-timeline/backend/internal/model"
-	"github.com/dieWehmut/story-timeline/backend/internal/service"
-	"github.com/dieWehmut/story-timeline/backend/internal/storage"
-	"github.com/dieWehmut/story-timeline/backend/internal/utils"
+	"github.com/dieWehmut/monogatari/backend/internal/dto"
+	"github.com/dieWehmut/monogatari/backend/internal/middleware"
+	"github.com/dieWehmut/monogatari/backend/internal/model"
+	"github.com/dieWehmut/monogatari/backend/internal/service"
+	"github.com/dieWehmut/monogatari/backend/internal/storage"
+	"github.com/dieWehmut/monogatari/backend/internal/utils"
 )
 
 const (
-	maxCommentFiles       = 3
-	maxVideos             = 3
-	maxImageFileSize      = 5 << 20  // 5 MB
-	maxImageTotalSize     = 25 << 20 // 25 MB (images only)
-	maxVideoSize          = 200 << 20 // 200 MB
-	maxTags               = 12
-	maxTagLength          = 32
+	maxCommentFiles         = 3
+	maxVideos               = 3
+	maxImageFileSize        = 5 << 20   // 5 MB
+	maxImageTotalSize       = 25 << 20  // 25 MB (images only)
+	maxVideoSize            = 200 << 20 // 200 MB
+	maxTags                 = 12
+	maxTagLength            = 32
 	assetCacheMaxAgeSeconds = 86400
 )
 
@@ -564,7 +564,7 @@ func (controller *ImageController) Update(c *gin.Context) {
 		// If assetPaths is provided (even empty), replace assets. Otherwise update metadata only.
 		if payload.AssetPaths != nil {
 			assetPaths := normalizeAssetPaths(payload.AssetPaths)
-		if err := validateAssetPaths(assetPaths, 0, 0, []string{
+			if err := validateAssetPaths(assetPaths, 0, 0, []string{
 				fmt.Sprintf("images/%s/", ownerLogin),
 				fmt.Sprintf("videos/%s/", ownerLogin),
 			}); err != nil {
@@ -822,18 +822,18 @@ func (controller *ImageController) GetComments(c *gin.Context) {
 			imageUrl = imageURLs[0]
 		}
 		result = append(result, dto.CommentResponse{
-			ID:          cm.ID,
-			AuthorLogin: cm.AuthorLogin,
-			PostOwner:   cm.PostOwner,
-			PostID:      cm.PostID,
-			Text:        cm.Text,
-			ImageUrl:    imageUrl,
-			ImageURLs:   imageURLs,
-			AssetTypes:  assetTypes,
-			CreatedAt:   cm.CreatedAt.Format("2006-01-02T15:04:05-07:00"),
-			LikeCount:   likeCounts[cm.ID],
-			Liked:       likedBy[cm.ID],
-			ParentID:    cm.ParentID,
+			ID:               cm.ID,
+			AuthorLogin:      cm.AuthorLogin,
+			PostOwner:        cm.PostOwner,
+			PostID:           cm.PostID,
+			Text:             cm.Text,
+			ImageUrl:         imageUrl,
+			ImageURLs:        imageURLs,
+			AssetTypes:       assetTypes,
+			CreatedAt:        cm.CreatedAt.Format("2006-01-02T15:04:05-07:00"),
+			LikeCount:        likeCounts[cm.ID],
+			Liked:            likedBy[cm.ID],
+			ParentID:         cm.ParentID,
 			ReplyToUserLogin: cm.ReplyToUserLogin,
 		})
 	}
@@ -874,8 +874,8 @@ func (controller *ImageController) AddComment(c *gin.Context) {
 		files = selectedFiles
 	} else {
 		var body struct {
-			Text             string `json:"text"`
-			ParentID         string `json:"parentId"`
+			Text             string   `json:"text"`
+			ParentID         string   `json:"parentId"`
 			ReplyToUserLogin string   `json:"replyToUserLogin"`
 			CommentID        string   `json:"commentId"`
 			AssetPaths       []string `json:"assetPaths"`
@@ -960,18 +960,18 @@ func (controller *ImageController) AddComment(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusCreated, dto.CommentResponse{
-		ID:          comment.ID,
-		AuthorLogin: session.User.Login,
-		PostOwner:   comment.PostOwner,
-		PostID:      comment.PostID,
-		Text:        comment.Text,
-		ImageUrl:    imageUrl,
-		ImageURLs:   imageURLs,
-		AssetTypes:  assetTypes,
-		CreatedAt:   comment.CreatedAt.Format("2006-01-02T15:04:05-07:00"),
-		LikeCount:   0,
-		Liked:       false,
-		ParentID:    comment.ParentID,
+		ID:               comment.ID,
+		AuthorLogin:      session.User.Login,
+		PostOwner:        comment.PostOwner,
+		PostID:           comment.PostID,
+		Text:             comment.Text,
+		ImageUrl:         imageUrl,
+		ImageURLs:        imageURLs,
+		AssetTypes:       assetTypes,
+		CreatedAt:        comment.CreatedAt.Format("2006-01-02T15:04:05-07:00"),
+		LikeCount:        0,
+		Liked:            false,
+		ParentID:         comment.ParentID,
 		ReplyToUserLogin: comment.ReplyToUserLogin,
 	})
 }

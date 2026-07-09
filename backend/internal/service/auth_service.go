@@ -15,11 +15,11 @@ import (
 
 	"github.com/golang-jwt/jwt/v5"
 
-	githuboauth "github.com/dieWehmut/story-timeline/backend/internal/github"
-	googleoauth "github.com/dieWehmut/story-timeline/backend/internal/google"
-	"github.com/dieWehmut/story-timeline/backend/internal/model"
-	"github.com/dieWehmut/story-timeline/backend/internal/storage"
-	"github.com/dieWehmut/story-timeline/backend/internal/utils"
+	githuboauth "github.com/dieWehmut/monogatari/backend/internal/github"
+	googleoauth "github.com/dieWehmut/monogatari/backend/internal/google"
+	"github.com/dieWehmut/monogatari/backend/internal/model"
+	"github.com/dieWehmut/monogatari/backend/internal/storage"
+	"github.com/dieWehmut/monogatari/backend/internal/utils"
 )
 
 const (

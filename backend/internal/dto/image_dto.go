@@ -1,6 +1,6 @@
 package dto
 
-import "github.com/dieWehmut/story-timeline/backend/internal/model"
+import "github.com/dieWehmut/monogatari/backend/internal/model"
 
 type ImageResponse struct {
 	ID           string   `json:"id"`
@@ -50,17 +50,17 @@ func NewImageResponse(image model.Image, assetURLs []string, assetTypes []string
 }
 
 type CommentResponse struct {
-	ID          string `json:"id"`
-	AuthorLogin string `json:"authorLogin"`
-	PostOwner   string `json:"postOwner"`
-	PostID      string `json:"postId"`
-	Text        string `json:"text"`
-	ImageUrl    string `json:"imageUrl,omitempty"`
-	ImageURLs   []string `json:"imageUrls,omitempty"`
-	AssetTypes  []string `json:"assetTypes,omitempty"`
-	CreatedAt   string `json:"createdAt"`
-	LikeCount   int    `json:"likeCount"`
-	Liked       bool   `json:"liked"`
-	ParentID    string `json:"parentId,omitempty"`
-	ReplyToUserLogin string `json:"replyToUserLogin,omitempty"`
+	ID               string   `json:"id"`
+	AuthorLogin      string   `json:"authorLogin"`
+	PostOwner        string   `json:"postOwner"`
+	PostID           string   `json:"postId"`
+	Text             string   `json:"text"`
+	ImageUrl         string   `json:"imageUrl,omitempty"`
+	ImageURLs        []string `json:"imageUrls,omitempty"`
+	AssetTypes       []string `json:"assetTypes,omitempty"`
+	CreatedAt        string   `json:"createdAt"`
+	LikeCount        int      `json:"likeCount"`
+	Liked            bool     `json:"liked"`
+	ParentID         string   `json:"parentId,omitempty"`
+	ReplyToUserLogin string   `json:"replyToUserLogin,omitempty"`
 }

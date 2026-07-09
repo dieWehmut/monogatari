@@ -178,7 +178,7 @@ export const en: LocaleKeys = {
   },
 
   home: {
-    title: 'Story Timeline',
+    title: 'Monogatari',
     subtitle: 'Record a little',
     star: 'Give it a star',
     android: 'Android',

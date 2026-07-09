@@ -7,8 +7,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/dieWehmut/story-timeline/backend/internal/service"
-	"github.com/dieWehmut/story-timeline/backend/internal/utils"
+	"github.com/dieWehmut/monogatari/backend/internal/service"
+	"github.com/dieWehmut/monogatari/backend/internal/utils"
 )
 
 type HealthController struct {

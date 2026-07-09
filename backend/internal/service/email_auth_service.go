@@ -1,4 +1,4 @@
-﻿package service
+package service
 
 import (
 	"bytes"
@@ -19,8 +19,8 @@ import (
 
 	"github.com/resend/resend-go/v3"
 
-	"github.com/dieWehmut/story-timeline/backend/internal/model"
-	"github.com/dieWehmut/story-timeline/backend/internal/storage"
+	"github.com/dieWehmut/monogatari/backend/internal/model"
+	"github.com/dieWehmut/monogatari/backend/internal/storage"
 )
 
 //go:embed templates/magic_link_email.html
@@ -118,7 +118,7 @@ func (service *EmailAuthService) RequestMagicLink(ctx context.Context, email str
 	}
 	html := htmlBuf.String()
 
-_, err = service.client.Emails.Send(&resend.SendEmailRequest{
+	_, err = service.client.Emails.Send(&resend.SendEmailRequest{
 		From:    displayFrom,
 		To:      []string{normalized},
 		Subject: subject,
@@ -440,4 +440,3 @@ func (service *EmailAuthService) VerifyBindingToken(ctx context.Context, token s
 
 	return bindingToken.Login, bindingToken.Email, nil
 }
-

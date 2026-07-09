@@ -10,14 +10,14 @@ import (
 )
 
 const (
-	MagicLinkTokenTTL   = 10 * time.Minute
-	OAuthStateTTL       = 10 * time.Minute
-	AuthExchangeTTL     = 5 * time.Minute
-	LoginAttemptTTL     = 1 * time.Minute
-	TimelineCacheTTL    = 30 * time.Second
-	EmailPendingTTL     = 10 * time.Minute
-	EmailConfirmedTTL   = 5 * time.Minute
-	AppOAuthPendingTTL  = 10 * time.Minute
+	MagicLinkTokenTTL  = 10 * time.Minute
+	OAuthStateTTL      = 10 * time.Minute
+	AuthExchangeTTL    = 5 * time.Minute
+	LoginAttemptTTL    = 1 * time.Minute
+	TimelineCacheTTL   = 30 * time.Second
+	EmailPendingTTL    = 10 * time.Minute
+	EmailConfirmedTTL  = 5 * time.Minute
+	AppOAuthPendingTTL = 10 * time.Minute
 )
 
 var (
@@ -42,6 +42,9 @@ func NewClient(redisURL string) (*redis.Client, error) {
 	if err != nil {
 		return nil, err
 	}
+	opt.DialTimeout = 2 * time.Second
+	opt.ReadTimeout = 2 * time.Second
+	opt.WriteTimeout = 2 * time.Second
 
 	return redis.NewClient(opt), nil
 }

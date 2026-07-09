@@ -8,9 +8,9 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/dieWehmut/story-timeline/backend/internal/model"
-	"github.com/dieWehmut/story-timeline/backend/internal/storage"
-	"github.com/dieWehmut/story-timeline/backend/internal/utils"
+	"github.com/dieWehmut/monogatari/backend/internal/model"
+	"github.com/dieWehmut/monogatari/backend/internal/storage"
+	"github.com/dieWehmut/monogatari/backend/internal/utils"
 )
 
 type InteractionService struct {
@@ -159,16 +159,16 @@ func (service *InteractionService) AddComment(ctx context.Context, _ string, com
 	}
 
 	comment := model.Comment{
-		ID:           commentID,
-		PostOwner:    postOwner,
-		PostID:       postID,
-		AuthorLogin:  commenter.Login,
-		AuthorAvatar: commenter.AvatarURL,
-		ParentID:     parentID,
+		ID:               commentID,
+		PostOwner:        postOwner,
+		PostID:           postID,
+		AuthorLogin:      commenter.Login,
+		AuthorAvatar:     commenter.AvatarURL,
+		ParentID:         parentID,
 		ReplyToUserLogin: replyToUserLogin,
-		Text:         text,
-		ImagePaths:   imagePaths,
-		CreatedAt:    utils.NowBeijing(),
+		Text:             text,
+		ImagePaths:       imagePaths,
+		CreatedAt:        utils.NowBeijing(),
 	}
 	if len(imagePaths) == 1 {
 		comment.ImagePath = imagePaths[0]
@@ -188,16 +188,16 @@ func (service *InteractionService) AddCommentWithAssets(ctx context.Context, _ s
 	}
 
 	comment := model.Comment{
-		ID:              resolvedID,
-		PostOwner:       postOwner,
-		PostID:          postID,
-		AuthorLogin:     commenter.Login,
-		AuthorAvatar:    commenter.AvatarURL,
-		ParentID:        parentID,
+		ID:               resolvedID,
+		PostOwner:        postOwner,
+		PostID:           postID,
+		AuthorLogin:      commenter.Login,
+		AuthorAvatar:     commenter.AvatarURL,
+		ParentID:         parentID,
 		ReplyToUserLogin: replyToUserLogin,
-		Text:            text,
-		ImagePaths:      assetPaths,
-		CreatedAt:       utils.NowBeijing(),
+		Text:             text,
+		ImagePaths:       assetPaths,
+		CreatedAt:        utils.NowBeijing(),
 	}
 	if len(assetPaths) == 1 {
 		comment.ImagePath = assetPaths[0]

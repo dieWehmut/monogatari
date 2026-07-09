@@ -176,7 +176,7 @@ export const zhCN = {
   },
 
   home: {
-    title: 'Story Timeline',
+    title: 'Monogatari',
     subtitle: '记录一点',
     star: '点个 Star',
     android: 'Android',

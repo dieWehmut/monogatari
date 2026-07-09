@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "storytimeline.me",
+  "applicationId": "tech.diesw.monogatari",
   "variantName": "release",
   "elements": [
     {

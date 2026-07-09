@@ -7,9 +7,9 @@ import (
 	"sync"
 	"time"
 
-	githubclient "github.com/dieWehmut/story-timeline/backend/internal/github"
-	"github.com/dieWehmut/story-timeline/backend/internal/model"
-	"github.com/dieWehmut/story-timeline/backend/internal/storage"
+	githubclient "github.com/dieWehmut/monogatari/backend/internal/github"
+	"github.com/dieWehmut/monogatari/backend/internal/model"
+	"github.com/dieWehmut/monogatari/backend/internal/storage"
 )
 
 type UserService struct {

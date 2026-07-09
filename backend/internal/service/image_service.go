@@ -11,9 +11,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/dieWehmut/story-timeline/backend/internal/model"
-	"github.com/dieWehmut/story-timeline/backend/internal/storage"
-	"github.com/dieWehmut/story-timeline/backend/internal/utils"
+	"github.com/dieWehmut/monogatari/backend/internal/model"
+	"github.com/dieWehmut/monogatari/backend/internal/storage"
+	"github.com/dieWehmut/monogatari/backend/internal/utils"
 )
 
 type ImageService struct {

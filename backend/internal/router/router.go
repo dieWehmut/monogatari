@@ -8,20 +8,20 @@ import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 
-	"github.com/dieWehmut/story-timeline/backend/internal/controller"
-	"github.com/dieWehmut/story-timeline/backend/internal/middleware"
-	"github.com/dieWehmut/story-timeline/backend/internal/service"
+	"github.com/dieWehmut/monogatari/backend/internal/controller"
+	"github.com/dieWehmut/monogatari/backend/internal/middleware"
+	"github.com/dieWehmut/monogatari/backend/internal/service"
 )
 
 type Dependencies struct {
-	AuthController           *controller.AuthController
-	FollowController         *controller.FollowController
-	ImageController          *controller.ImageController
-	HealthController         *controller.HealthController
-	UploadController         *controller.UploadController
-	NotificationController   *controller.NotificationController
-	RegistrationController   *controller.RegistrationController
-	AuthService              *service.AuthService
+	AuthController         *controller.AuthController
+	FollowController       *controller.FollowController
+	ImageController        *controller.ImageController
+	HealthController       *controller.HealthController
+	UploadController       *controller.UploadController
+	NotificationController *controller.NotificationController
+	RegistrationController *controller.RegistrationController
+	AuthService            *service.AuthService
 }
 
 func New(deps Dependencies, allowedOrigins []string) *gin.Engine {
@@ -46,7 +46,7 @@ func New(deps Dependencies, allowedOrigins []string) *gin.Engine {
 
 	rootJSON := func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
-			"service": "story-timeline backend",
+			"service": "monogatari backend",
 			"status":  "ok",
 		})
 	}

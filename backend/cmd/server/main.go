@@ -6,13 +6,13 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/dieWehmut/story-timeline/backend/config"
-	"github.com/dieWehmut/story-timeline/backend/internal/controller"
-	"github.com/dieWehmut/story-timeline/backend/internal/github"
-	"github.com/dieWehmut/story-timeline/backend/internal/google"
-	"github.com/dieWehmut/story-timeline/backend/internal/router"
-	"github.com/dieWehmut/story-timeline/backend/internal/service"
-	"github.com/dieWehmut/story-timeline/backend/internal/storage"
+	"github.com/dieWehmut/monogatari/backend/config"
+	"github.com/dieWehmut/monogatari/backend/internal/controller"
+	"github.com/dieWehmut/monogatari/backend/internal/github"
+	"github.com/dieWehmut/monogatari/backend/internal/google"
+	"github.com/dieWehmut/monogatari/backend/internal/router"
+	"github.com/dieWehmut/monogatari/backend/internal/service"
+	"github.com/dieWehmut/monogatari/backend/internal/storage"
 	"github.com/getsentry/sentry-go"
 	"go.uber.org/zap"
 )
@@ -52,7 +52,14 @@ func main() {
 			zap.L().Warn("failed to initialize redis", zap.Error(err))
 		}
 	} else {
-		redisStore = storage.NewStore(redisClient)
+		redisPingCtx, cancel := context.WithTimeout(ctx, 2*time.Second)
+		if err := redisClient.Ping(redisPingCtx).Err(); err != nil {
+			zap.L().Warn("redis is configured but unavailable; continuing without redis", zap.Error(err))
+			_ = redisClient.Close()
+		} else {
+			redisStore = storage.NewStore(redisClient)
+		}
+		cancel()
 	}
 
 	githubOAuthClient := github.NewOAuthClient(env.GitHubClientID, env.GitHubClientSecret, env.GitHubCallbackURL)
@@ -103,7 +110,7 @@ func main() {
 		IdleTimeout:  2 * time.Minute,
 	}
 
-	zap.L().Info("story-timeline backend listening", zap.String("addr", server.Addr))
+	zap.L().Info("monogatari backend listening", zap.String("addr", server.Addr))
 	if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 		zap.L().Fatal("server failed", zap.Error(err))
 	}
