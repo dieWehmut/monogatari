@@ -119,7 +119,9 @@ make docker-logs
 
 ## VPS 部署
 
-服务器上只需要保留一份仓库和 `backend/.env`。环境变量文件不提交到 Git。
+服务器上只需要保留一份仓库和 `backend/.env`。环境变量文件不提交到 Git。可以选择 Docker 部署，也可以用 systemd 托管交叉编译后的 Linux 二进制。
+
+### Docker
 
 ```bash
 cd /root/monogatari
@@ -133,6 +135,45 @@ make docker-run
 
 ```bash
 docker ps --filter name=monogatari-backend
+curl -fsS http://127.0.0.1:7860/healthz
+```
+
+### systemd 二进制
+
+在本地或 CI 交叉编译 Linux amd64 二进制：
+
+```bash
+cd backend
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ../bin/monogatari-backend-linux-amd64 ./cmd/server
+scp ../bin/monogatari-backend-linux-amd64 root@example.com:/root/monogatari/backend/server
+```
+
+服务器上的 systemd service 示例：
+
+```ini
+[Unit]
+Description=Monogatari backend
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/root/monogatari/backend
+EnvironmentFile=/root/monogatari/backend/.env
+ExecStart=/root/monogatari/backend/server
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+```
+
+启用并检查：
+
+```bash
+systemctl daemon-reload
+systemctl enable --now monogatari-backend
+systemctl status monogatari-backend --no-pager
 curl -fsS http://127.0.0.1:7860/healthz
 ```
 
