@@ -43,6 +43,11 @@ Thumbs.db
 # Generated capture assets
 frontend/public/capture-assets/
 
+# Backend build artifacts
+backend/server
+backend/server.exe
+backend/server-*
+
 # Using Android gitignore template: https://github.com/github/gitignore/blob/HEAD/Android.gitignore
 
 # Built application files
