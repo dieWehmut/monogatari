@@ -2,7 +2,6 @@ package config
 
 import (
 	"os"
-	"strings"
 )
 
 type Env struct {
@@ -34,7 +33,6 @@ type Env struct {
 
 func LoadEnv() Env {
 	frontendBaseURL := getEnv("FRONTEND_BASE_URL", "http://localhost:5173")
-	defaultCallbackURL := strings.TrimRight(frontendBaseURL, "/") + "/api/auth/github/callback"
 
 	return Env{
 		Port:                getEnv("PORT", "7860"),
@@ -43,11 +41,11 @@ func LoadEnv() Env {
 		AppURLScheme:        getEnv("APP_URL_SCHEME", "monogatari"),
 		GitHubClientID:      os.Getenv("GITHUB_CLIENT_ID"),
 		GitHubClientSecret:  os.Getenv("GITHUB_CLIENT_SECRET"),
-		GitHubCallbackURL:   getEnv("GITHUB_CALLBACK_URL", defaultCallbackURL),
+		GitHubCallbackURL:   os.Getenv("GITHUB_CALLBACK_URL"),
 		GitHubRepoOwner:     os.Getenv("GITHUB_REPO_OWNER"),
 		GoogleClientID:      os.Getenv("GOOGLE_CLIENT_ID"),
 		GoogleClientSecret:  os.Getenv("GOOGLE_CLIENT_SECRET"),
-		GoogleCallbackURL:   getEnv("GOOGLE_CALLBACK_URL", getEnv("FRONTEND_BASE_URL", "http://localhost:5173")+"/api/auth/google/callback"),
+		GoogleCallbackURL:   os.Getenv("GOOGLE_CALLBACK_URL"),
 		SupabaseURL:         os.Getenv("SUPABASE_URL"),
 		SupabaseServiceKey:  os.Getenv("SUPABASE_SERVICE_ROLE_KEY"),
 		SupabaseDBURL:       os.Getenv("SUPABASE_DB_URL"),

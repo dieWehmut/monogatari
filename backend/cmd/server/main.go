@@ -94,7 +94,7 @@ func main() {
 	server := &http.Server{
 		Addr: ":" + env.Port,
 		Handler: router.New(router.Dependencies{
-			AuthController:         controller.NewAuthController(authService, userService, emailService, registrationService, loginLimiter, redisStore, env.FrontendBaseURL, env.AppURLScheme),
+			AuthController:         controller.NewAuthController(authService, userService, emailService, registrationService, loginLimiter, redisStore, env.FrontendBaseURL, env.AppURLScheme, env.GitHubCallbackURL, env.GoogleCallbackURL),
 			FollowController:       controller.NewFollowController(userService),
 			ImageController:        controller.NewImageController(imageService, userService, authService, interactionService, cloudinaryStorage),
 			HealthController:       controller.NewHealthController(env.GitHubRepoOwner, authService, userService),

@@ -26,9 +26,11 @@ type AuthController struct {
 	redisStore          *storage.Store
 	frontendBaseURL     string
 	appURLScheme        string
+	githubCallbackURL   string
+	googleCallbackURL   string
 }
 
-func NewAuthController(authService *service.AuthService, userService *service.UserService, emailService *service.EmailAuthService, registrationService *service.RegistrationService, loginLimiter *service.LoginLimiter, redisStore *storage.Store, frontendBaseURL string, appURLScheme string) *AuthController {
+func NewAuthController(authService *service.AuthService, userService *service.UserService, emailService *service.EmailAuthService, registrationService *service.RegistrationService, loginLimiter *service.LoginLimiter, redisStore *storage.Store, frontendBaseURL string, appURLScheme string, githubCallbackURL string, googleCallbackURL string) *AuthController {
 	return &AuthController{
 		authService:         authService,
 		userService:         userService,
@@ -38,6 +40,8 @@ func NewAuthController(authService *service.AuthService, userService *service.Us
 		redisStore:          redisStore,
 		frontendBaseURL:     frontendBaseURL,
 		appURLScheme:        appURLScheme,
+		githubCallbackURL:   strings.TrimSpace(githubCallbackURL),
+		googleCallbackURL:   strings.TrimSpace(googleCallbackURL),
 	}
 }
 
@@ -814,6 +818,17 @@ func (controller *AuthController) checkLoginLimit(c *gin.Context) bool {
 }
 
 func (controller *AuthController) callbackURL(r *http.Request, provider string) string {
+	switch provider {
+	case "github":
+		if controller.githubCallbackURL != "" {
+			return controller.githubCallbackURL
+		}
+	case "google":
+		if controller.googleCallbackURL != "" {
+			return controller.googleCallbackURL
+		}
+	}
+
 	return strings.TrimRight(controller.publicBaseURL(r), "/") + "/api/auth/" + provider + "/callback"
 }
 

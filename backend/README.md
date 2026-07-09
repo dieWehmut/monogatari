@@ -53,10 +53,10 @@
 |------|--------|------|
 | `GITHUB_CLIENT_ID` | — | GitHub OAuth 登录 / 绑定 |
 | `GITHUB_CLIENT_SECRET` | — | GitHub OAuth 登录 / 绑定 |
-| `GITHUB_CALLBACK_URL` | `FRONTEND_BASE_URL + /api/auth/github/callback` | GitHub OAuth 回调地址 |
+| `GITHUB_CALLBACK_URL` | 动态按请求 Host 生成 | GitHub OAuth 回调地址；生产环境建议显式设置为后端公网 HTTPS 地址 |
 | `GOOGLE_CLIENT_ID` | — | Google OAuth 登录 / 绑定 |
 | `GOOGLE_CLIENT_SECRET` | — | Google OAuth 登录 / 绑定 |
-| `GOOGLE_CALLBACK_URL` | `FRONTEND_BASE_URL + /api/auth/google/callback` | Google OAuth 回调地址 |
+| `GOOGLE_CALLBACK_URL` | 动态按请求 Host 生成 | Google OAuth 回调地址；生产环境建议显式设置为后端公网 HTTPS 地址 |
 | `RESEND_API_KEY` | — | Email 登录与审核邮件 |
 | `RESEND_EMAIL_FROM` | — | 邮件发件人地址 |
 | `REDIS_URL` | — | Redis / Upstash 连接串 |
@@ -180,13 +180,13 @@ curl -fsS http://127.0.0.1:7860/healthz
 前端部署时把 `VITE_API_BASE` 设置为后端公网地址，例如：
 
 ```env
-VITE_API_BASE=https://api.monogatari.diesw.tech
+VITE_API_BASE=https://api-monogatari.diesw.tech
 ```
 
 `FRONTEND_BASE_URL` 和 `FRONTEND_ORIGIN` 仍然应该填写真实前端地址。GitHub / Google OAuth 的回调地址应指向后端公网地址：
 
-- `https://api.monogatari.diesw.tech/api/auth/github/callback`
-- `https://api.monogatari.diesw.tech/api/auth/google/callback`
+- `https://api-monogatari.diesw.tech/api/auth/github/callback`
+- `https://api-monogatari.diesw.tech/api/auth/google/callback`
 
 如果后端位于反向代理之后，反向代理需要转发 `X-Forwarded-Proto` 和 `X-Forwarded-Host`，否则 OAuth 回调地址可能会被生成为内部地址或错误协议。
 

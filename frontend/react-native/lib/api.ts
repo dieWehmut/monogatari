@@ -13,7 +13,7 @@ import { mediaTypeFromFile, normalizeAssetTypes } from './media';
 
 const normalizeApiBase = (value: string) => value.trim().replace(/\/$/, '');
 
-const API_BASE_FALLBACK = 'https://api.monogatari.diesw.tech';
+const API_BASE_FALLBACK = 'https://api-monogatari.diesw.tech';
 const rawApiBase = typeof process !== 'undefined' ? process.env.EXPO_PUBLIC_API_BASE ?? '' : '';
 const hasExplicitBase = !!rawApiBase;
 export const API_BASE = normalizeApiBase(rawApiBase || API_BASE_FALLBACK);

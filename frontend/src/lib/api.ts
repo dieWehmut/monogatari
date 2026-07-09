@@ -14,7 +14,7 @@ import { mediaTypeFromFile, normalizeAssetTypes } from './media';
 
 const normalizeApiBase = (value: string) => value.trim().replace(/\/$/, '');
 
-const DEFAULT_PRODUCTION_API_BASE = 'https://api.monogatari.diesw.tech';
+const DEFAULT_PRODUCTION_API_BASE = 'https://api-monogatari.diesw.tech';
 
 export const API_BASE_FALLBACK = DEFAULT_PRODUCTION_API_BASE;
 

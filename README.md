@@ -155,7 +155,7 @@ go build -o server ./cmd/server
 
 ```bash
 cd frontend
-VITE_API_BASE=https://api.monogatari.diesw.tech pnpm build
+VITE_API_BASE=https://api-monogatari.diesw.tech pnpm build
 ```
 
 产物位于 `frontend/dist/`，可以发布到 Vercel、Netlify、Cloudflare Pages 或其他静态托管服务。
@@ -164,7 +164,7 @@ VITE_API_BASE=https://api.monogatari.diesw.tech pnpm build
 Cloudflare Pages 生产环境至少需要设置：
 
 ```env
-VITE_API_BASE=https://api.monogatari.diesw.tech
+VITE_API_BASE=https://api-monogatari.diesw.tech
 VITE_STATIC_AUTH=true
 VITE_AUTH_ENABLE_GITHUB=true
 VITE_AUTH_ENABLE_GOOGLE=true
