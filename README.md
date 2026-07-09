@@ -62,7 +62,6 @@
 - Capacitor Android 客户端
 - 实验中的 Expo React Native 客户端
 - 静态故事捕获模式和 Giscus 评论
-- 可选 Vercel 同源 API 代理
 
 ## 快速开始
 
@@ -160,14 +159,7 @@ VITE_API_BASE=https://api.example.com pnpm build
 ```
 
 产物位于 `frontend/dist/`，可以发布到 Vercel、Netlify、Cloudflare Pages 或其他静态托管服务。
-
-### Vercel 同源代理
-
-`frontend/api/proxy.go` 可以把 `/api/*` 请求转发到后端：
-
-- Vercel 项目根目录设为 `frontend`
-- 设置 `BACKEND_URL=https://api.example.com`
-- 前端构建时可不设置 `VITE_API_BASE`，让浏览器走同源 `/api/*`
+前端应直接通过 `VITE_API_BASE` 访问后端公网地址，不再依赖 Vercel 同源 API 代理。
 
 ### 静态故事模式
 
@@ -203,7 +195,6 @@ frontend/
   src/                    Web 前端
   android/                Capacitor Android 工程
   react-native/           Expo React Native 客户端，实验中
-  api/proxy.go            Vercel 同源 API 代理
   scripts/                捕获数据与开发脚本
 
 backend/

@@ -1,8 +1,8 @@
-# Story Timeline Backend
+# Monogatari Backend
 
-`backend/` 是 Story Timeline 的 Go API 服务，负责认证、注册审核、动态流、帖子与评论、关注关系、Cloudinary 直传签名、通知公告，以及健康检查接口。
+`backend/` 是 monogatari 的 Go API 服务，负责认证、注册审核、动态流、帖子与评论、关注关系、Cloudinary 直传签名、通知公告，以及健康检查接口。
 
-当前后端是一个标准的 Gin 服务，可按普通 Go 服务部署。
+当前后端是一个标准的 Gin 服务，推荐作为独立后端部署到 VPS / Docker 主机，并让前端通过 `VITE_API_BASE` 直接访问后端公网地址。新部署不需要 Vercel 同源 API 代理。
 
 历史备注：
 
@@ -92,8 +92,23 @@ make run
 
 ```bash
 cd backend
-docker build -t story-timeline-backend .
-docker run -p 7860:7860 --env-file .env story-timeline-backend
+docker build -t monogatari-backend .
+docker rm -f monogatari-backend 2>/dev/null || true
+docker run -d \
+  --name monogatari-backend \
+  --restart unless-stopped \
+  -p 7860:7860 \
+  --env-file .env \
+  monogatari-backend
+```
+
+也可以使用 Makefile：
+
+```bash
+cd backend
+make docker-build
+make docker-run
+make docker-logs
 ```
 
 镜像采用多阶段构建：
@@ -101,6 +116,38 @@ docker run -p 7860:7860 --env-file .env story-timeline-backend
 - `golang:1.25-alpine` 负责编译
 - `alpine:3.20` 作为运行时镜像
 - 最终进程以非 root 用户 `appuser` 运行
+
+## VPS 部署
+
+服务器上只需要保留一份仓库和 `backend/.env`。环境变量文件不提交到 Git。
+
+```bash
+cd /root/monogatari
+git pull --ff-only origin main
+cd backend
+make docker-build
+make docker-run
+```
+
+部署后检查：
+
+```bash
+docker ps --filter name=monogatari-backend
+curl -fsS http://127.0.0.1:7860/healthz
+```
+
+前端部署时把 `VITE_API_BASE` 设置为后端公网地址，例如：
+
+```env
+VITE_API_BASE=https://api.example.com
+```
+
+`FRONTEND_BASE_URL` 和 `FRONTEND_ORIGIN` 仍然应该填写真实前端地址。GitHub / Google OAuth 的回调地址应指向后端公网地址：
+
+- `https://api.example.com/api/auth/github/callback`
+- `https://api.example.com/api/auth/google/callback`
+
+如果后端位于反向代理之后，反向代理需要转发 `X-Forwarded-Proto` 和 `X-Forwarded-Host`，否则 OAuth 回调地址可能会被生成为内部地址或错误协议。
 
 ## API 概览
 
@@ -220,5 +267,4 @@ docker run -p 7860:7860 --env-file .env story-timeline-backend
 ## 与仓库其他部分的关系
 
 - Web 前端位于 `../frontend`
-- 可选同源代理位于 `../frontend/api/proxy.go`
 - 更上层的项目说明见 [../README.md](../README.md)
