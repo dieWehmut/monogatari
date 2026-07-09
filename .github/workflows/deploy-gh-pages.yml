@@ -10,7 +10,13 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
 
 jobs:
   deploy:
@@ -19,6 +25,10 @@ jobs:
       DIESW_ASSETS_DIR: ${{ github.workspace }}/.cache/diesw-assets
       DIESW_ASSETS_REF: ${{ vars.DIESW_ASSETS_REF || 'main' }}
       DIESW_ASSETS_REPOSITORY: ${{ vars.DIESW_ASSETS_REPOSITORY || 'dieWehmut/diesw-assets' }}
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
 
     steps:
       - uses: actions/checkout@v4
@@ -71,21 +81,17 @@ jobs:
           VITE_CAPTURE_GISCUS_LANG: ${{ vars.VITE_CAPTURE_GISCUS_LANG || vars.VITE_GISCUS_LANG || 'zh-CN' }}
         run: pnpm build
 
-      - name: Deploy
-        run: |
-          mkdir gh-pages
-          cp -r frontend/dist/* gh-pages/
+      - name: Add SPA fallback
+        run: cp frontend/dist/index.html frontend/dist/404.html
 
-          cd gh-pages
-          touch .nojekyll
-          cp index.html 404.html
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
 
-          git init
-          git checkout -b gh-pages
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: frontend/dist
 
-          git add .
-          git commit -m "deploy: $GITHUB_SHA"
-
-          git push --force https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} gh-pages
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4
