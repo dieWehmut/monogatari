@@ -1,0 +1,102 @@
+# Builds and publishes signed Tauri desktop bundles + latest.json for the
+# in-app updater. Push a tag like v0.0.2 (matching frontend/src-tauri version)
+# to trigger a release, or run manually via workflow_dispatch.
+#
+# Required repository secret:
+#   TAURI_SIGNING_PRIVATE_KEY  - contents of the minisign private key generated
+#                                by `pnpm tauri signer generate`. Its public key
+#                                is already in tauri.conf.json (plugins.updater.pubkey).
+# Optional secret (only if the key was generated with a password):
+#   TAURI_SIGNING_PRIVATE_KEY_PASSWORD
+name: Release Tauri App
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag (e.g. v0.0.2)'
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: windows-latest
+          - platform: macos-latest
+          - platform: ubuntu-latest
+
+    runs-on: ${{ matrix.platform }}
+
+    env:
+      DIESW_ASSETS_DIR: ${{ github.workspace }}/.cache/diesw-assets
+      DIESW_ASSETS_REF: ${{ vars.DIESW_ASSETS_REF || 'main' }}
+      DIESW_ASSETS_REPOSITORY: ${{ vars.DIESW_ASSETS_REPOSITORY || 'dieWehmut/diesw-assets' }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Linux build dependencies
+        if: matrix.platform == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libwebkit2gtk-4.1-dev \
+            libappindicator3-dev \
+            librsvg2-dev \
+            patchelf \
+            libssl-dev
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Enable pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@10 --activate
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache cargo
+        uses: swatinem/rust-cache@v2
+        with:
+          workspaces: frontend/src-tauri
+
+      - name: Checkout capture assets
+        working-directory: frontend
+        env:
+          DIESW_ASSETS_TOKEN: ${{ secrets.DIESW_ASSETS_TOKEN }}
+        run: node scripts/checkout-assets-repo.mjs
+
+      - name: Install frontend deps
+        working-directory: frontend
+        run: pnpm install --frozen-lockfile
+
+      - name: Resolve release tag
+        id: tag
+        shell: bash
+        run: echo "value=${{ github.event.inputs.tag || github.ref_name }}" >> "$GITHUB_OUTPUT"
+
+      - name: Build and publish release
+        uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+        with:
+          projectPath: frontend
+          tagName: ${{ steps.tag.outputs.value }}
+          releaseName: 'monogatari ${{ steps.tag.outputs.value }}'
+          releaseBody: 'See the assets below to download and install this version. The app auto-updates from latest.json.'
+          releaseDraft: false
+          prerelease: false
+          includeUpdaterJson: true
