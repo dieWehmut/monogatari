@@ -2,11 +2,13 @@ package config
 
 import (
 	"os"
+	"strings"
 )
 
 type Env struct {
 	Port                string
 	FrontendOrigin      string
+	AllowedOrigins      []string
 	FrontendBaseURL     string
 	AppURLScheme        string
 	GitHubClientID      string
@@ -37,6 +39,7 @@ func LoadEnv() Env {
 	return Env{
 		Port:                getEnv("PORT", "7860"),
 		FrontendOrigin:      getEnv("FRONTEND_ORIGIN", "http://localhost:5173"),
+		AllowedOrigins:      splitList(os.Getenv("CORS_ALLOWED_ORIGINS")),
 		FrontendBaseURL:     frontendBaseURL,
 		AppURLScheme:        getEnv("APP_URL_SCHEME", "monogatari"),
 		GitHubClientID:      os.Getenv("GITHUB_CLIENT_ID"),
@@ -69,4 +72,22 @@ func getEnv(key string, fallback string) string {
 	}
 
 	return value
+}
+
+// splitList parses a comma-separated env value into a trimmed, non-empty slice.
+func splitList(value string) []string {
+	if value == "" {
+		return nil
+	}
+
+	parts := strings.Split(value, ",")
+	result := make([]string, 0, len(parts))
+	for _, part := range parts {
+		trimmed := strings.TrimSpace(part)
+		if trimmed != "" {
+			result = append(result, trimmed)
+		}
+	}
+
+	return result
 }
