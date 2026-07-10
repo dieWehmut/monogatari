@@ -9,7 +9,10 @@ import { useTranslation } from '../hooks/useTranslation';
 import { ImageViewer } from '../ui/ImageViewer';
 import { shouldBypassAuthRequired } from '../lib/devAuth';
 import { normalizeAssetTypes } from '../lib/media';
+import { getCaptureAssets } from '../data/capture';
+import { staticStoryMode } from '../lib/staticMode';
 import type { MediaItem } from '../lib/media';
+import type { CaptureAsset } from '../types/capture';
 import type { ImageItem, TimelineMonth } from '../types/image';
 
 interface AlbumProps {
@@ -146,6 +149,36 @@ function MediaTimeline({
   );
 }
 
+const captureDateToStartAt = (date?: string): string => {
+  if (!date) return new Date(0).toISOString();
+  const match = date.match(/(\d{4}-\d{2}-\d{2})(?:[ T](\d{2}:\d{2}(?::\d{2})?))?/);
+  if (!match) return new Date(0).toISOString();
+  const [, day, time] = match;
+  return `${day}T${time ?? '00:00:00'}`;
+};
+
+const captureAssetsToImageItems = (assets: CaptureAsset[]): ImageItem[] =>
+  assets.map((asset) => {
+    const startAt = captureDateToStartAt(asset.date);
+    return {
+      id: asset.id,
+      authorLogin: '',
+      authorAvatar: '',
+      description: asset.summary ?? asset.title ?? '',
+      tags: asset.tags ?? [],
+      timeMode: 'point',
+      startAt,
+      imageUrls: [asset.image],
+      imagePaths: [],
+      metadataPath: '',
+      createdAt: startAt,
+      updatedAt: startAt,
+      likeCount: 0,
+      commentCount: 0,
+      liked: false,
+    };
+  });
+
 const buildMediaEntries = (items: ImageItem[]) => {
   const albumMap = new Map<string, AlbumCard>();
   const photoEntries: MediaEntry[] = [];
@@ -277,6 +310,9 @@ export default function Album({ auth, images, theme, onThemeToggle }: AlbumProps
   }, [activeTab, activeTagKey, activeUser]);
 
   const scopedItems = useMemo(() => {
+    if (staticStoryMode) {
+      return captureAssetsToImageItems(getCaptureAssets());
+    }
     if (!activeUser) return images.allItems;
     const normalized = activeUser.toLowerCase();
     return images.allItems.filter(
@@ -499,7 +535,7 @@ export default function Album({ auth, images, theme, onThemeToggle }: AlbumProps
       />
 
       <main className="mx-auto w-full max-w-5xl px-4 pb-10 pt-24">
-        {images.loading ? (
+        {images.loading && !staticStoryMode ? (
           <p className="py-12 text-center text-sm text-soft">{t('common.loading')}</p>
         ) : activeTab === 'albums' && !activeTagKey ? (
           albumCards.length === 0 ? (
