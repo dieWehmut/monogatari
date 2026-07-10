@@ -59,13 +59,13 @@ export function Footer({ stats }: FooterProps) {
           <Copyright className="footer-icon text-cyan-300" size={12} />
           <span>2026</span>
           <a
-            href={`https://github.com/${stats.githubOwner}`}
+            href={`https://github.com/dieWehmut`}
             rel="noopener noreferrer"
             target="_blank"
             className="underline underline-offset-4 decoration-current"
           >
-            {stats.githubOwner}.
-          </a>
+            dieWehmut.
+            </a>
           <span>All Rights Reserved.</span>
         </p>
       </div>
