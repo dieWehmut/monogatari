@@ -13,6 +13,7 @@ import { LanguageProvider } from './context/LanguageContext';
 import { isPublicPath } from './utils/AuthGuard';
 import { shouldBypassAuthRequired } from './lib/devAuth';
 import { staticAuthDisabled, staticStoryMode } from './lib/staticMode';
+import { checkForUpdates } from './lib/updater';
 import type { TimelineMonth } from './types/image';
 
 const Home = lazy(() => import('./pages/Home'));
@@ -223,6 +224,10 @@ function App() {
     document.documentElement.dataset.theme = theme;
     window.localStorage.setItem('story-theme', theme);
   }, [theme]);
+
+  useEffect(() => {
+    void checkForUpdates();
+  }, []);
 
   return (
     <ToastProvider>
