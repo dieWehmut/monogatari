@@ -250,10 +250,25 @@ function getCaptureAssetGridClass(count: number) {
   return `${baseClass} grid-cols-3`;
 }
 
-function CaptureCard({ asset, onPreview }: { asset: CaptureAsset; onPreview: (asset: CaptureAsset) => void }) {
+const CAPTURE_PREVIEW_LIMIT = 9;
+
+const captureMoreBadgeClass =
+  'absolute bottom-2.5 right-2.5 z-10 inline-flex h-8 min-w-11 items-center justify-center rounded-lg border border-white/35 bg-black/70 px-2.5 text-sm font-black leading-none text-white shadow-[0_8px_20px_rgba(0,0,0,0.28)]';
+
+function CaptureCard({
+  asset,
+  overflowCount = 0,
+  onPreview,
+  onOverflow,
+}: {
+  asset: CaptureAsset;
+  overflowCount?: number;
+  onPreview: (asset: CaptureAsset) => void;
+  onOverflow?: () => void;
+}) {
   return (
     <article className="overflow-hidden bg-[var(--panel-bg)]">
-      <div className="aspect-square overflow-hidden bg-slate-950/20">
+      <div className="relative aspect-square overflow-hidden bg-slate-950/20">
         <button
           className="block h-full w-full cursor-zoom-in overflow-hidden"
           onClick={() => onPreview(asset)}
@@ -267,17 +282,47 @@ function CaptureCard({ asset, onPreview }: { asset: CaptureAsset; onPreview: (as
             src={asset.image}
           />
         </button>
+        {overflowCount > 0 ? (
+          <button
+            aria-label={`+${overflowCount}`}
+            className={captureMoreBadgeClass}
+            onClick={(event) => {
+              event.stopPropagation();
+              onOverflow?.();
+            }}
+            type="button"
+          >
+            +{overflowCount}
+          </button>
+        ) : null}
       </div>
     </article>
   );
 }
 
-function CaptureGroupBlock({ group, onPreview }: { group: CaptureGroup; onPreview: (asset: CaptureAsset) => void }) {
+function CaptureGroupBlock({
+  group,
+  onPreview,
+  onOpenGroup,
+}: {
+  group: CaptureGroup;
+  onPreview: (asset: CaptureAsset) => void;
+  onOpenGroup: (group: CaptureGroup) => void;
+}) {
+  const visibleAssets = group.assets.slice(0, CAPTURE_PREVIEW_LIMIT);
+  const hiddenCount = Math.max(0, group.assets.length - CAPTURE_PREVIEW_LIMIT);
+
   return (
     <section className="space-y-3">
-      <div className={getCaptureAssetGridClass(group.assets.length)}>
-        {group.assets.map((asset) => (
-          <CaptureCard asset={asset} key={asset.id} onPreview={onPreview} />
+      <div className={getCaptureAssetGridClass(visibleAssets.length)}>
+        {visibleAssets.map((asset, index) => (
+          <CaptureCard
+            asset={asset}
+            key={asset.id}
+            onOverflow={() => onOpenGroup(group)}
+            onPreview={onPreview}
+            overflowCount={index === visibleAssets.length - 1 ? hiddenCount : 0}
+          />
         ))}
       </div>
       <div className="flex flex-wrap items-center gap-2 text-xs text-soft">
@@ -358,6 +403,11 @@ function CaptureIndex({ onThemeToggle, theme }: CaptureProps) {
     setViewer({ items: viewerItems, index });
   };
 
+  const openGroup = (group: CaptureGroup) => {
+    saveStoryScrollPosition();
+    navigate(`/story/${encodeURIComponent(group.id)}`, { state: { fromStory: true } });
+  };
+
   const jumpToMonth = (month: TimelineMonth) => {
     const target = document.getElementById(`capture-month-${month.key}`);
     target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -402,7 +452,7 @@ function CaptureIndex({ onThemeToggle, theme }: CaptureProps) {
                     <h3 className="text-lg font-semibold text-soft">{month.label}</h3>
                     <div className="space-y-5">
                       {month.groups.map((group) => (
-                        <CaptureGroupBlock group={group} key={group.id} onPreview={handlePreview} />
+                        <CaptureGroupBlock group={group} key={group.id} onOpenGroup={openGroup} onPreview={handlePreview} />
                       ))}
                     </div>
                   </section>
