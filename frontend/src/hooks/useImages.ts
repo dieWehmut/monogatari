@@ -38,7 +38,7 @@ const defaultStats: HealthStats = {
   userCount: 0,
   onlineUsers: 0,
   uptimeSeconds: 0,
-  githubOwner: 'GitHub',
+  githubOwner: 'dieWehmut',
 };
 
 const CACHE_KEY_FEED = 'story_feed_cache';

@@ -118,7 +118,7 @@ function ServerBackedApp({ onThemeToggle, theme }: { onThemeToggle: () => void; 
 
   const footerStats = {
     ...images.stats,
-    githubOwner: images.stats.githubOwner || auth.user?.login || 'GitHub',
+    githubOwner: images.stats.githubOwner || auth.user?.login || 'dieWehmut',
   };
 
   return (

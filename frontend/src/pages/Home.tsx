@@ -76,7 +76,7 @@ function NavCard({ icon: Icon, label, subLabel, to, href, external, disabled }: 
 export default function Home({ auth, images, follows, theme, onThemeToggle }: HomeProps) {
   const { t } = useTranslation();
   const profile = useProfile();
-  const githubOwner = images.stats.githubOwner || auth.user?.login || 'GitHub';
+  const githubOwner = images.stats.githubOwner || auth.user?.login || 'dieWehmut';
   const repoUrl = `https://github.com/${githubOwner}/monogatari`;
   const androidUrl = `${repoUrl}/releases/latest`;
   const albumUser = auth.user?.login || githubOwner;

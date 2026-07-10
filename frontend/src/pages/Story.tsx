@@ -617,7 +617,7 @@ export default function Story({
   const recordCount = scopedAllItems.length;
   const albumCount = scopedAllItems.reduce((sum, item) => sum + (item.imageUrls?.length ?? 0), 0);
 
-  const albumOwner = activeUser || auth.user?.login || images.stats.githubOwner || 'GitHub';
+  const albumOwner = activeUser || auth.user?.login || images.stats.githubOwner || 'dieWehmut';
   const albumHref = `/album?user=${encodeURIComponent(albumOwner)}`;
   const recordDisabled = isUserScoped || !auth.canPost || images.submitting;
   const showQuickActions = selectedItemId === null;
